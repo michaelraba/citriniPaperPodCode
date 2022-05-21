@@ -13,7 +13,7 @@ Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/jo
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-# Part 2: Snapshot POD Procedure
+# Part 2: Method (A), Snapshot POD Procedure following Citrini
 
 According to source (cite), the POD equation in pipe coordinates may be written as,
 
@@ -21,7 +21,25 @@ $$\int_{r^{\prime}} \boldsymbol{S}\left(m ; r, r^{\prime}\right) \Phi_{n}\left(m
 
 where $n$ represents the POD mode number, $\Phi_{n}$ are the eigenfunctions with the corresponding eigenvalues $\lambda_{n}$, and $m$ represents the azimuthally decomposed mode number. Here, $r$ from the polar integration is absorbed into the eigenfunctions and the cross-correlation tensor.
 
-**Following Hellstrom Smits 2017**,
+Define the time-averaged cross-correlation tensor as
+
+$$\mathbf{S}\left(m ; r, r^{\prime}\right)=\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \boldsymbol{u}^{*}\left(m ; r^{\prime}, t\right) r^{1 / 2} \mathrm{~d} t$$
+
+Next write the projection coefficient $\alpha$ for the radial geometry as,
+
+$$\alpha_{n}(m ; t)=\int_{r} \boldsymbol{u}(m ; r, t) r^{1 / 2} \Phi_{n}^{*}(m ; r) \mathrm{d} r$$
+
+Then, we may rewrite the eigenvalue problem, which we will implement in the code
+
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau}\left(r^{1 / 2} \boldsymbol{u}(m ; r, t), r^{1 / 2} \boldsymbol{u}\left(m ; r, t^{\prime}\right)\right) \alpha_{n}(m ; t) \mathrm{d} t^{\prime}=\lambda_{n}(m) \alpha_{n}(m ; t) \hspace{0.2in}\text{(Equation A)}$$
+ The resulting solution $\alpha_n$ for $n\in \{1,\ldots , N\}$ is found from the above. From that, we may directly find the eigenfunctions $\Phi_n$, which are given by,
+
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m) \hspace{0.2in}\text{(Equation B)}$$
+
+by solving for $\Phi_n$.
+
+
+# Method (B): Following Hellstrom Smits 2017
 
 Write the correlation tensor as,
 
@@ -34,6 +52,11 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{R}\left(
 Finally solve for the eigenfunction $\Phi_n$ ,
 
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m).$$
+
+
+# Resolution: Combine Method (A) and Method (B)
+
+We can&rsquo;t apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. Thus we need to symmetrize that in the parameter $r$ ,as in method (A), and recover $\Phi_n$ by multiplying by $r^{-1/2}$.
 
 
 # Sources:
