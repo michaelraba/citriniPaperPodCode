@@ -7,7 +7,7 @@ if aliasStr=="noAlias"
 elseif aliasStr=="alias"
 for timeBloc = 1:blocLength% time
     parfor t = 1:ntimesteps % time % parfor
-        for  r = 1:540
+        for  r = 1:540 
             vec = zeros(1080,1);
             vec2 = zeros(1080,1);
             for zz=1:1080 % there are currently 1080 azimuthal modes.
