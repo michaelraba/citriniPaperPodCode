@@ -2,7 +2,7 @@ function plotSkmr(plotObject,isGraph)
 [ntimesteps rMin ,rMax, ss ,ncs ,plotOn ,azimuthalSet, azimuthalSetSize ,printStatus, lags]=constants();
 if isGraph=="graph"
   f=figure('Renderer', 'painters', 'Position', [10 10 1900 900])
-  cMaxx=10
+  cMaxx=ncs;
   A=linspace(0,1,541)
   %A=linspace(0,1,1079)
   xlabel('radius $\frac{r}{R}$','interpreter','latex')
