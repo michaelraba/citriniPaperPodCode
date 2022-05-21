@@ -44,7 +44,7 @@ by solving for $\Phi_n$.
 
 ## Method (B): Following Hellstrom Smits 2017
 
-Write the correlation tensor as,
+Write the correlation tensor R as, following Smits 2017 comment under equation 2.4,
 
 $$\mathbf{R}\left(k ; m ; t, t^{\prime}\right)=\int_{r} \mathbf{u}(k ; m ; r, t) \mathbf{u}^{*}\left(k ; m ; r, t^{\prime}\right) r \mathrm{~d} r$$.
 
@@ -60,6 +60,8 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mat
 ## Resolution: Combine Method (A) and Method (B)
 
 We can&rsquo;t apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. Thus we need to symmetrize that in the parameter $r$ ,as in method (A), and recover $\Phi_n$ by multiplying by $r^{-1/2}$.
+
+On second thought, that fredholm operator is now in $t$, so perhaps the symmetrization is not necessary..
 
 
 # Sources:
