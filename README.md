@@ -1,19 +1,19 @@
 
 # Table of Contents
 
-1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org163377c)
-2.  [Description](#orga05cd91)
-3.  [Part 1: Spectral Analysis Procedure](#orgf7491c5)
-4.  [Part 2: Snapshot POD Procedure](#orgefa88b0)
-5.  [Sources:](#orgd8a26b6)
+1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org86b47af)
+2.  [Description](#orgc256e66)
+3.  [Part 1: Spectral Analysis Procedure](#orgedc4f75)
+4.  [Part 2: Snapshot POD Procedure](#orgd1e7109)
+5.  [Sources:](#org44a9cf8)
 
 
-<a id="org163377c"></a>
+<a id="org86b47af"></a>
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
 
 
-<a id="orga05cd91"></a>
+<a id="orgc256e66"></a>
 
 # Description
 
@@ -22,14 +22,14 @@ Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/jo
 [Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="orgf7491c5"></a>
+<a id="orgedc4f75"></a>
 
 # Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-<a id="orgefa88b0"></a>
+<a id="orgd1e7109"></a>
 
 # Part 2: Snapshot POD Procedure
 
@@ -39,7 +39,7 @@ $$\int_{r^{\prime}} \boldsymbol{S}\left(m ; r, r^{\prime}\right) \Phi_{n}\left(m
 
 where $n$ represents the POD mode number, $\Phi_{n}$ are the eigenfunctions with the corresponding eigenvalues $\lambda_{n}$, and $m$ represents the azimuthally decomposed mode number. Here, $r$ from the polar integration is absorbed into the eigenfunctions and the cross-correlation tensor.
 
-1.  Rewriting the time-avergaed cross-correlation tensor,
+1.  Rewrite the time-averaged cross-correlation tensor,
 
 $$\mathbf{S}\left(m ; r, r^{\prime}\right)=\lim _{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \boldsymbol{u}^{*}\left(m ; r^{\prime}, t\right) r^{1 / 2} \mathrm{~d} t$$
 
@@ -56,7 +56,7 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
     $$\lim _{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m)$$
 
 
-<a id="orgd8a26b6"></a>
+<a id="org44a9cf8"></a>
 
 # Sources:
 
