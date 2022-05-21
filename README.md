@@ -1,19 +1,19 @@
 
 # Table of Contents
 
-1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org29eb53d)
-2.  [Description](#org9dcc1cc)
-3.  [Part 1: Spectral Analysis Procedure](#orgc26158f)
-4.  [Part 2: Snapshot POD Procedure](#org152a21b)
-5.  [Sources:](#orgc853e20)
+1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org5ba8129)
+2.  [Description](#org48fd251)
+3.  [Part 1: Spectral Analysis Procedure](#orge7c6327)
+4.  [Part 2: Snapshot POD Procedure](#orgbeca99d)
+5.  [Sources:](#org00e0f26)
 
 
-<a id="org29eb53d"></a>
+<a id="org5ba8129"></a>
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
 
 
-<a id="org9dcc1cc"></a>
+<a id="org48fd251"></a>
 
 # Description
 
@@ -22,14 +22,14 @@ Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/jo
 [Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="orgc26158f"></a>
+<a id="orge7c6327"></a>
 
 # Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-<a id="org152a21b"></a>
+<a id="orgbeca99d"></a>
 
 # Part 2: Snapshot POD Procedure
 
@@ -54,9 +54,11 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
 1.  The resulting solution $\alpha_n$ for $n\in \{1,\ldots , N\}$ is found from the above. From that, we may directly find the eigenfunctions $\Phi_n$, which are given by,
     
     $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m)$$
+    
+    by solving for $\Phi_n$.
 
 
-<a id="orgc853e20"></a>
+<a id="org00e0f26"></a>
 
 # Sources:
 
