@@ -1,9 +1,7 @@
 * Proper Orthogonal Decompositon (Snapshot POD) Code
 * Description
 
-Follows the paper by [[https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C][Citrini and George 2000]] ,  which is used by
-
-[[https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086][Hellstrom and Smits 2017]] and [[https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9][Ganapathisubramani, Hellstrom, and Smits 2015]].
+Follows the paper by [[https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C][Citrini and George 2000]] ,  which is used by eg, [[https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086][Hellstrom and Smits 2017]] and [[https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9][Ganapathisubramani, Hellstrom, and Smits 2015]].
 
 
 
