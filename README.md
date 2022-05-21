@@ -13,7 +13,10 @@ Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/jo
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-# Part 2: Method (A), Snapshot POD Procedure following Citrini
+# Part 2: POD
+
+
+## Method (A), Snapshot POD Procedure following Citrini
 
 According to source (cite), the POD equation in pipe coordinates may be written as,
 
@@ -39,7 +42,7 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
 by solving for $\Phi_n$.
 
 
-# Method (B): Following Hellstrom Smits 2017
+## Method (B): Following Hellstrom Smits 2017
 
 Write the correlation tensor as,
 
@@ -54,7 +57,7 @@ Finally solve for the eigenfunction $\Phi_n$ ,
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m).$$
 
 
-# Resolution: Combine Method (A) and Method (B)
+## Resolution: Combine Method (A) and Method (B)
 
 We can&rsquo;t apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. Thus we need to symmetrize that in the parameter $r$ ,as in method (A), and recover $\Phi_n$ by multiplying by $r^{-1/2}$.
 
