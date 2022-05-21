@@ -1,33 +1,35 @@
 
 # Table of Contents
 
-1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#orga16a777)
-2.  [Description](#orga8aeed9)
-3.  [Part 1: Spectral Analysis Procedure](#orgf248541)
-4.  [Part 2: Snapshot POD Procedure](#org0b55b4b)
-5.  [Sources:](#org0c31895)
+1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org163377c)
+2.  [Description](#orga05cd91)
+3.  [Part 1: Spectral Analysis Procedure](#orgf7491c5)
+4.  [Part 2: Snapshot POD Procedure](#orgefa88b0)
+5.  [Sources:](#orgd8a26b6)
 
 
-<a id="orga16a777"></a>
+<a id="org163377c"></a>
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
 
 
-<a id="orga8aeed9"></a>
+<a id="orga05cd91"></a>
 
 # Description
 
-Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C)
+Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C) ,  which is used by
+
+[Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="orgf248541"></a>
+<a id="orgf7491c5"></a>
 
 # Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-<a id="org0b55b4b"></a>
+<a id="orgefa88b0"></a>
 
 # Part 2: Snapshot POD Procedure
 
@@ -54,7 +56,7 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
     $$\lim _{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m)$$
 
 
-<a id="org0c31895"></a>
+<a id="orgd8a26b6"></a>
 
 # Sources:
 
