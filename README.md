@@ -1,33 +1,17 @@
 
-# Table of Contents
-
-1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#orge47948b)
-2.  [Description](#org3fde581)
-3.  [Part 1: Spectral Analysis Procedure](#orgb9674b8)
-4.  [Part 2: Snapshot POD Procedure](#org1ec82e6)
-5.  [Sources:](#org899c85a)
-
-
-<a id="orge47948b"></a>
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
 
-
-<a id="org3fde581"></a>
 
 # Description
 
 Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C) ,  which is used by eg, [Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="orgb9674b8"></a>
-
 # Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
-
-<a id="org1ec82e6"></a>
 
 # Part 2: Snapshot POD Procedure
 
@@ -55,8 +39,6 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
     
     by solving for $\Phi_n$.
 
-
-<a id="org899c85a"></a>
 
 # Sources:
 
