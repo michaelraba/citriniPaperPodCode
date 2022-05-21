@@ -75,7 +75,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                 xcorrDone(t).circle(m).dat(r,1)=bb(t);
                 end % t
                 end % m
-        end % (little)t
+        end % r
   saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'xcorrDone','-v7.3');
 
