@@ -1,6 +1,4 @@
-% nb this function should only take azimuthal mode ...
 function [qq]=findAzimuthalModes3(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr)
-% [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags]=constants();
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
 if aliasStr=="noAlias"
@@ -25,22 +23,24 @@ for timeBloc = 1:blocLength% time
         end % r...
     end % parfor t
 clear qMinusQbar_noCsYet; % yes, clear this..
-        saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-        load(saveStr,'qMinusQbar_noCsYet');
-    ordStr="xcorrNow";
-        parfor t=1:ntimesteps%
-            vec = zeros(1,540); % collect radial points..
-                for m=1:1080
-                for r=1:540% size xcorr
-                  aa = qMinusQbar_noCsYet(t).circle(m).dat(r,1);
-                  vec(r) = aa;
-                end % r
-                  [bb, lags] = rcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
-                xcorrDone(t).circle(m).dat=bb';
-                end % m
-        end % (little)t
-  saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-   save(saveStr,'xcorrDone','-v7.3');
+        saveStr=[saveDir 'azimuthDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+        save(saveStr,'postAzimuthFft_noCsYet','-v7.3');
+%        load(saveStr,'qMinusQbar_noCsYet');
+%    ordStr="xcorrNow";
+%        parfor t=1:ntimesteps%
+%            vec = zeros(1,540); % collect radial points..
+%                for m=1:1080
+%                for r=1:540% size xcorr
+%                  aa = qMinusQbar_noCsYet(t).circle(m).dat(r,1);
+%                  vec(r) = aa;
+%                end % r
+%                  [bb, lags] = rcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
+%                xcorrDone(t).circle(m).dat=bb';
+%                end % m
+%        end % (little)t
+%  saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+%   save(saveStr,'xcorrDone','-v7.3');
 end % timeBloc % end timebloc here .. (updated order..)
-qq = xcorrDone; % asign qq and exi
+%qq = xcorrDone; % asign qq and exi
+qq = postAzimuthFft_noCsYet; % asign qq and exi
 end % fc
