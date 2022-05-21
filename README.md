@@ -57,11 +57,9 @@ Finally solve for the eigenfunction $\Phi_n$ ,
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m).$$
 
 
-## Resolution: Combine Method (A) and Method (B)
+## Resolution: Prefer Method (B) over Method (A)
 
-We can&rsquo;t apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. Thus we need to symmetrize that in the parameter $r$ ,as in method (A), and recover $\Phi_n$ by multiplying by $r^{-1/2}$.
-
-On second thought, that fredholm operator is now in $t$, so perhaps the symmetrization is not necessary..
+We can apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. But that is already symmetric in $t$.
 
 
 # Sources:

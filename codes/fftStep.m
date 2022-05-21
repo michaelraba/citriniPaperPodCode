@@ -54,7 +54,7 @@ if stepStr=="readDataAndFindVeloFluctuation"
 
     % nb time looping within..
     %[xcorrDone]=findAzimuthalModes(c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    [xcorrDone]=findAzimuthalModes3(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
+    [xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
     sprintf('%s','start azimuthal')
     qq = xcorrDone;
 
@@ -69,17 +69,14 @@ if stepStr=="readDataAndFindVeloFluctuation"
 % read in one of the saved xcorrDone
 for timeBloc=1:blocLength
 for currentCrossSec=1:ncs
-%saveStr=[saveDir '/xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-saveStr=[saveDir 'azimuthDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-
+saveStr=[saveDir '/xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
-for t=1:ntimesteps
+parfor t=1:ntimesteps
 for r=1:1079
 for m=1:azimuthalSetSize
-  %aa=qq.xcorrDone(t).circle(m).dat(r,1);
-  aa=qq.postAzimuthFft_noCsYet(t).circle(m).dat(r,1);
+  aa=qq.xcorrDone(t).circle(m).dat(r,1);
   %ab= xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1);
   xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
 end % m
@@ -142,6 +139,16 @@ end % timeBloc
         saveStr=[saveDir '/avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
         save(saveStr,'avgTimeEnd','-v7.3');
 
+
+% just start coding here..
+% need radial trapz.
+% then eigs calculation.
+
+%trapz() in r.x
+
+
+
+
 qq = xdirPostFft;
-% this should be just u with theta and x fft applied.
+
 end % f
