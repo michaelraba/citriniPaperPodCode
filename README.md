@@ -21,22 +21,19 @@ $$\int_{r^{\prime}} \boldsymbol{S}\left(m ; r, r^{\prime}\right) \Phi_{n}\left(m
 
 where $n$ represents the POD mode number, $\Phi_{n}$ are the eigenfunctions with the corresponding eigenvalues $\lambda_{n}$, and $m$ represents the azimuthally decomposed mode number. Here, $r$ from the polar integration is absorbed into the eigenfunctions and the cross-correlation tensor.
 
-Define the time-averaged cross-correlation tensor as
+**Following Hellstrom Smits 2017**,
 
-$$\mathbf{S}\left(m ; r, r^{\prime}\right)=\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \boldsymbol{u}^{*}\left(m ; r^{\prime}, t\right) r^{1 / 2} \mathrm{~d} t$$
+Write the correlation tensor as,
 
-Next write the projection coefficient $\alpha$ for the radial geometry as,
+$$\mathbf{R}\left(k ; m ; t, t^{\prime}\right)=\int_{r} \mathbf{u}(k ; m ; r, t) \mathbf{u}^{*}\left(k ; m ; r, t^{\prime}\right) r \mathrm{~d} r$$.
 
-$$\alpha_{n}(m ; t)=\int_{r} \boldsymbol{u}(m ; r, t) r^{1 / 2} \Phi_{n}^{*}(m ; r) \mathrm{d} r$$
+Solve the eigenvalue problem,
 
-Then, we may rewrite the eigenvalue problem, which we will implement in the code
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{R}\left(k ; m ; t, t^{\prime}\right) \alpha^{(n)}\left(k ; m ; t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda^{(n)}(k ; m) \alpha^{(n)}(k ; m ; t)$$
 
-$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau}\left(r^{1 / 2} \boldsymbol{u}(m ; r, t), r^{1 / 2} \boldsymbol{u}\left(m ; r, t^{\prime}\right)\right) \alpha_{n}(m ; t) \mathrm{d} t^{\prime}=\lambda_{n}(m) \alpha_{n}(m ; t) \hspace{0.2in}\text{(Equation A)}$$
- The resulting solution $\alpha_n$ for $n\in \{1,\ldots , N\}$ is found from the above. From that, we may directly find the eigenfunctions $\Phi_n$, which are given by,
+Finally solve for the eigenfunction $\Phi_n$ ,
 
-$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m) \hspace{0.2in}\text{(Equation B)}$$
-
-by solving for $\Phi_n$.
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m).$$
 
 
 # Sources:

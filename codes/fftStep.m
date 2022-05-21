@@ -142,16 +142,6 @@ end % timeBloc
         saveStr=[saveDir '/avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
         save(saveStr,'avgTimeEnd','-v7.3');
 
-
-% just start coding here..
-% need radial trapz. 
-% then eigs calculation.
-
-%trapz() in r.x
-
-
-
-
 qq = xdirPostFft;
 % this should be just u with theta and x fft applied.
 end % f
