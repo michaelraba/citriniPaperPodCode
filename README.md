@@ -1,19 +1,19 @@
 
 # Table of Contents
 
-1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org6e6ae36)
-2.  [Description](#org38af305)
-3.  [Part 1: Spectral Analysis Procedure](#org13dbb7c)
-4.  [Part 2: Snapshot POD Procedure](#org4b89c3d)
-5.  [Sources:](#org1aada2a)
+1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org29eb53d)
+2.  [Description](#org9dcc1cc)
+3.  [Part 1: Spectral Analysis Procedure](#orgc26158f)
+4.  [Part 2: Snapshot POD Procedure](#org152a21b)
+5.  [Sources:](#orgc853e20)
 
 
-<a id="org6e6ae36"></a>
+<a id="org29eb53d"></a>
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
 
 
-<a id="org38af305"></a>
+<a id="org9dcc1cc"></a>
 
 # Description
 
@@ -22,14 +22,14 @@ Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/jo
 [Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="org13dbb7c"></a>
+<a id="orgc26158f"></a>
 
 # Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-<a id="org4b89c3d"></a>
+<a id="org152a21b"></a>
 
 # Part 2: Snapshot POD Procedure
 
@@ -53,10 +53,10 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
 
 1.  The resulting solution $\alpha_n$ for $n\in \{1,\ldots , N\}$ is found from the above. From that, we may directly find the eigenfunctions $\Phi_n$, which are given by,
     
-    $$\lim _{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m)$$
+    $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \alpha_{n}^{*}(m ; t) \mathrm{d} t=\Phi_{n}(m ; r) \lambda^{n}(m)$$
 
 
-<a id="org1aada2a"></a>
+<a id="orgc853e20"></a>
 
 # Sources:
 
