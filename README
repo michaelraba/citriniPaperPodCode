@@ -21,7 +21,7 @@ where $n$ represents the POD mode number, $\Phi_{n}$ are the eigenfunctions with
 
 2. Rewrite the time-averaged cross-correlation tensor,
 
-$$\mathbf{S}\left(m ; r, r^{\prime}\right)=\lim _{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \boldsymbol{u}^{*}\left(m ; r^{\prime}, t\right) r^{1 / 2} \mathrm{~d} t$$
+$$\mathbf{S}\left(m ; r, r^{\prime}\right)=\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \boldsymbol{u}(m ; r, t) \boldsymbol{u}^{*}\left(m ; r^{\prime}, t\right) r^{1 / 2} \mathrm{~d} t$$
 
 3. Write the projection coefficient $\alpha$ for the radial geometry as,
 
