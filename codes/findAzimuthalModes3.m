@@ -3,6 +3,7 @@ function [qq]=findAzimuthalModes3(currentTime, currentCrossSec, qMinusQbar_noCsY
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
+  % take azimuthal fft.
 for timeBloc = 1:blocLength% time
     parfor t = 1:ntimesteps % time % parfor
         for  r = 1:540 
@@ -13,7 +14,8 @@ for timeBloc = 1:blocLength% time
             vec(zz)= aa;
             end % for zz
             aa=fft(vec);
-            bb = flip(aa);
+            %bb = flip(aa); % this bit is probably wrong..
+            bb =aa; % this bit is probably wrong; but bb wasnt used.
             cc = zeros(1080,1);
             for i=1:540
               cc(i) =aa(i);
