@@ -8,10 +8,16 @@ function pod()
 
 % import data object.
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
-    for c = ncs:ncs  % crosssection
-        saveStr=[saveDir 'avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+   % for c = ncs:ncs  % crosssection
+        saveStr=[saveDir 'avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
         qq=open(saveStr);
-end % c
+        avgTimeEnd=qq.avgTimeEnd ;
+        clear qq;
+        sprintf('%s','dbg')
+
+
+
+%end % c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (Equation A)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

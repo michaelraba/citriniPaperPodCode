@@ -116,15 +116,13 @@ for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:1079
    aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   aMat(r) = aa;
-   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
+   %aMat(r) = r*aa;
+   aMat(r) = (1-r)*aa; % because its flipped.. (maybe dont flip if feel uncomfortable with that).
+   %smits2016(t).cs(c).circle(m).dat(r,1) = r*aa; % R(t,t';k;m,r) and mult by r.
 end % r
+Rint = trapz(aMat);
+Rmat_avg(t).cs(c).circle(m)= Rint; % int R(t,t';k;m,r) r-weighted.
 
-%if t<ntimesteps || timeBloc ~= blocLength
-%    avgTimeEnd(c).circle(m).dat = avgTimeEnd(c).circle(m).dat + aMat;
-%Elseif t==ntimesteps && timeBloc == blocLength
-%   avgTimeEnd(c).circle(m).dat = (avgTimeEnd(c).circle(m).dat + aMat)/(ntimesteps*blocLength);
-%end % if
 end % m
 end % c
 end % t (little)
@@ -138,17 +136,14 @@ end % timeBloc
 
 % set back in radial direction and time avergae for all timesteps!
 
-        saveStr=[saveDir '/avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
-        save(saveStr,'avgTimeEnd','-v7.3');
+        saveStr=[saveDir '/Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+        save(saveStr,'Rmat_avg','-v7.3');
 
 
-% just start coding here..
-% need radial trapz.
-% then eigs calculation.
+% average in r smits2016
 
-%trapz() in r.x
-
-
+%   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
+% just call trapz. then operate on t -> eig wrt .
 
 
 qq = xdirPostFft;
