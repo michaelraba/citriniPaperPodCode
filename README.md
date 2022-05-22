@@ -2,7 +2,7 @@
 
 # To do:
 
-- [x] implement spectral
+-   implement spectral
 -   [ ] implement pod
 
 
