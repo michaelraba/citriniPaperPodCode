@@ -1,7 +1,8 @@
  function [qq]=fftStep(stepStr,preStr)
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
-if stepStr=="readDataAndFindVeloFluctuation"
+ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+  if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
     [myPreFft_noCsYet]=initData2("myPreFft_noCsYet");
@@ -11,7 +12,7 @@ if stepStr=="readDataAndFindVeloFluctuation"
     [xdirNew]=initData2("xdirNew");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
-
+    
     for c = 1:ncs  % crosssection
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,10 +74,10 @@ saveStr=[saveDir '/xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[cros
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
-parfor t=1:ntimesteps
+parfor t=1:ntimestepsX
 for r=1:1079
 for m=1:azimuthalSetSize
-  aa=qq.xcorrDone(t).circle(m).dat(r,1);
+  aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
   %ab= xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1);
   xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
 end % m
@@ -87,7 +88,7 @@ end % c
 
 
 % begin fft x-dir
-parfor t=1:ntimesteps
+parfor t=1:ntimestepsX
 for r=1:1079
 for m=1:azimuthalSetSize
   aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
@@ -111,7 +112,7 @@ end % t (little)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 aMat = zeros(1079,1);
-for t=1:ntimesteps
+for t=1:ntimestepsX
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:1079

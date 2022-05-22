@@ -5,6 +5,7 @@ function [qq]=findAzimuthalModes4(currentTime, currentCrossSec, qMinusQbar_noCsY
 
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
 
+
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
     % do fft for the first half of the circle, then copy the result ot the other half.
@@ -71,9 +72,10 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                   aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1);
                   vec(t) = aa;
                 end % t
+                %% bb should be size 2*ntimesteps - 1 .. ,, check that.
                   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
                   %sprintf('%s','check graph')
-                  for t=1:ntimesteps% % % add this sfor t-corr
+                  for t=1:2*ntimesteps-1% % % add this sfor t-corr
                 xcorrDone(t).circle(m).dat(r,1)=bb(t);
                 end % t
                 end % m

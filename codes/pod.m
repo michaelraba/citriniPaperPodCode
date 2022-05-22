@@ -16,7 +16,9 @@ function pod()
         sprintf('%s','dbg')
 
 % organize this by time at the end, do trapz. then do eig.
-% There should be a nxn matrix...
+% There should be a dim(timesteps) matrix... txt' to be precise..
+% there should be 2*ntimesteps - 1 from using xcorr on t..
+% ^ which check ..
 
 
 end % fc
