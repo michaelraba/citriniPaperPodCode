@@ -9,24 +9,14 @@ function pod()
 % import data object.
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
    % for c = ncs:ncs  % crosssection
-        saveStr=[saveDir 'avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
+        saveStr=[saveDir 'Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
         qq=open(saveStr);
-        avgTimeEnd=qq.avgTimeEnd ;
+        Rmat_avg=qq.Rmat_avg ; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
         clear qq;
         sprintf('%s','dbg')
 
+% organize this by time at the end, do trapz. then do eig.
+% There should be a nxn matrix...
 
-
-%end % c
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (Equation A)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% take inner product after multiply each (a,b) by ra and rb , r is radius
-% use quad.
-% use eig. The return eigvec is the alpha_n , for n eigenvalues.
-% use that alpha for eq (B).
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (Equation B)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 end % fc
