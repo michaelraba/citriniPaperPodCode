@@ -57,11 +57,11 @@ clear qMinusQbar_noCsYet; % yes, clear this..
     ordStr="xcorrNow";
 %    if ordStr=="xcorrNow" % remove that.
         %parfor t=1:ntimesteps% %
+        sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 
         %for t=1:ntimesteps% %
         %for r=1:540% % change the outermost loop to r, not t. innermost is t now
         for r=1:1080% % change the outermost loop to r, not t. innermost is t now
-        sprintf('%s%f','$$ For xcorr, r is',r)
 
             %vec = zeros(1,540); % collect radial points..
             vec = zeros(1,ntimesteps); % collect radial points..

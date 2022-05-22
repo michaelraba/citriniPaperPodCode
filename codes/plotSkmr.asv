@@ -20,7 +20,7 @@ if isGraph=="graph"
       
       labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
       %pp=plot(A,real(plotObject(c).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
-      pp=plot(A,real(plotObject(1).cs(c).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
+      pp=plot(A,real(plotObject(t).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
 
       %smits2016(3).cs(1).circle(2).dat  
       tiSt=['Streamwise mode: ' num2str(c)  ];
