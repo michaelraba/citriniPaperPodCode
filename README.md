@@ -2,7 +2,7 @@
 
 # To do:
 
--   implement spectral
+-   &ldquo;[x]&rdquo; implement spectral
 -   [ ] implement pod
 
 
