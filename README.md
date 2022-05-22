@@ -1,5 +1,11 @@
 
 
+# To do:
+
+-   implement spectral
+-   [] implement pod
+
+
 # Proper Orthogonal Decompositon (Snapshot POD) Code
 
 
