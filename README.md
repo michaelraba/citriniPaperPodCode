@@ -64,6 +64,8 @@ We can apply method (B) directly &#x2014; by Fredholm theory, in order for there
 
 ## Preliminary Plot of Time Correlation (no POD yet):
 
+-   Graph of the Correlation in time of the streamwise velocity fluctuation $R(t,t';m;k)$.
+
 ![img](images/readme/screenshot2022-05-21_20-32-15_.png "Graph of the Correlation in time of the streamwise velocity fluctuation $R(t,t';m;k)$.")
 
 
