@@ -62,6 +62,11 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mat
 We can apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. But that is already symmetric in $t$.
 
 
+## Preliminary Plot of Time Correlation (no POD yet):
+
+![img](images/readme/screenshot2022-05-21_20-32-15_.png "Graph of the Correlation in time of the streamwise velocity fluctuation $R(t,t';m;k)$.")
+
+
 # Sources:
 
 1.  Duggleby and Paul

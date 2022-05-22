@@ -20,7 +20,7 @@ if isGraph=="graph"
       
       labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
       pp=plot(A,real(plotObject(c).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
-      tiSt=['Spanwise mode: ' num2str(c)  ];
+      tiSt=['Streamwise mode: ' num2str(c)  ];
       title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
       legend();
       %avgTimeEnd(1).circle(1).dat  
@@ -61,6 +61,6 @@ elseif isGraph=="graphPause"
       pause(1)
 else
 end % if
-  sgtitle("Time-averaged Correlation $S_{ii}(k,m;r,r')$",'FontName','capitana','FontSize',12,'interpreter','latex')
-
+  sgtitle("Correlation in time $S_{ii}(k,m;t,t';r)$",'FontName','capitana','FontSize',12,'interpreter','latex')
+  xlabel('1-r','interpreter','latex')
 end % f

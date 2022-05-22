@@ -30,7 +30,7 @@ timeBloc=1; % set htat temporarily.
             vec(zz)= aa;
             end % for zz
             aa=fft(vec);
-            bb = flip(aa);
+            %bb = flip(aa);
             cc = zeros(1080,1);
             for i=1:540
               cc(i) =aa(i);
@@ -61,6 +61,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         %for t=1:ntimesteps% %
         %for r=1:540% % change the outermost loop to r, not t. innermost is t now
         for r=1:1080% % change the outermost loop to r, not t. innermost is t now
+        sprintf('%s%f','$$ For xcorr, r is',r)
+
             %vec = zeros(1,540); % collect radial points..
             vec = zeros(1,ntimesteps); % collect radial points..
                 for m=1:540
@@ -70,7 +72,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                   vec(t) = aa;
                 end % t
                   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
-                  sprintf('%s','check graph')
+                  %sprintf('%s','check graph')
                   for t=1:ntimesteps% % % add this sfor t-corr
                 xcorrDone(t).circle(m).dat(r,1)=bb(t);
                 end % t
