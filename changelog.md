@@ -1,19 +1,28 @@
 
 # Table of Contents
 
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org11412d6)
-2.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org12b17bd)
+1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org61e4849)
+2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org38acd1f)
+3.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org90c9f82)
 
 
 
-<a id="org11412d6"></a>
+<a id="org61e4849"></a>
+
+# DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
+
+-   1. adding snapshot pod.
+-   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
+
+
+<a id="org38acd1f"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
 
-<a id="org12b17bd"></a>
+<a id="org90c9f82"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
