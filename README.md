@@ -2,9 +2,9 @@
 
 # To do:
 
-[x] implement spectral
+-   implement spectral
 
-[ ] implement pod 
+-   [ ] implement pod
 
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
