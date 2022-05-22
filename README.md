@@ -2,8 +2,8 @@
 
 # To do:
 
--   e [x] implement spectral
--   e [ ] implement pod
+[x] implement spectral
+[ ] implement pod 
 
 
 # Proper Orthogonal Decompositon (Snapshot POD) Code
