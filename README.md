@@ -84,9 +84,11 @@ We can apply method (B) directly &#x2014; by Fredholm theory, in order for there
     
     ![img](images/readme/screenshot2022-05-22_20-57-12_.png)
     
-    eg, we identify the xcorr in time function with the matrix,
+    -   **Minimal 3x3 example:**, we identify the xcorr in time function with the matrix,
 
 $S(t,t') = \begin{bmatrix} S(0) & S(1) & S(2)\\\ S(1) & S(0) & S(1)\\\ S(2) & S(1) & S(0)\end{bmatrix}$
+
+where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc. 
 
 
 # So whats the question?
