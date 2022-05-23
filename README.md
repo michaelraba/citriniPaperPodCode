@@ -86,7 +86,7 @@ We can apply method (B) directly &#x2014; by Fredholm theory, in order for there
     
     eg, we identify the xcorr in time function with the matrix,
 
-$$S(t,t') = \begin{bmatrix} S(0) & S(1) & S(2)   \\ S(1) & S(0) & S(1)   \\ S(2) & S(1) & S(0)   \\ \end{bmatrix}$$
+$$S(t,t') = \begin{bmatrix} S(0) & S(1) & S(2) \\ S(1) & S(0) & S(1)   \\ S(2) & S(1) & S(0) \end{bmatrix}$$
 
 
 # So whats the question?
