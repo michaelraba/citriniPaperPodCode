@@ -76,6 +76,26 @@ We can apply method (B) directly &#x2014; by Fredholm theory, in order for there
 ![img](images/readme/screenshot2022-05-21_21-04-44_.png "Graph of the Correlation in time of the streamwise velocity fluctuation $R(t,t';m;k)$.")
 
 
+# Meeting Question,
+
+-   the xcorr() returns a $2*totalTimesteps -1$ function. We need a
+    matrix for the eigenvalue problem. That matrix is actually symmetric.
+    To form that we follow [this wikipedia article on cross-correlation](https://en.wikipedia.org/wiki/Cross-correlation) and since the process is stationary, it is symmetric:
+    
+    ![img](images/readme/screenshot2022-05-22_20-57-12_.png)
+    
+    eg, we identify the xcorr in time function with the matrix,
+
+$$S(t,t') = \begin{bmatrix} S(0) & S(1) & S(2)   \\ S(1) & S(0) & S(1)   \\ S(2) & S(1) & S(0)   \\ \end{bmatrix}$$
+
+
+# So whats the question?
+
+-   We must integrate the correlation with $t'$ according to the equation above.
+    -   But if we integrate before finding eigenpairs, then its no longer a ntimestep x ntimestep matrix &#x2026;
+    -   So when to integrate (use trapz() is confusing because I&rsquo;m not sure about what variable to operate on &#x2026;
+
+
 # Sources:
 
 1.  Duggleby and Paul
