@@ -78,7 +78,7 @@ We can apply method (B) directly &#x2014; by Fredholm theory, in order for there
 
 # Meeting Question,
 
--   the xcorr() returns a $2*\text{totalTimesteps} -1$ function. We need a
+-   the xcorr() returns a $\left(2*\text{totalTimesteps} -1\right)$ function. We need a
     matrix for the eigenvalue problem. That matrix is actually symmetric.
     To form that we follow [this wikipedia article on cross-correlation](https://en.wikipedia.org/wiki/Cross-correlation) and since the process is stationary, it is symmetric:
     
