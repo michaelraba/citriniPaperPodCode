@@ -9,23 +9,44 @@ function pod()
 % import data object.
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
    % for c = ncs:ncs  % crosssection
-        saveStr=[saveDir 'avgTimeEnd[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
+        saveStr=[saveDir 'Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
+
         qq=open(saveStr);
-        avg=qq.avgTimeEnd ;
-        sprintf('%s','hi')
+        Rmat_avg=qq.Rmat_avg ; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
+        clear qq;
+        sprintf('%s','dbg')
+
+% organize this by time at the end, do trapz. then do eig.
+% There should be a dim(timesteps) matrix... txt' to be precise..
+% there should be 2*ntimesteps - 1 from using xcorr on t..
+% ^ which check ..
+% this 'has' to be a matrix... need covariance matrix.
+% See reference: S? Where they form a _matrix_ for homogeneous data from
+% the cross-correlation _function_
+
+% form cc matrix:
+        % for each crosssection c, and circle m
+
+for cc=ncs:ncs
+for mm=2:2 % circle
+  % get values from struct  for given cc and mm
+ccMat = zeros(ntimesteps);
+
+for ii=1:ntimesteps % cols
+%for jj=1:ntimesteps % rows
+for jj=ii:ntimesteps % rows
+  ccMat(ii,jj) = Rmat_avg(jj).cs(1).circle(mm);
+  if jj > 1
+  ccMat(ii,jj) = Rmat_avg(jj).cs(1).circle(mm);
+  end
+end % jj
+end % ii
+
+end % circle mm
+end % ncs
+
+sprintf('%s','hi');
 
 
-
-%end % c
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (Equation A)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% take inner product after multiply each (a,b) by ra and rb , r is radius
-% use quad.
-% use eig. The return eigvec is the alpha_n , for n eigenvalues.
-% use that alpha for eq (B).
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (Equation B)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 end % fc

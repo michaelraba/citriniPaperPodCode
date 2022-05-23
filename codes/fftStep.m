@@ -74,7 +74,7 @@ saveStr=[saveDir '/xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[cros
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
-parfor t=1:ntimestepsX
+parfor t=1:ntimesteps
 for r=1:1079
 for m=1:azimuthalSetSize
   aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
@@ -88,7 +88,7 @@ end % c
 
 
 % begin fft x-dir
-parfor t=1:ntimestepsX
+parfor t=1:ntimesteps
 for r=1:1079
 for m=1:azimuthalSetSize
   aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
@@ -112,7 +112,7 @@ end % t (little)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 aMat = zeros(1079,1);
-for t=1:ntimestepsX
+for t=1:ntimesteps
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:1079

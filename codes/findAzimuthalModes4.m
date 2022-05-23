@@ -75,12 +75,14 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                 %% bb should be size 2*ntimesteps - 1 .. ,, check that.
                   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
                   %sprintf('%s','check graph')
-                  for t=1:2*ntimesteps-1% % % add this sfor t-corr
-                xcorrDone(t).circle(m).dat(r,1)=bb(t);
+                  %for t=1:2*ntimesteps-1% % % add this sfor t-corr
+                  for t=1:ntimesteps% % % add this sfor t-corr
+
+                xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps+1)/2 + t); % only save half
                 end % t
                 end % m
         end % r
-  saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+ wsaveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'xcorrDone','-v7.3');
 
 % end % timeBloc % end timebloc here .. (updated order..) remove this timebloc.
