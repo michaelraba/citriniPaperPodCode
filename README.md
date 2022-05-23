@@ -92,6 +92,9 @@ $S(t,t') = \begin{bmatrix} S(0) & S(1) & S(2)\\\ S(1) & S(0) & S(1)\\\ S(2) & S(
 # So whats the question?
 
 -   We must integrate the correlation with $t'$ according to the equation above.
+    
+    $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{R}\left(k ; m ; t, t^{\prime}\right) \alpha^{(n)}\left(k ; m ; t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda^{(n)}(k ; m) \alpha^{(n)}(k ; m ; t)$$
+    
     -   But if we integrate before finding eigenpairs, then its no longer a ntimestep x ntimestep matrix &#x2026;
     -   So when to integrate (use trapz() is confusing because I&rsquo;m not sure about what variable to operate on &#x2026;
 
