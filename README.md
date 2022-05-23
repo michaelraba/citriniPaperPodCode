@@ -106,6 +106,6 @@ where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
 1.  Duggleby and Paul
 2.  Citrini and George
 3.  Smits 2014
-4.  Time series Analysis by Schumway, Chapter 5
+4.  [Time series Analysis by Schumway, Chapter 5](https://github.com/nickpoison/tsa4)
     1.  Cite this for the correlation function conversion into symmetric matrix form.
 
