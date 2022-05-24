@@ -15,7 +15,7 @@ function pod()
         Rmat_avg=qq.Rmat_avg ; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
         clear qq;
         sprintf('%s','dbg')
-
+ 
 % organize this by time at the end, do trapz. then do eig.
 % There should be a dim(timesteps) matrix... txt' to be precise..
 % there should be 2*ntimesteps - 1 from using xcorr on t..
@@ -43,6 +43,12 @@ c = c+ transpose(c) - eye(size(c )).*c ; % form symmetric matrix;
 sprintf('%s','take eigenvals');
 % gives eig data for each x-mode and azimutal mode
 [eigVec,eigVal]=eigs(c);
+
+% finished with smits2017.eq.2.4
+
+% implement smits2017.eq.2.5:
+% for that, we need fft transformed fluctuation at all the t and r's; this is saved in variable...:
+
 
 end % circle mm
 end % ncs

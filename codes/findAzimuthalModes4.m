@@ -82,7 +82,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                 end % t
                 end % m
         end % r
- wsaveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+ saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'xcorrDone','-v7.3');
 
 % end % timeBloc % end timebloc here .. (updated order..) remove this timebloc.
