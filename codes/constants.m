@@ -5,7 +5,7 @@ function [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSiz
 plotOn=0;
 rMin = 0;
 rMax = 1080;
-ncs =30; 
+ncs =3; 
 blocLength= 1;
 ntimesteps =4; % also the number of workers assigned. % 
 %blocLength= 15;

@@ -95,9 +95,9 @@ for m=1:azimuthalSetSize
   %ab = fft(aa(end/2:end));
   ab = fft(aa);
   xdirPostFft(t).RadialCircle(r).azimuth(m).dat = ab;
-  hold on;
-  plot(real(ab));
-  pause(0.1)
+  %hold on;
+  %plot(real(ab));
+  %pause(0.1)
 end % m
 end % r
 end % t (little)
@@ -114,8 +114,8 @@ for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
    aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   %aMat(r) = r*aa;
-   aMat(r) = (1-r)*aa; % because its flipped.. (maybe dont flip if feel uncomfortable with that).
+   aMat(r) = r*aa;
+   %aMat(r) = (1-r)*aa; % because its flipped (-> at: ).. (maybe dont flip if feel uncomfortable with that).
    %smits2016(t).cs(c).circle(m).dat(r,1) = r*aa; % R(t,t';k;m,r) and mult by r.
 end % r
 Rint = trapz(aMat);
