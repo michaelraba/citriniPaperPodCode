@@ -62,7 +62,7 @@ for tt=1:ntimesteps
   tTrapz(tt) = ab;
   end % tt
 ad= trapz(tTrapz);
-phiVec(rr) = ad/(eigVal(tt)*ntimesteps); % smits.eq.2.5
+phiVec(rr) = ad/(eigVal(tt,tt)*ntimesteps); % smits.eq.2.5
 end %rr
 hold on;
 plot(phiVec);

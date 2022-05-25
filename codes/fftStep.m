@@ -18,7 +18,7 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
-    for t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
+    parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
     myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
     myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
     sprintf('%s','pause')
@@ -91,7 +91,7 @@ end % c
 
 
 % begin fft x-dir
-for t=1:ntimesteps % parfor
+parfor t=1:ntimesteps % parfor
 for r=1:540 % this should be 540..................
 for m=1:azimuthalSetSize
   aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
