@@ -24,7 +24,7 @@ In the POD framework one can represent evolving flow fields in the form
 
 $$\mathbf{u}(t, \mathbf{x})=\sum_{k} a_{k}(t) \boldsymbol{\phi}_{k}(\mathbf{x})$$
 
-where is the basis extracted from the eigenvalue problem for the temporal modes $\{a_{k}(t)\right\}_{k=0}^{\infty}$ and 
+where is the basis extracted from the eigenvalue problem for the temporal modes,
 
 $$\int_{A} C\left(t, t^{\prime}\right) a_{k}\left(t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda_{k} a_{k}(t), \quad t \in A, \forall k$$
 
