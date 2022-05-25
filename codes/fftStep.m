@@ -18,7 +18,7 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
-    parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
+    for t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
     myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
     myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
     sprintf('%s','pause')
@@ -37,7 +37,7 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     for timeBloc=1:blocLength
-    parfor t = 1:ntimesteps % time
+    for t = 1:ntimesteps % time % parfor
 % load in time bloc again
         myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
         myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
@@ -81,6 +81,7 @@ for r=1:540 % r should not ever be 540, anyway. the correlation was in t.
 for m=1:azimuthalSetSize
   aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
   %ab= xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1);
+  % this xdirNew re-order by crosssection. so why is there NaN ??
   xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
 end % m
 end % r
@@ -124,7 +125,7 @@ for r=1:540
    %smits2016(t).cs(c).circle(m).dat(r,1) = r*aa; % R(t,t';k;m,r) and mult by r.
 end % r
 Rint = trapz(aMat);
-Rmat_avg(t).cs(c).circle(m)= Rint; % int R(t,t';k;m,r) r-weighted.
+Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
 
 end % m
 end % c

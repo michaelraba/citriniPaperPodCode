@@ -56,7 +56,12 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                   vec(t) = aa;
                 end % t
                 %% bb should be size 2*ntimesteps - 1 .. ,, check that.
+                   %sss = size(bb); sss = sss(1);
+                   if abs(vec) ==0
+                       [bb, lags] = xcorr(vec);
+                   else
                   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
+                   end % if 0 condition
                   %for t=1:2*ntimesteps-1% % % add this sfor t-corr
                   for t=1:ntimesteps% % % add this sfor t-corr
                 xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps+1)/2 + t); % only save half

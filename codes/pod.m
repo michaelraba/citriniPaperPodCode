@@ -58,13 +58,14 @@ for tt=1:ntimesteps
   %aa=fftTransformedFluctuation(tt,rr,cc);
   aa=fftTransformedFluctuation(tt).RadialCircle(rr).azimuth(mm).dat(cc) % t, r , m , c
   bb=ctranspose(eigVec(tt));
-  ab = aa*bb; 
+  ab = aa*bb;   
   tTrapz(tt) = ab;
   end % tt
 ad= trapz(tTrapz);
 phiVec(rr) = ad/(eigVal(tt)*ntimesteps); % smits.eq.2.5
 end %rr
-
+hold on;
+plot(phiVec);
 end % circle mm
 end % ncs
 
