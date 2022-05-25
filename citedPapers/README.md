@@ -16,3 +16,23 @@ $$ \int C\left(t, t^{\prime}\right) a^{n}\left(t^{\prime}\right) \mathrm{d} t^{\
 
 Solution of the eigenvalue problem will result in the temporal coefficients (which are eigenvectors of the correlation tensor), $a^{n}(t)$, and eigenvalues, $\lambda^{n}$, for mode number $n$. 1D spatial eigenmodes are then calculated by projecting the temporal coefficients onto the velocity field as
 $$\phi_{i}^{n}(y)=\sum_{p=1}^{N_{t}} a^{n}\left(t_{p}\right) u_{i}\left(y, t_{p}\right), \quad i=1,3 .$$
+
+## 2. Sirisup et al 
++ 5 stars: Against, same stuff...
+---
+
+$$
+\mathbf{u}(t, \mathbf{x})=\sum_{k} a_{k}(t) \boldsymbol{\phi}_{k}(\mathbf{x}),
+$$
+where $\left\{\boldsymbol{\phi}_{k}(\mathbf{x})\right\}_{k=0}^{\infty}$ is the basis extracted from the eigenvalue problem for the temporal modes $\left\{a_{k}(t)\right\}_{k=0}^{\infty}$
+$$
+\int_{A} C\left(t, t^{\prime}\right) a_{k}\left(t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda_{k} a_{k}(t), \quad t \in A, \forall k,
+$$
+and $A$ is a specified time interval. Here $C\left(t, t^{\prime}\right)$ is the correlation function defined as
+$$
+C\left(t, t^{\prime}\right)=\int_{\Omega} \mathbf{u}(t, \mathbf{x}) \cdot \mathbf{u}\left(t^{\prime}, \mathbf{x}\right) \mathrm{d} \mathbf{x} .
+$$
+The POD basis in space is determined by
+$$
+\boldsymbol{\phi}_{k}(\mathbf{x})=\int_{A} a_{k}(t) \mathbf{u}(t, \mathbf{x}) \mathrm{d} t \quad \forall k .
+$$
