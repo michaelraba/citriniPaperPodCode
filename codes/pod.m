@@ -2,7 +2,8 @@
 % Follows 3.5-3.6 of citrini and george.
 %
 function pod(fftTransformedFluctuation)
-
+figure(1);
+hold on;
 % function takes in fluctuation with azimuthal and streamwise fft applied.
 % that 'looks' like essentially a correlation in time t direction.
 
@@ -27,8 +28,8 @@ function pod(fftTransformedFluctuation)
 % form cc matrix:
         % for each crosssection c, and circle m
 
-for cc=1:1 % streamwise mode % cannot exceed 1... 
-for mm=2:2 % azimuthal mode
+for cc=1:ncs % streamwise mode % cannot exceed 1... 
+for mm=1:azimuthalSetSize % azimuthal mode
   % get values from struct  for given cc and mm
 c = zeros(ntimesteps);
 % bring into form of cross correlation matrix.
@@ -43,7 +44,16 @@ c = c+ transpose(c) - eye(size(c )).*c; % form symmetric matrix;
 sprintf('%s','take eigenvals');
 % gives eig data for each x-mode and azimutal mode
 %[eigVec,eigVal]=eigs(c);
-[eigVec,eigVal]=eigs(c); % sort this.
+%[eigVec,eigVal]=eigs(c); % sort this.
+
+
+[eigVec_tmp,eigVal_tmp]=eig(c);
+[d,ind] = sort(diag(eigVal_tmp),'descend');
+eigVal=eigVal_tmp(ind,ind);
+eigVec= eigVec_tmp(:,ind);
+
+
+
 
 % finished with smits2017.eq.2.4
 
@@ -65,7 +75,7 @@ ad= trapz(tTrapz);
 phiVec(rr) = ad/(eigVal(tt,tt)*ntimesteps); % smits.eq.2.5
 end %rr
 hold on;
-plot(phiVec);
+plot(real(phiVec));
 end % circle mm
 end % ncs
 

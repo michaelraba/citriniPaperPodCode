@@ -64,7 +64,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                    end % if 0 condition
                   %for t=1:2*ntimesteps-1% % % add this sfor t-corr
                   for t=1:ntimesteps% % % add this sfor t-corr
-                xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps+1)/2 + t); % only save half
+                xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
                 end % t
                 end % m
         end % r
