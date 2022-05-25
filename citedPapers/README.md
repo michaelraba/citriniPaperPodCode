@@ -3,7 +3,8 @@
 Papers that comment specifically on snapshot POD bzgl. fredholm integral equation setup and solution
 
 ## 1. SEN et al.
-
++ 5 stars: comments directly on snapshot procedure
+---
 1D POD decomposition in the wall-normal $(y)$ direction is performed to extract the three components of the 1D eigenfunction $\phi_{u}(y), \phi_{v}(y), \phi_{w}(y)$. 
 
 Given the velocity profiles at all $(x, z)$ locations and at all times, the temporal correlation function between snapshots $t$ and $t^{\prime}$ is defined as
