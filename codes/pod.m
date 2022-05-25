@@ -42,7 +42,8 @@ c = c+ transpose(c) - eye(size(c )).*c; % form symmetric matrix;
 
 sprintf('%s','take eigenvals');
 % gives eig data for each x-mode and azimutal mode
-[eigVec,eigVal]=eigs(c);
+%[eigVec,eigVal]=eigs(c);
+[eigVec,eigVal]=eigs(c); % sort this.
 
 % finished with smits2017.eq.2.4
 
@@ -50,13 +51,21 @@ sprintf('%s','take eigenvals');
 % for that, we need fft transformed fluctuation at all the t and r's; this is saved in variable...:
 
 %fftTransformedFluctuation(nts,r,ncs)
-
-
+tTrapz=zeros(ntimesteps,1);
+phiVec=zeros(540,1);
+for rr=1:540
+for tt=1:ntimesteps
+  aa=fftTransformedFluctuation(tt,rr,cc);
+  bb=ctranspose(eigVec(tt));
+  ab = aa*bb;
+  tTrapz(tt) = ab;
+  end % tt
+ad= trapz(tTrapz);
+phiVec(rr) = ad/(eigVal(tt)*ntimesteps); % smits.eq.2.5
+end %rr
 
 end % circle mm
 end % ncs
-
-
 
 
 end % fc
