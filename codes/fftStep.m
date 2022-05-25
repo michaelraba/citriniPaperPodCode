@@ -53,11 +53,12 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     qq = qMinusQbar_noCsYet(t);
     end % timeblock
 
-    % nb time looping within..
-    %[xcorrDone]=findAzimuthalModes(c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    [xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
+    % this does not store cc data.
+    %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
+    findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
+
     sprintf('%s','start azimuthal')
-    qq = xcorrDone;
+    %qq = xcorrDone;
 
     end %c % yes, cross-section loop should indeed end here..
         %elseif stepStr=="azimuth"
@@ -68,20 +69,16 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
 % x-dir fft
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % read in one of the saved xcorrDone
-for timeBloc=1:blocLength
+%%%for timeBloc=1:blocLength
 for currentCrossSec=1:ncs
 saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
-parfor t=1:ntimesteps
-%for r=1:1079
-for r=1:540 % r should not ever be 540, anyway. the correlation was in t.
-
+for t=1:ntimesteps %parfor
+for r=1:540 % 
 for m=1:azimuthalSetSize
   aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
-  %ab= xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1);
-  % this xdirNew re-order by crosssection. so why is there NaN ??
   xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
 end % m
 end % r
@@ -91,16 +88,16 @@ end % c
 
 
 % begin fft x-dir
-parfor t=1:ntimesteps % parfor
+for t=1:ntimesteps % parfor
 for r=1:540 % this should be 540..................
 for m=1:azimuthalSetSize
   aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
   %ab = fft(aa(end/2:end));
   ab = fft(aa);
   xdirPostFft(t).RadialCircle(r).azimuth(m).dat = ab;
-  %hold on;
-  %plot(real(ab));
-  %pause(0.1)
+  hold on;
+  plot(real(ab));
+  pause(0.1)
 end % m
 end % r
 end % t (little)
@@ -108,13 +105,10 @@ end % t (little)
         saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
         save(saveStr,'xdirPostFft','-v7.3');
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
-
-
-% note, do not do this! need radial plot.
 % Time Averaging
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-aMat = zeros(1079,1);
+aMat = zeros(540,1);
 for t=1:ntimesteps
 for c=1:ncs
 for m=1:azimuthalSetSize
@@ -131,24 +125,17 @@ end % m
 end % c
 end % t (little)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-end % timeBloc
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%
+%%%end % timeBloc
 
 % set back in radial direction and time avergae for all timesteps!
 
         saveStr=[saveDir '/Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
         save(saveStr,'Rmat_avg','-v7.3');
 
-
 % average in r smits2016
 
 %   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
 % just call trapz. then operate on t -> eig wrt .
-
 
 qq = xdirPostFft;
 

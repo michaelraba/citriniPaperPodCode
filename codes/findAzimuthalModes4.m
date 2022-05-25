@@ -1,22 +1,13 @@
 % nb this function should only take azimuthal mode ...
-function [qq]=findAzimuthalModes4(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr)
+function findAzimuthalModes4(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr)
 % [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags]=constants();
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
-
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
-
-
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
-    % do fft for the first half of the circle, then copy the result ot the other half.
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-% begin azimuthal -> NEW and Needs a little changing (came after xcorr)
-% Note: need to adjust aa= name etc.
+% begin azimuthal -> 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%for timeBloc = 1:blocLength% time
 timeBloc=1; % set htat temporarily.
     for t = 1:ntimesteps % time % parfor
         for  r = 1:540
@@ -42,12 +33,13 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
         load(saveStr,'qMinusQbar_noCsYet');
     ordStr="xcorrNow";
-%    if ordStr=="xcorrNow" % remove that.
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
         %for r=1:540% 
         for r=1:1080% % 
             vec = zeros(1,ntimesteps); % collect radial points..
                 for m=1:540
+                %for m=1:azimuthalSetSize %%%%%
+
                 for t=1:ntimesteps% %
                     % the meaning of r and m was switched.
                     % remember that circle is the 540 radial points. the
@@ -55,23 +47,19 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                   aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1); 
                   vec(t) = aa;
                 end % t
-                %% bb should be size 2*ntimesteps - 1 .. ,, check that.
-                   %sss = size(bb); sss = sss(1);
                    if abs(vec) ==0
                        [bb, lags] = xcorr(vec);
                    else
                   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
                    end % if 0 condition
-                  %for t=1:2*ntimesteps-1% % % add this sfor t-corr
                   for t=1:ntimesteps% % % add this sfor t-corr
                 xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
+                %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
+
                 end % t
                 end % m
         end % r
  saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'xcorrDone','-v7.3');
-
-% end % timeBloc % end timebloc here .. (updated order..) remove this timebloc.
-%qq = postAzimuthFft_noCsYet; % asign qq and exi
-qq = xcorrDone; % asign qq and exi
+qq = xcorrDone; % asign qq and exit
 end % fc

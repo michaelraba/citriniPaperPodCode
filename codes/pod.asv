@@ -44,7 +44,16 @@ c = c+ transpose(c) - eye(size(c )).*c; % form symmetric matrix;
 sprintf('%s','take eigenvals');
 % gives eig data for each x-mode and azimutal mode
 %[eigVec,eigVal]=eigs(c);
-[eigVec,eigVal]=eigs(c); % sort this.
+%[eigVec,eigVal]=eigs(c); % sort this.
+
+
+[eigVec_tmp,eigVal_tmp]=eig(c);
+[d,ind] = sort(diag(eigVal_tmp),'descend');
+eigVal=eigVal_tmp(ind,ind);
+eigVec= eigVec_tmp(:,ind);
+
+
+
 
 % finished with smits2017.eq.2.4
 
@@ -66,7 +75,9 @@ ad= trapz(tTrapz);
 phiVec(rr) = ad/(eigVal(tt,tt)*ntimesteps); % smits.eq.2.5
 end %rr
 hold on;
+if 1 <= tt < 10
 plot(real(phiVec));
+end % if 
 end % circle mm
 end % ncs
 

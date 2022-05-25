@@ -20,7 +20,7 @@ qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1
 elseif initStr=="postAzimuthFft_noCsYet" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1,ntimesteps]));
 elseif initStr=="azimuthDoneXcorrDone" % for findAzimuthalModes with *if ordStr="xcorrNow"*
-qq=struct('circle', repmat({struct('dat',repmat({zeros(1080,1)}, [1,1080]))} , [1,2*ntimesteps - 1]));
+qq=struct('circle', repmat({struct('dat',repmat({zeros(1080,1)}, [1,1080]))} , [1,ntimesteps]));
 elseif initStr=="azimuthDoneXcorrDoneAnticipate_cs" % for findAzimuthalModes with *if ordStr="xcorrNow"*
 %qq=struct('radial', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(1,100)}, [1,azimuthalSetSize]))}, [1,1079])) }, Nts));
 qq=struct('azimuth', repmat({struct('radial', repmat({  struct('dat',repmat({zeros(1,100)}, [1,1079]))}, [1,azimuthalSetSize])) }, Nts));
@@ -28,9 +28,12 @@ qq=struct('azimuth', repmat({struct('radial', repmat({  struct('dat',repmat({zer
 
 
 elseif initStr=="xdirNew"
-qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,1079])) }, Nts));
+  %qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,1079])) }, Nts));
+  qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,540])) }, Nts));
+
 elseif initStr=="xdirPostFft"
-qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,1079])) }, Nts));
+%qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,1079])) }, Nts));
+qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,540])) }, Nts));
 
 elseif initStr=="avgTimeEnd" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1079,1)}, [1,azimuthalSetSize]))} , [1,ncs]));
