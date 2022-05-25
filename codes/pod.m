@@ -31,7 +31,7 @@ for cc=ncs:ncs
 for mm=2:2 % circle
   % get values from struct  for given cc and mm
 c = zeros(ntimesteps);
-
+% bring into form of cross correlation matrix.
 for ii=1:ntimesteps % cols
 for jj=ii:ntimesteps % rows
 %for jj=1:ntimesteps % rows
@@ -49,7 +49,7 @@ sprintf('%s','take eigenvals');
 % implement smits2017.eq.2.5:
 % for that, we need fft transformed fluctuation at all the t and r's; this is saved in variable...:
 
-%fftTransformedFluctuation(nts,r?,ncs)
+%fftTransformedFluctuation(nts,r,ncs)
 
 
 
