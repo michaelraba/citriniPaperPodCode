@@ -27,8 +27,8 @@ function pod(fftTransformedFluctuation)
 % form cc matrix:
         % for each crosssection c, and circle m
 
-for cc=ncs:ncs
-for mm=2:2 % circle
+for cc=1:1 % streamwise mode % cannot exceed 1... 
+for mm=2:2 % azimuthal mode
   % get values from struct  for given cc and mm
 c = zeros(ntimesteps);
 % bring into form of cross correlation matrix.
@@ -55,9 +55,10 @@ tTrapz=zeros(ntimesteps,1);
 phiVec=zeros(540,1);
 for rr=1:540
 for tt=1:ntimesteps
-  aa=fftTransformedFluctuation(tt,rr,cc);
+  %aa=fftTransformedFluctuation(tt,rr,cc);
+  aa=fftTransformedFluctuation(tt).RadialCircle(rr).azimuth(mm).dat(cc) % t, r , m , c
   bb=ctranspose(eigVec(tt));
-  ab = aa*bb;
+  ab = aa*bb; 
   tTrapz(tt) = ab;
   end % tt
 ad= trapz(tTrapz);
