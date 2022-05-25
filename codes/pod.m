@@ -1,7 +1,7 @@
 % Snapshot POD driver function
 % Follows 3.5-3.6 of citrini and george.
 %
-function pod()
+function pod(fftTransformedFluctuation)
 
 % function takes in fluctuation with azimuthal and streamwise fft applied.
 % that 'looks' like essentially a correlation in time t direction.
@@ -38,7 +38,7 @@ for jj=ii:ntimesteps % rows
   c(ii,jj) = Rmat_avg(jj).cs(1).circle(mm);
 end % jj
 end % ii
-c = c+ transpose(c) - eye(size(c )).*c ; % form symmetric matrix;
+c = c+ transpose(c) - eye(size(c )).*c; % form symmetric matrix;
 
 sprintf('%s','take eigenvals');
 % gives eig data for each x-mode and azimutal mode
@@ -48,6 +48,9 @@ sprintf('%s','take eigenvals');
 
 % implement smits2017.eq.2.5:
 % for that, we need fft transformed fluctuation at all the t and r's; this is saved in variable...:
+
+%fftTransformedFluctuation(nts,r?,ncs)
+
 
 
 end % circle mm

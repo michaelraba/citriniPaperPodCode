@@ -75,7 +75,9 @@ qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
 parfor t=1:ntimesteps
-for r=1:1079
+%for r=1:1079
+for r=1:540 % r should not ever be 540, anyway. the correlation was in t.
+
 for m=1:azimuthalSetSize
   aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
   %ab= xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1);
@@ -88,8 +90,8 @@ end % c
 
 
 % begin fft x-dir
-parfor t=1:ntimesteps
-for r=1:1079
+for t=1:ntimesteps % parfor
+for r=1:540 % this should be 540..................
 for m=1:azimuthalSetSize
   aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
   %ab = fft(aa(end/2:end));
@@ -115,7 +117,7 @@ aMat = zeros(1079,1);
 for t=1:ntimesteps
 for c=1:ncs
 for m=1:azimuthalSetSize
-for r=1:1079
+for r=1:540
    aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
    %aMat(r) = r*aa;
    aMat(r) = (1-r)*aa; % because its flipped.. (maybe dont flip if feel uncomfortable with that).
@@ -150,6 +152,6 @@ end % timeBloc
 qq = xdirPostFft;
 
 
-pod();
+pod(qq);
 
  end % f
