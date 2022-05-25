@@ -3,7 +3,7 @@
 Papers that comment specifically on snapshot POD bzgl. fredholm integral equation setup and solution
 
 ## 1. SEN et al.
-+ 5 stars: comments directly on snapshot procedure
++ 5 stars: comments directly on snapshot procedure. That suggest, that if xcorr is used, then we must multiply that by r ...? At each $r$ ..? The integration is the shift.
 ---
 1D POD decomposition in the wall-normal $(y)$ direction is performed to extract the three components of the 1D eigenfunction $\phi_{u}(y), \phi_{v}(y), \phi_{w}(y)$. 
 
