@@ -70,7 +70,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         % corrmat24(m).x(cc).dat
         ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/540. diff r_{i+1} - r_{i}
        % we dont really need a matrix yet --- just the lag. but whatever.
-        corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
+        %corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
+        corrMatSmits(m).dat(iii,jjj) = ddd;
             end % jjj
             end % iii 
                %   for t=1:ntimesteps% % % add this sfor t-corr

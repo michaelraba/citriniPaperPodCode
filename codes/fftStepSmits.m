@@ -11,7 +11,8 @@
     [xcorrDone]=initData2("azimuthDoneXcorrDone");
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet");
     [xdirNew]=initData2("xdirNew");
-        [corrMatSmits]=initData2("corrMatSmits");
+        %[corrMatSmits]=initData2("corrMatSmits");
+        [corrMatSmits]=initData2("corrMatSmits_noCs");
 
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
@@ -74,7 +75,7 @@
 % read in one of the saved xcorrDone
 %%%for timeBloc=1:blocLength
 for currentCrossSec=1:ncs
-saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
