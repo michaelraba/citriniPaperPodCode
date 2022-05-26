@@ -11,6 +11,10 @@
     [xcorrDone]=initData2("azimuthDoneXcorrDone");
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet");
     [xdirNew]=initData2("xdirNew");
+    [smitsXdir]=initData2("smitsXdir");
+        %[corrMatSmits]=initData2("corrMatSmits");
+        [corrMatSmits]=initData2("corrMatSmits_noCs");
+
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
 
@@ -72,33 +76,33 @@
 % read in one of the saved xcorrDone
 %%%for timeBloc=1:blocLength
 for currentCrossSec=1:ncs
-saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
-for t=1:ntimesteps %parfor
-for r=1:540 %
+% almost essential, that t,t' just be an array instead of a matrix, for reorg that.
+% okay save to reference array that nts x nts case, but then
+% also save to array the vectorized form.
+
 for m=1:azimuthalSetSize
-  aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
-  xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
+   myArray = reshape(qq.corrMatSmits(m).dat,[],1); % that creates a hard copy, inefficient.
+for ttt=1:ntimesteps %parfor % then operate on myArray
+  smitsXdir(m).t(ttt).dat(currentCrossSec,1) = myArray(ttt);
 end % m
-end % r
+%end % r
 end % t (little)
 sprintf('%s%d%s%d%s','done filling in a crosssec for timeBloc=', timeBloc, ' and t=',t,'.')
 end % c
 
 
 % begin fft x-dir
-for t=1:ntimesteps % parfor
+for ttt=1:ntimesteps % parfor
 for r=1:540 % this should be 540..................
 for m=1:azimuthalSetSize
-  aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
-  %ab = fft(aa(end/2:end));
+  aa = smitsXdir(t).azimuth(m).dat;
   ab = fft(aa);
-  xdirPostFft(t).RadialCircle(r).azimuth(m).dat = ab;
-  %hold on;
-  %plot(real(ab));
-  %pause(0.1)
+  % define post vec. this should be the correlation mat, ready for the pod:
+  smitsXdir(m).t(tt).dat(m).dat = ab;
 end % m
 end % r
 end % t (little)
@@ -106,7 +110,7 @@ end % t (little)
         saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
         save(saveStr,'xdirPostFft','-v7.3');
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
-% Time Averaging
+% Time Averaging <- no!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 aMat = zeros(540,1);

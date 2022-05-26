@@ -49,7 +49,11 @@ qq=struct('circle', repmat({struct('dat',repmat({zeros(1079,1)}, [1,azimuthalSet
 
 elseif initStr=="smitsXdir" %redo
 %qq=struct('circle', repmat({struct('dat',repmat({zeros(ncs,1)}, [ntimesteps*2,1]))} , [azimuthalSetSize,1]));
-qq=struct('circle', repmat({struct('dat',repmat({zeros(ncs,1)}, [ntimesteps*ntimesteps,1]))} , [azimuthalSetSize,1]));
+qq=struct('t', repmat({struct('dat',repmat({zeros(ncs,1)}, [ntimesteps*ntimesteps,1]))} , [azimuthalSetSize,1]));
+
+elseif initStr=="corrMatFuckYeah" %redo
+%qq=struct('circle', repmat({struct('dat',repmat({zeros(ncs,1)}, [ntimesteps*2,1]))} , [azimuthalSetSize,1]));
+qq=struct('t', repmat({struct('dat',repmat({zeros(ntimesteps,ntimesteps)}, [ncs,1]))} , [azimuthalSetSize,1]));
 
 elseif initStr=="myPreFft_noCsNoTimeYet" %redo
 qq=struct('dat', repmat({zeros(1,1080)}, [540,1]));

@@ -85,10 +85,10 @@ sprintf('%s','start azimuthal')
 % also save to array the vectorized form.
 
 for m=1:azimuthalSetSize
-for t=1:ntimesteps %parfor
+   myArray = reshape(qq.corrMatSmits(m).dat,[],1); % that creates a hard copy, inefficient.
+for t=1:ntimesteps %parfor % then operate on myArray
    sprintf('%s','hi')
    % reshape nts x nts into arrayz:
-   % myArray = qq.corrMatSmits(m).dat; % that creates a hard copy, inefficient.
    % reshape(myArray,[],1);
 %for r=1:540 %
   %aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
@@ -123,7 +123,7 @@ end % t (little)
         saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
         save(saveStr,'xdirPostFft','-v7.3');
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
-% Time Averaging
+% Time Averaging <- no!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 aMat = zeros(540,1);
