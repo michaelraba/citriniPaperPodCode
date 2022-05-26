@@ -36,9 +36,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
     ordStr="xcorrNow";
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 
-        %for m=1:540
-         for m=azimuthalSet % restrict to this set now.
-
+        for m=1:540
 
                 %for m=1:azimuthalSetSize %%%%%
 
@@ -82,5 +80,5 @@ clear qMinusQbar_noCsYet; % yes, clear this..
  %saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
  saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'corrMatSmits','-v7.3');
-qq = corrMatSmits; % asign qq and exit
+qq = xcorrDone; % asign qq and exit
 end % fc

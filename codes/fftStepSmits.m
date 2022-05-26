@@ -11,6 +11,8 @@
     [xcorrDone]=initData2("azimuthDoneXcorrDone");
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet");
     [xdirNew]=initData2("xdirNew");
+        [corrMatSmits]=initData2("corrMatSmits");
+
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
 
@@ -56,7 +58,7 @@
 
     % this does not store cc data.
     %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
+    findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias")
 
     sprintf('%s','start azimuthal')
     %qq = xcorrDone;
