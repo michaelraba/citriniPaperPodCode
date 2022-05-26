@@ -72,7 +72,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
        % we dont really need a matrix yet --- just the lag. but whatever.
         corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
             end % jjj
-            end % iii
+            end % iii 
                %   for t=1:ntimesteps% % % add this sfor t-corr
                % xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
                % %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
