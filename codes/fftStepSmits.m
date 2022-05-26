@@ -12,6 +12,7 @@
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet");
     [xdirNew]=initData2("xdirNew");
     [smitsXdir]=initData2("smitsXdir");
+    [corrMatFuckYeah]=initData2("corrMatFuckYeah");
         %[corrMatSmits]=initData2("corrMatSmits");
         [corrMatSmits]=initData2("corrMatSmits_noCs");
 
@@ -97,7 +98,7 @@ for t=1:ntimesteps %parfor % then operate on myArray
   % old:
   %xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
   % should use this form: t will now be size nts x nts, unless i half that by exploiting symmetry.
-  smitsXdir(m).azimuth(t).dat(currentCrossSec,1) = aa;
+  smitsXdir(m).t(t).dat(currentCrossSec,1) = aa;
 end % m
 %end % r
 end % t (little)
@@ -105,21 +106,22 @@ sprintf('%s%d%s%d%s','done filling in a crosssec for timeBloc=', timeBloc, ' and
 end % c
 
 
-% begin fft x-dir
-for t=1:ntimesteps % parfor
-for r=1:540 % this should be 540..................
+% begin fft x-dir and save to the final correlation matrix.
+% unwrap the t array.
+for t1=1:ntimesteps % parfor
+for t2=1:ntimesteps % parfor
 for m=1:azimuthalSetSize
-  aa = xdirNew(t).RadialCircle(r).azimuth(m).dat;
-  %ab = fft(aa(end/2:end));
+for cc=1:ncs
+  aa = smitsXdir(m).t(t).dat;
   ab = fft(aa);
-  xdirPostFft(t).RadialCircle(r).azimuth(m).dat = ab;
+  corrMatFuckYeah(m).x(cc).dat(t1,t2) = ab(cc,1);
   %hold on;
   %plot(real(ab));
   %pause(0.1)
+end % xx
 end % m
-end % r
 end % t (little)
-        sprintf('%s','saving xdirPostFft...')
+        sprintf('%s','saving final corrmat...')
         saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
         save(saveStr,'xdirPostFft','-v7.3');
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
