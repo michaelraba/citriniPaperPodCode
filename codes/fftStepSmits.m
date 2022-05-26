@@ -87,18 +87,20 @@ sprintf('%s','start azimuthal')
 
 for m=1:azimuthalSetSize
    myArray = reshape(qq.corrMatSmits(m).dat,[],1); % that creates a hard copy, inefficient.
-for t=1:ntimesteps %parfor % then operate on myArray
+for t=1:ntimesteps*ntimesteps %parfor % then operate on myArray
    sprintf('%s','hi')
    % reshape nts x nts into arrayz:
    % reshape(myArray,[],1);
 %for r=1:540 %
   %aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
     % nb no rad anymore.
-  aa=qq.corrMatSmits(m).dat(t1,t2); % that creates a hard copy, inefficient.
+  %aa=qq.corrMatSmits(m).dat(t1,t2); % that creates a hard copy, inefficient.
+  %aa=qq.corrMatSmits(m).dat; % that creates a hard copy, inefficient.
+
   % old:
   %xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
   % should use this form: t will now be size nts x nts, unless i half that by exploiting symmetry.
-  smitsXdir(m).t(t).dat(currentCrossSec,1) = aa;
+  smitsXdir(m).t(t).dat(currentCrossSec,1) = myArray(t);
 end % m
 %end % r
 end % t (little)
@@ -112,7 +114,8 @@ for t1=1:ntimesteps % parfor
 for t2=1:ntimesteps % parfor
 for m=1:azimuthalSetSize
 for cc=1:ncs
-  aa = smitsXdir(m).t(t).dat;
+    tsWalkThroughArray = (t1-1)*ntimesteps + t2 ;
+  aa = smitsXdir(m).t(tsWalkThroughArray).dat;
   ab = fft(aa);
   corrMatFuckYeah(m).x(cc).dat(t1,t2) = ab(cc,1);
   %hold on;
@@ -121,45 +124,46 @@ for cc=1:ncs
 end % xx
 end % m
 end % t (little)
-        sprintf('%s','saving final corrmat...')
-        saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-        save(saveStr,'xdirPostFft','-v7.3');
-        sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
-% Time Averaging <- no!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-aMat = zeros(540,1);
-for t=1:ntimesteps
-for c=1:ncs
-for m=1:azimuthalSetSize
-for r=1:540
-   aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   aMat(r) = r*aa;
-   %aMat(r) = (1-r)*aa; % because its flipped (-> at: ).. (maybe dont flip if feel uncomfortable with that).
-   %smits2016(t).cs(c).circle(m).dat(r,1) = r*aa; % R(t,t';k;m,r) and mult by r.
-end % r
-Rint = trapz(aMat);
-Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
-
-end % m
-end % c
 end % t (little)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%end % timeBloc
 
-% set back in radial direction and time avergae for all timesteps!
+        sprintf('%s','saving final corrmat...')
+        saveStr=[saveDir 'corrMatFuckYeah[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+        save(saveStr,'corrMatFuckYeah','-v7.3');
+        sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
+%%%%% % Time Averaging <- no!
+%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%% aMat = zeros(540,1);
+%%%%% for t=1:ntimesteps
+%%%%% for c=1:ncs
+%%%%% for m=1:azimuthalSetSize
+%%%%% for r=1:540
+%%%%%    aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
+%%%%%    aMat(r) = r*aa;
+%%%%%    %aMat(r) = (1-r)*aa; % because its flipped (-> at: ).. (maybe dont flip if feel uncomfortable with that).
+%%%%%    %smits2016(t).cs(c).circle(m).dat(r,1) = r*aa; % R(t,t';k;m,r) and mult by r.
+%%%%% end % r
+%%%%% Rint = trapz(aMat);
+%%%%% Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
+%%%%%
+%%%%% end % m
+%%%%% end % c
+%%%%% end % t (little)
+%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%% %%%end % timeBloc
+%%%%%
+%%%%% % set back in radial direction and time avergae for all timesteps!
 
-        saveStr=[saveDir '/Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
-        save(saveStr,'Rmat_avg','-v7.3');
+        %saveStr=[saveDir '/Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+        saveStr=[saveDir '/corrMatFuckYeah[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+        save(saveStr,'corrMatFuckYeah','-v7.3');
 
 % average in r smits2016
 
 %   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
 % just call trapz. then operate on t -> eig wrt .
 
-qq = xdirPostFft;
-
-
+qq = corrMatFuckYeah;
 pod(qq);
 
  end % f
