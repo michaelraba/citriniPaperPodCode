@@ -1,7 +1,8 @@
- function [qq]=fftStep(stepStr,preStr)
+ function [qq]=fftStepSmits(stepStr,preStr)
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
-ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+%ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+% dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -12,8 +13,7 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     [xdirNew]=initData2("xdirNew");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
-    [corrMatSmits]=initData2("corrMatSmits");
-    
+
     for c = 1:ncs  % crosssection
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,7 +55,7 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     end % timeblock
 
     % this does not store cc data.
-    %[xcorrDone]=findAzimuthalModes5(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
+    %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
     findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
 
     sprintf('%s','start azimuthal')
@@ -77,7 +77,7 @@ qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
 for t=1:ntimesteps %parfor
-for r=1:540 % 
+for r=1:540 %
 for m=1:azimuthalSetSize
   aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
   xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
@@ -96,9 +96,9 @@ for m=1:azimuthalSetSize
   %ab = fft(aa(end/2:end));
   ab = fft(aa);
   xdirPostFft(t).RadialCircle(r).azimuth(m).dat = ab;
-  hold on;
-  plot(real(ab));
-  pause(0.1)
+  %hold on;
+  %plot(real(ab));
+  %pause(0.1)
 end % m
 end % r
 end % t (little)
@@ -109,14 +109,14 @@ end % t (little)
 % Time Averaging
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-aMat = zeros(1079,1);
+aMat = zeros(540,1);
 for t=1:ntimesteps
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
    aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   %aMat(r) = r*aa;
-   aMat(r) = (1-r)*aa; % because its flipped.. (maybe dont flip if feel uncomfortable with that).
+   aMat(r) = r*aa;
+   %aMat(r) = (1-r)*aa; % because its flipped (-> at: ).. (maybe dont flip if feel uncomfortable with that).
    %smits2016(t).cs(c).circle(m).dat(r,1) = r*aa; % R(t,t';k;m,r) and mult by r.
 end % r
 Rint = trapz(aMat);

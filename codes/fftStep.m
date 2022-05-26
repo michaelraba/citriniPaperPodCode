@@ -1,7 +1,8 @@
  function [qq]=fftStep(stepStr,preStr)
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
-ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+%ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+% dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct

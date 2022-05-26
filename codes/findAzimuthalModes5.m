@@ -77,7 +77,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
 
                % end % t
                 end % m
- saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-   save(saveStr,'xcorrDone','-v7.3');
+ %saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+ saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+   save(saveStr,'corrMatSmits','-v7.3');
 qq = xcorrDone; % asign qq and exit
 end % fc
