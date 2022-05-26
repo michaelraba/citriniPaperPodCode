@@ -12,6 +12,7 @@ ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
     [xdirNew]=initData2("xdirNew");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
+    [corrMatSmits]=initData2("corrMatSmits");
     
     for c = 1:ncs  % crosssection
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

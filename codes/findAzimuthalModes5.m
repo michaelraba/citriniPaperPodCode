@@ -35,31 +35,48 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         load(saveStr,'qMinusQbar_noCsYet');
     ordStr="xcorrNow";
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
-        %for r=1:540%
-        for r=1:1080% %
-            vec = zeros(1,ntimesteps); % collect radial points..
-                for m=1:540
+
+        for m=1:540
+
                 %for m=1:azimuthalSetSize %%%%%
 
-                for t=1:ntimesteps% %
-                    % the meaning of r and m was switched.
-                    % remember that circle is the 540 radial points. the
-                    % .dat is indeed the azimuthal points
-                  aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1);
-                  vec(t) = aa;
-                end % t
-                   if abs(vec) ==0
-                       [bb, lags] = xcorr(vec);
-                   else
-                  [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
-                   end % if 0 condition
-                  for t=1:ntimesteps% % % add this sfor t-corr
-                xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
-                %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
+              %%%  for t=1:ntimesteps% %
+              %%%      % the meaning of r and m was switched.
+              %%%      % remember that circle is the 540 radial points. the
+              %%%      % .dat is indeed the azimuthal points
+              %%%    aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1);
+              %%%    vec(t) = aa;
+              %%%  end % t
+               %%%    if abs(vec) ==0
+               %%%        [bb, lags] = xcorr(vec);
+               %%%    else
+               %%%   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
+               %%%    end % if 0 condition
+            % form the manual correlation here:
+            for iii=1:ntimesteps
+            for jjj=1:ntimesteps
 
-                end % t
-                end % m
+        % vec should hold each r for each ti tj
+        vec = zeros(1,540); % collect radial points..
+        dr = 1/540;
+        for r=1:540% %
+            aaa = postAzimuthFft_noCsYet(iii).circle(m).dat(r,1);
+            bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(m).dat(r,1));
+            vec(r) = r*aaa*bbb; % prepare to trapz that.
         end % r
+        % save the integration to a struct of form:
+        % corrmat24(m).x(cc).dat
+        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/540. diff r_{i+1} - r_{i}
+       % we dont really need a matrix yet --- just the lag. but whatever.
+        corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
+            end % jjj
+            end % iii
+               %   for t=1:ntimesteps% % % add this sfor t-corr
+               % xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
+               % %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
+
+               % end % t
+                end % m
  saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'xcorrDone','-v7.3');
 qq = xcorrDone; % asign qq and exit

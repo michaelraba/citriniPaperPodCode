@@ -27,6 +27,9 @@ qq=struct('azimuth', repmat({struct('radial', repmat({  struct('dat',repmat({zer
 %azimuthDoneXcorrDoneAnticipate_cs
 
 
+elseif initStr=="corrMatSmits"
+qq=struct('x', repmat({struct('dat',repmat({zeros(ntimesteps,ntimesteps)}, [ncs,1]))} , [azimuthalSetSize,1]));
+
 elseif initStr=="xdirNew"
   %qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,1079])) }, Nts));
   qq=struct('RadialCircle', repmat({struct('azimuth', repmat({  struct('dat',repmat({zeros(ncs,1)}, Naz))}, [1,540])) }, Nts));
