@@ -37,8 +37,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 
         %for m=1:540
-         for m=azimuthalSet % restrict to this set now.
-
+         for m=1:azimuthalSetSize % restrict to this set now.
+         mmm = azimuthalSet(m);
 
                 %for m=1:azimuthalSetSize %%%%%
 
@@ -62,8 +62,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         vec = zeros(1,540); % collect radial points..
         dr = 1/540 + zeros(1,540); % forms array of constants
         for r=1:540% %
-            aaa = postAzimuthFft_noCsYet(iii).circle(m).dat(r,1);
-            bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(m).dat(r,1));
+            aaa = postAzimuthFft_noCsYet(iii).circle(mmm).dat(r,1);
+            bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(mmm).dat(r,1));
             vec(r) = r*aaa*bbb; % prepare to trapz that.
         end % r
         % save the integration to a struct of form:
