@@ -71,6 +71,7 @@ phiVec=zeros(540,1);
 for rr=1:540
 for tt=1:ntimesteps
   %aa=fftTransformedFluctuation(tt,rr,cc);
+  %% fftTransformedFluctuation(18).x(3).dat  % need something with r, leider !!!1 fuck!!
   aa=fftTransformedFluctuation(tt).RadialCircle(rr).azimuth(mm).dat(cc); % t, r , m , c
   bb=ctranspose(eigVec(tt));
   ab = aa*bb;   
