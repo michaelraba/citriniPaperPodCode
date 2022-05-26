@@ -11,7 +11,6 @@
     [xcorrDone]=initData2("azimuthDoneXcorrDone");
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet");
     [xdirNew]=initData2("xdirNew");
-    [smitsXdir]=initData2("smitsXdir");
         %[corrMatSmits]=initData2("corrMatSmits");
         [corrMatSmits]=initData2("corrMatSmits_noCs");
 
@@ -83,21 +82,16 @@ sprintf('%s','start azimuthal')
 % almost essential, that t,t' just be an array instead of a matrix, for reorg that.
 % okay save to reference array that nts x nts case, but then
 % also save to array the vectorized form.
-
-for m=1:azimuthalSetSize
 for t=1:ntimesteps %parfor
    sprintf('%s','hi')
    % reshape nts x nts into arrayz:
-   % myArray = qq.corrMatSmits(m).dat; % that creates a hard copy, inefficient.
    % reshape(myArray,[],1);
 %for r=1:540 %
+for m=1:azimuthalSetSize
   %aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
     % nb no rad anymore.
   aa=qq.corrMatSmits(m).dat(t1,t2); % that creates a hard copy, inefficient.
-  % old:
-  %xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
-  % should use this form: t will now be size nts x nts, unless i half that by exploiting symmetry.
-  smitsXdir(m).azimuth(t).dat(currentCrossSec,1) = aa;
+  xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
 end % m
 %end % r
 end % t (little)
