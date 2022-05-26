@@ -1,13 +1,13 @@
-% last iteration of azimuthal mode usign xcorr
+% for snapshot pod -> uses direct multiplicaiton in order to form correlation matrix.
 %
-function findAzimuthalModes4(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr)
+function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr)
 % [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags]=constants();
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-% begin azimuthal -> 
+% begin azimuthal ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 timeBloc=1; % set htat temporarily.
     for t = 1:ntimesteps % time % parfor
@@ -35,8 +35,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         load(saveStr,'qMinusQbar_noCsYet');
     ordStr="xcorrNow";
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
-        %for r=1:540% 
-        for r=1:1080% % 
+        %for r=1:540%
+        for r=1:1080% %
             vec = zeros(1,ntimesteps); % collect radial points..
                 for m=1:540
                 %for m=1:azimuthalSetSize %%%%%
@@ -45,7 +45,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
                     % the meaning of r and m was switched.
                     % remember that circle is the 540 radial points. the
                     % .dat is indeed the azimuthal points
-                  aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1); 
+                  aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1);
                   vec(t) = aa;
                 end % t
                    if abs(vec) ==0
