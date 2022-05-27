@@ -167,7 +167,6 @@ end % t (little)
 %%%%% OPEN saveAzimuth[Case]etc, and take azimuthal fft.
 %%%%%
 for timeBlocIt=1:blocLength
-  tempCsVec = zeros(ncs,1);
   % needs to open for each crossection and timeBloc. Reorganize. Take fft. Then save for each ((timebloc Only)).
 saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'];
 qq=open(saveStr);
@@ -175,10 +174,14 @@ for t=1:ntimesteps
 postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
 for m=1:azimuthalSetSize
 for r=1:540
+      tempCsVec = zeros(ncs,1);
 for currentCrossSec=1:ncs
 %uXfft(t).az(m)
   tempCsVec(currentCrossSec) = postAzimuthFft_noCsYet(t).circle(r).dat(m,1);
   end % cc
+  % take fft:
+  uFftx = fft(tempCsVec);
+  % then save this to uXfft, the last field should be like t (definitely).
   end % r
 % save each time or timebloc
   end % m
