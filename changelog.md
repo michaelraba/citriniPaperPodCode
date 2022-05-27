@@ -1,16 +1,24 @@
 
 # Table of Contents
 
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org345648e)
-2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orga1d4cb3)
-3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orgdcabf59)
-4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org39f97c8)
-5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org5f621eb)
-6.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org42acf23)
+1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#org2b3ced6)
+2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org68563b5)
+3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orgda2ce1f)
+4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#org8496053)
+5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org6368d2b)
+6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org5f42d61)
+7.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#orgbf8de09)
 
 
 
-<a id="org345648e"></a>
+<a id="org2b3ced6"></a>
+
+# Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>
+
+1.  finish u save/import
+
+
+<a id="org68563b5"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>
 
@@ -24,21 +32,21 @@
 Note that (2) has mistakes, so needs fixing. 
 
 
-<a id="orga1d4cb3"></a>
+<a id="orgda2ce1f"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>
 
 1.  finish most of pod, but has mistakes with using xcorr. Some nonsense with snapshot that didn&rsquo;t occur with classical pod.
 
 
-<a id="orgdcabf59"></a>
+<a id="org8496053"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>
 
 1.  refactored lot of stuff, lot of reading done today (helped with eg Tuesday-Thursday work).
 
 
-<a id="org39f97c8"></a>
+<a id="org6368d2b"></a>
 
 # DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
 
@@ -46,14 +54,14 @@ Note that (2) has mistakes, so needs fixing.
 -   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
 
 
-<a id="org5f621eb"></a>
+<a id="org5f42d61"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
 
-<a id="org42acf23"></a>
+<a id="orgbf8de09"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
