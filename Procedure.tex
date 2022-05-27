@@ -1,0 +1,61 @@
+% Created 2022-05-27 Fri 18:14
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usetheme{default}
+\author{Michael Raba}
+\date{\today}
+\title{Procedure}
+\hypersetup{
+ pdfauthor={Michael Raba},
+ pdftitle={Procedure},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.6)}, 
+ pdflang={English}}
+\usepackage{biblatex}
+
+\begin{document}
+
+\maketitle
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+
+\begin{frame}[label={sec:orga514ba0}]{Part 1. Spectral Analysis}
+\begin{itemize}
+\item take fft azimuthally
+\begin{itemize}
+\item use half of \(\theta\) data to avoid aliasing
+\end{itemize}
+\item find correlation in \(t,t'\) described in Smits2017.below.eq.2.4.
+
+$$\mathbf{R}\left(k ; m ; t, t^{\prime}\right)=\int_{r} \mathbf{u}(k ; m ; r, t) \mathbf{u}^{*}\left(k ; m ; r, t^{\prime}\right) r \mathrm{~d} r \hspace{1in} (1)$$
+\item take fft in \(x\) of the above correlation to get \(k\) modes.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org23db9d0}]{Part 2. Snapshot POD}
+\begin{itemize}
+\item the crossspectra for the kernal of the pod
+
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{R}\left(k ; m ; t, t^{\prime}\right) \alpha^{(n)}\left(k ; m ; t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda^{(n)}(k ; m) \alpha^{(n)}(k ; m ; t)\hspace{1 in} (2)$$
+
+\item Find the (sorted) eigenvalues \(\alpha^{(n)}\) found in (2) to solve for \(\Phi^{(n)}\),
+\end{itemize}
+
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau}\mathbf{u}_{\mathrm{T}}(k ; m ; r, t)\alpha^{(n)^{*}}(k ; m ; t)\mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m)$$
+\end{frame}
+\end{document}
