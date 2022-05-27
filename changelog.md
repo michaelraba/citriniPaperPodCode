@@ -1,24 +1,22 @@
 
 # Table of Contents
 
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org86d2627)
-2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#org8d74de1)
-3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orgebd5a30)
-4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org7f0c06b)
-5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org399f179)
-6.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#orgb1455f8)
+1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#orge89b06c)
+2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#org4b2aabe)
+3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orge7bad9a)
+4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org08fa522)
+5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#orgb2946fd)
+6.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org6f8d756)
 
 
 
-<a id="org86d2627"></a>
+<a id="orge89b06c"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>
 
-started direct correlation hellstrom 2017. need to refactor the save/load of
-velocity signal in $t,m,k,r$. Really annoying part! because:
-
 1.  Almost done with POD. Refactored: so no moore xcorr with AzimuthalModes5.m
-2.  Needed to refactor the velocity signal load/save mechanism. 
+2.  started direct correlation hellstrom 2017. need to refactor the save/load of velocity signal in $t,m,k,r$. Really annoying part! because:
+3.  Needed to refactor the velocity signal load/save mechanism. 
     1.  saving happens in timebloc, but also crosssection. But:
     2.  I need to then later load in crosssection and then time bloc, and then save
 
@@ -29,7 +27,7 @@ that.
 Note that (2) has mistakes, so needs fixing. 
 
 
-<a id="org8d74de1"></a>
+<a id="org4b2aabe"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>
 
@@ -38,14 +36,14 @@ Note that (2) has mistakes, so needs fixing.
 snapshot that didn&rsquo;t occur with classical pod. 
 
 
-<a id="orgebd5a30"></a>
+<a id="orge7bad9a"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>
 
 1.  refactored lot of stuff.
 
 
-<a id="org7f0c06b"></a>
+<a id="org08fa522"></a>
 
 # DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
 
@@ -53,14 +51,14 @@ snapshot that didn&rsquo;t occur with classical pod.
 -   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
 
 
-<a id="org399f179"></a>
+<a id="orgb2946fd"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
 
-<a id="orgb1455f8"></a>
+<a id="org6f8d756"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
