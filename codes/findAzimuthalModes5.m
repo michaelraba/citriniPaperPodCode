@@ -4,6 +4,7 @@ function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,co
 % [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags]=constants();
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
+  [savePostAzimuthFft_noCsYet]=initData2("savePostAzimuthFft_noCsYet");
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
@@ -11,11 +12,11 @@ elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 timeBloc=1; % set htat temporarily.
     for t = 1:ntimesteps % time % parfor
-        for  r = 1:540
+        for  r = 1:540 %
             vec = zeros(1080,1);
             vec2 = zeros(1080,1);
-            for zz=1:1080 % there are currently 1080 azimuthal modes.
-            aa=qMinusQbar_noCsYet(t).circle(zz).dat(r,1); % this can perhaps be truncated to 540, then duplicated for the second half, too prevent aliasing.!
+            for zz=1:1080 % \exists 1080 azimuthal modes.
+            aa=qMinusQbar_noCsYet(t).circle(zz).dat(r,1); %
             vec(zz)= aa;
             end % for zz
             aa=fft(vec);
@@ -26,9 +27,20 @@ timeBloc=1; % set htat temporarily.
               cc(1080 - i + 1 ) = aa(i); % get all 1080
             end % i
             postAzimuthFft_noCsYet(t).circle(1,r).dat=cc; % there are indeed 540 circles.
-        end % r...
+            % save to file only the certain modes
+            for i=1:azimuthalSetSize
+              saveKey = azimuthalSet(i);
+              dd = cc(saveKey);
+              %
+            savePostAzimuthFft_noCsYet(i).circle(t).dat=dd; %
+            end %i
+        end % r % radial
     end % parfor t
+        % this is a particular cross section.
+        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+        save(saveStr,'savePostAzimuthFft_noCsYet','-v7.3');
 
+    
 clear qMinusQbar_noCsYet; % yes, clear this..
 %$%$    for timeBloc = 1:blocLength% time % disable; already declared above in fftAzimuth
         saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];

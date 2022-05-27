@@ -15,6 +15,7 @@
     [corrMatFuckYeah]=initData2("corrMatFuckYeah");
         %[corrMatSmits]=initData2("corrMatSmits");
         [corrMatSmits]=initData2("corrMatSmits_noCs");
+        [uXfft]=initData2("uXfft");
 
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
@@ -162,6 +163,21 @@ end % t (little)
 
 %   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
 % just call trapz. then operate on t -> eig wrt .
+
+%%%%% open saveAzimuth[Case]etc, and take azimuthal fft.
+for t=1:ntimesteps
+saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+qq=open(saveStr);
+postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
+for m=1:azimuthalSetSize
+for r=1:540
+
+  end % r
+  end % m
+  end % t
+
+
+
 
 qq = corrMatFuckYeah;
 pod(qq);

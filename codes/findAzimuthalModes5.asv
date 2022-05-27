@@ -4,6 +4,7 @@ function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,co
 % [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags]=constants();
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
+  [savePostAzimuthFft_noCsYet]=initData2("savePostAzimuthFft_noCsYet");
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
@@ -26,9 +27,14 @@ timeBloc=1; % set htat temporarily.
               cc(1080 - i + 1 ) = aa(i); % get all 1080
             end % i
             postAzimuthFft_noCsYet(t).circle(1,r).dat=cc; % there are indeed 540 circles.
+            
         end % r...
     end % parfor t
 
+        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+        save(saveStr,'postAzimuthFft_noCsYet','-v7.3');
+
+    
 clear qMinusQbar_noCsYet; % yes, clear this..
 %$%$    for timeBloc = 1:blocLength% time % disable; already declared above in fftAzimuth
         saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
@@ -36,7 +42,9 @@ clear qMinusQbar_noCsYet; % yes, clear this..
     ordStr="xcorrNow";
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 
-        for m=1:540
+        %for m=1:540
+         for m=1:azimuthalSetSize % restrict to this set now.
+         mmm = azimuthalSet(m);
 
                 %for m=1:azimuthalSetSize %%%%%
 
@@ -60,17 +68,18 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         vec = zeros(1,540); % collect radial points..
         dr = 1/540 + zeros(1,540); % forms array of constants
         for r=1:540% %
-            aaa = postAzimuthFft_noCsYet(iii).circle(m).dat(r,1);
-            bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(m).dat(r,1));
+            aaa = postAzimuthFft_noCsYet(iii).circle(mmm).dat(r,1);
+            bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(mmm).dat(r,1));
             vec(r) = r*aaa*bbb; % prepare to trapz that.
         end % r
         % save the integration to a struct of form:
         % corrmat24(m).x(cc).dat
         ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/540. diff r_{i+1} - r_{i}
        % we dont really need a matrix yet --- just the lag. but whatever.
-        corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
+        %corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
+        corrMatSmits(m).dat(iii,jjj) = ddd;
             end % jjj
-            end % iii
+            end % iii 
                %   for t=1:ntimesteps% % % add this sfor t-corr
                % xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
                % %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
@@ -80,5 +89,5 @@ clear qMinusQbar_noCsYet; % yes, clear this..
  %saveStr=[saveDir 'xcorrDone[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
  saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
    save(saveStr,'corrMatSmits','-v7.3');
-qq = xcorrDone; % asign qq and exit
+qq = corrMatSmits; % asign qq and exit
 end % fc

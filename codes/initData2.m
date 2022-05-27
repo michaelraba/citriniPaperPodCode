@@ -19,6 +19,14 @@ elseif initStr=="myPreFft_noCsYet" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1,ntimesteps]));
 elseif initStr=="postAzimuthFft_noCsYet" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1,ntimesteps]));
+elseif initStr=="uXfft" %redo
+qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1,ntimesteps]));
+
+
+elseif initStr=="savePostAzimuthFft_noCsYet" %redo
+qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps,1]))} , [azimuthalSetSize,1]));
+
+
 elseif initStr=="azimuthDoneXcorrDone" % for findAzimuthalModes with *if ordStr="xcorrNow"*
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1080,1)}, [1,1080]))} , [1,ntimesteps]));
 elseif initStr=="azimuthDoneXcorrDoneAnticipate_cs" % for findAzimuthalModes with *if ordStr="xcorrNow"*
