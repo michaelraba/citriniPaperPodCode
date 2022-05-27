@@ -1,12 +1,12 @@
 
 # Table of Contents
 
-1.  [Part 1. Spectral Analysis](#orge7a9db9)
-2.  [Part 2. Snapshot POD](#orgddfbce4)
+1.  [Part 1. Spectral Analysis](#org05d1d0c)
+2.  [Part 2. Snapshot POD](#org896e10d)
 
 
 
-<a id="orge7a9db9"></a>
+<a id="org05d1d0c"></a>
 
 # Part 1. Spectral Analysis
 
@@ -18,7 +18,7 @@
 -   take fft in $x$ of the above correlation to get $k$ modes.
 
 
-<a id="orgddfbce4"></a>
+<a id="org896e10d"></a>
 
 # Part 2. Snapshot POD
 
@@ -27,6 +27,6 @@
     $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{R}\left(k ; m ; t, t^{\prime}\right) \alpha^{(n)}\left(k ; m ; t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda^{(n)}(k ; m) \alpha^{(n)}(k ; m ; t)\hspace{1 in} (2)$$
 
 -   Find the (sorted) eigenvalues $\alpha^{(n)}$ found in (2) to solve for $\Phi^{(n)}$,
-    
-    $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m)$$
+
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m)$$
 
