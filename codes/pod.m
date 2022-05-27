@@ -18,8 +18,8 @@ sprintf('%s','take eigenvals');
 eigVal=eigVal_tmp(ind,ind);
 eigVec= eigVec_tmp(:,ind);
 tTrapz=zeros(ntimesteps,1);
-phiVec=zeros(540,1);
-for rr=1:540
+phiVec=zeros(ss,1);
+for rr=1:ss
 for tt=1:ntimesteps
     % fftTransformedFluctuation(18).cs(3).rad  
     % uXfft(18).cs(3).rad  

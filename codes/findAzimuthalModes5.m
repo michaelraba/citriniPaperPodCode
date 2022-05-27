@@ -13,7 +13,7 @@ elseif aliasStr=="alias"
 timeBloc=1; % set htat temporarily.
 for timeBlocIt=1:blocLength
     for t = 1:ntimesteps % time % parfor
-        for  r = 1:540 %
+        for  r = 1:ss %
             vec = zeros(1080,1);
             vec2 = zeros(1080,1);
             for zz=1:1080 % \exists 1080 azimuthal modes.
@@ -23,11 +23,11 @@ for timeBlocIt=1:blocLength
             aa=fft(vec);
             %bb = flip(aa);
             cc = zeros(1080,1);
-            for i=1:540
+            for i=1:ss
               cc(i) =aa(i);
               cc(1080 - i + 1 ) = aa(i); % get all 1080
             end % i
-            postAzimuthFft_noCsYet(t).circle(1,r).dat=cc; % there are indeed 540 circles.
+            postAzimuthFft_noCsYet(t).circle(1,r).dat=cc; % there are indeed ss circles.
             for i=1:azimuthalSetSize  % save to file only the certain modes
               saveKey = azimuthalSet(i);
               dd(i) = cc(saveKey);
@@ -48,7 +48,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
     ordStr="xcorrNow";
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 
-        %for m=1:540
+        %for m=1:ss
          for m=1:azimuthalSetSize % restrict to this set now.
          mmm = azimuthalSet(m);
 
@@ -56,7 +56,7 @@ clear qMinusQbar_noCsYet; % yes, clear this..
 
               %%%  for t=1:ntimesteps% %
               %%%      % the meaning of r and m was switched.
-              %%%      % remember that circle is the 540 radial points. the
+              %%%      % remember that circle is the ss radial points. the
               %%%      % .dat is indeed the azimuthal points
               %%%    aa = postAzimuthFft_noCsYet(t).circle(m).dat(r,1);
               %%%    vec(t) = aa;
@@ -71,16 +71,16 @@ clear qMinusQbar_noCsYet; % yes, clear this..
             for jjj=1:ntimesteps
 
         % vec should hold each r for each ti tj
-        vec = zeros(1,540); % collect radial points..
-        dr = 1/540 + zeros(1,540); % forms array of constants
-        for r=1:540% %
+        vec = zeros(1,ss); % collect radial points..
+        dr = 1/ss + zeros(1,ss); % forms array of constants
+        for r=1:ss% %
             aaa = postAzimuthFft_noCsYet(iii).circle(mmm).dat(r,1);
             bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(mmm).dat(r,1));
             vec(r) = r*aaa*bbb; % prepare to trapz that.
         end % r
         % save the integration to a struct of form:
         % corrmat24(m).x(cc).dat
-        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/540. diff r_{i+1} - r_{i}
+        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/ss. diff r_{i+1} - r_{i}
        % we dont really need a matrix yet --- just the lag. but whatever.
         %corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
         corrMatSmits(m).dat(iii,jjj) = ddd;

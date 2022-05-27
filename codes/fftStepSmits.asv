@@ -14,16 +14,12 @@
     [smitsXdir]=initData2("smitsXdir");
     [corrMatFuckYeah]=initData2("corrMatFuckYeah");
     [azimWithCs]=initData2("azimWithCs");
-        %[corrMatSmits]=initData2("corrMatSmits");
-        [corrMatSmits]=initData2("corrMatSmits_noCs");
-        [uXfft]=initData2("uXfft");
-
+    [corrMatSmits]=initData2("corrMatSmits_noCs");
+    [uXfft]=initData2("uXfft");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
-
     for c = 1:ncs  % crosssection
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
     parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
@@ -42,8 +38,7 @@
     [avgPreFft_noCsYet]=findQbar(t,c,myPreFft_noCsYet,avgPreFft_noCsYet,lastStr); % find temporal average.
     end % end little t
     end % timeBloc
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     for timeBloc=1:blocLength
     for t = 1:ntimesteps % time % parfor
 % load in time bloc again
@@ -197,11 +192,10 @@ for currentCrossSec=1:ncs
 end % t % error here.
 % * toDo: save to file  uXfft for each timebloc.
 end % current crosssection
-saveStr=[saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps)'.mat'];
+saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
  save(saveStr,'uXfft','-v7.3');
 
 
-qq = corrMatFuckYeah;
-pod(qq);
+pod(uXfft);
 
  end % f
