@@ -197,6 +197,8 @@ for currentCrossSec=1:ncs
 end % t % error here.
 % * toDo: save to file  uXfft for each timebloc.
 end % current crosssection
+saveStr=[saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+ save(saveStr,'uXfft','-v7.3');
 
 
 qq = corrMatFuckYeah;
