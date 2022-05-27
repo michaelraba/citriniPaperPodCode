@@ -1,5 +1,5 @@
 % Snapshot POD driver function
-function pod(fftTransformedFluctuation)
+function pod(uXfft)
 %function pod()
 figure(1);
 hold on;
@@ -21,7 +21,10 @@ tTrapz=zeros(ntimesteps,1);
 phiVec=zeros(540,1);
 for rr=1:540
 for tt=1:ntimesteps
-  aa=fftTransformedFluctuation(tt).RadialCircle(rr).azimuth(mm).dat(cc); % t, r , m , c
+    % fftTransformedFluctuation(18).cs(3).rad  
+    % uXfft(18).cs(3).rad  
+    aa=uXfft(mm).cs(cc).rad(rr).dat(tt); % t, r , m , c
+
   bb=ctranspose(eigVec(tt));
   ab = aa*bb;   
   tTrapz(tt) = ab;
