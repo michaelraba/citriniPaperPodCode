@@ -27,7 +27,9 @@ qq=struct('azimuth', repmat({struct('radial', repmat({  struct('dat',repmat({zer
 
 
 elseif initStr=="savePostAzimuthFft_noCsYet" %redo
-qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps,1]))} , [azimuthalSetSize,1]));
+  % m,t,r
+%qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps,1]))} , [azimuthalSetSize,1]));
+qq=struct('circle', repmat({struct('dat',repmat({zeros(azimuthalSetSize,1)}, [540,1]))} , [ntimesteps,1]));
 
 
 elseif initStr=="azimuthDoneXcorrDone" % for findAzimuthalModes with *if ordStr="xcorrNow"*

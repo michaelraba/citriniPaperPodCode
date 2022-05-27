@@ -28,12 +28,11 @@ for timeBlocIt=1:blocLength
               cc(1080 - i + 1 ) = aa(i); % get all 1080
             end % i
             postAzimuthFft_noCsYet(t).circle(1,r).dat=cc; % there are indeed 540 circles.
-            % save to file only the certain modes
-            for i=1:azimuthalSetSize
+            for i=1:azimuthalSetSize  % save to file only the certain modes
               saveKey = azimuthalSet(i);
-              dd = cc(saveKey);
-              %
-            savePostAzimuthFft_noCsYet(i).circle(t).dat=dd; %
+              dd(i) = cc(saveKey);
+              % m, t
+            savePostAzimuthFft_noCsYet(t).circle(r).dat=dd; % needs r..
             end %i
         end % r % radial
     end % parfor t

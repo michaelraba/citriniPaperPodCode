@@ -168,21 +168,21 @@ end % t (little)
 %%%%%
 for timeBlocIt=1:blocLength
   tempCsVec = zeros(ncs,1);
-for currentCrossSec=1:ncs
   % needs to open for each crossection and timeBloc. Reorganize. Take fft. Then save for each ((timebloc Only)).
-saveStr=[saveDir 'postAzimuth[Case]C' num2str(currentCrossSec) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'];
+saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'];
 qq=open(saveStr);
 for t=1:ntimesteps
-postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
+postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
 for m=1:azimuthalSetSize
 for r=1:540
-%uXfft(t).az(m).
+for currentCrossSec=1:ncs
+%uXfft(t).az(m)
   tempCsVec(currentCrossSec) = postAzimuthFft_noCsYet(t).circle(r).dat(m,1);
+  end % cc
   end % r
-  end % m
 % save each time or timebloc
-  end % t
-end % timeBlocIt
+  end % m
+end % t
 % * toDo: save to file  uXfft for each timebloc.
 end % current crosssection
 
