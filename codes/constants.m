@@ -5,8 +5,8 @@ function [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSiz
 plotOn=0;
 rMin = 0;
 rMax = 1080;
-csSet=1:5:70;
-timeSet=1:10:900;
+csSet=1:5:10;
+timeSet=1:10:50;
 ntimesteps = size(timeSet) ;ntimesteps= ntimesteps(2);
 csSize = size(csSet); 
 ncs = csSize(2);

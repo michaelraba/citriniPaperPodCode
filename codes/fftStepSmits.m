@@ -43,8 +43,8 @@
     parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
         %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
-        timeSet=1:10:900;
-        csSet=1:5:70;
+        timeSet=1:10:50;
+        csSet=1:5:10;
 
         myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
 
