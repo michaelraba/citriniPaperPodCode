@@ -20,10 +20,8 @@ qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1
 elseif initStr=="postAzimuthFft_noCsYet" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1,ntimesteps]));
 elseif initStr=="uXfft" %redo
-%qq=struct('az', repmat({struct('dat',repmat({zeros(1,540)}, [1,540]))} , [azimuthalSetSize,1]));
-%
-% m k t r % save to minimize t and r, which are the largest parameters.
-qq=struct('azimuth', repmat({struct('radial', repmat({  struct('dat',repmat({zeros(540,1)}, [ntimesteps,1]))}, [ncs,1])) }, azimuthalSetSize));
+% m k r t % save to minimize t and r, which are the largest parameters. t should be last -> operates on t.
+qq=struct('cs', repmat({struct('rad', repmat({  struct('dat',repmat({zeros(ntimesteps,1)}, [540,1]))}, [ncs,1])) }, azimuthalSetSize));
 
 
 elseif initStr=="savePostAzimuthFft_noCsYet" %redo

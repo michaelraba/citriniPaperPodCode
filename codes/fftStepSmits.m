@@ -166,22 +166,28 @@ end % t (little)
 
 %%%%% OPEN saveAzimuth[Case]etc, and take azimuthal fft.
 %%%%%
-for timeBlocIt=1:blocLength
+for currentCrossSec=1:ncs
   % needs to open for each crossection and timeBloc. Reorganize. Take fft. Then save for each ((timebloc Only)).
 saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'];
-qq=open(saveStr);
+qq(currentCrossSec)=open(saveStr); % this should be different crosssection...
+end
+
+for timeBlocIt=1:blocLength
 for t=1:ntimesteps
-postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
+%postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
 for m=1:azimuthalSetSize
 for r=1:540
       tempCsVec = zeros(ncs,1);
 for currentCrossSec=1:ncs
-%uXfft(t).az(m)
-  tempCsVec(currentCrossSec) = postAzimuthFft_noCsYet(t).circle(r).dat(m,1);
+    % postAzimuthFft_noCsYet(4).circle(540).dat  
+  tempCsVec(currentCrossSec) = qq(currentCrossSec).savePpostAzimuthFft_noCsYet(t).circle(r).dat(m,1);
   end % cc
   % take fft:
-  uFftx = fft(tempCsVec);
-  % then save this to uXfft, the last field should be like t (definitely).
+  fftVecc = fft(tempCsVec);
+% then save this to uXfft, the last field should be like t (definitely).
+  for currentCrossSec=1:ncs
+    uXfft(m).cs(currentCrossSec).rad(r).dat(t,1) = fftVecc(currentCrossSec);
+  end % cc
   end % r
 % save each time or timebloc
   end % m
