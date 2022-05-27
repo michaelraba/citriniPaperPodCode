@@ -3,7 +3,7 @@ function plotSkmr(plotObject,isGraph)
 if isGraph=="graph"
   f=figure('Renderer', 'painters', 'Position', [10 10 1900 900])
   cMaxx=ncs;
-  A=linspace(0,1,541)
+  A=linspace(0,1,540)
   %A=linspace(0,1,1079)
   xlabel('radius $\frac{r}{R}$','interpreter','latex')
   ylabel("$S_{ii}(k,m;r,r')$",'interpreter','latex')  
@@ -16,11 +16,11 @@ if isGraph=="graph"
       subplot(cMaxx,1,cou);
 
       %for t=1:ntimesteps
-      for m=1:18
+      for m=1:azimuthalSetSize
       
       labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
       %pp=plot(A,real(plotObject(c).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
-      pp=plot(A,real(plotObject(t).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
+      pp=plot(A,real(plotObject(c).m(m).dat/ntimesteps),"DisplayName",labelStr);
 
       %smits2016(3).cs(1).circle(2).dat  
       tiSt=['Streamwise mode: ' num2str(c)  ];

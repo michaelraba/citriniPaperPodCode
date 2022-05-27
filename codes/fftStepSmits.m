@@ -40,11 +40,11 @@
     end % timeBloc
 
     for timeBloc=1:blocLength
-    for t = 1:ntimesteps % time % parfor
+    parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
         %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
         timeSet=1:40:999;
-        csSet=1:19:100;
+        csSet=1:11:70;
 
         myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
 
@@ -78,7 +78,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % read in one of the saved xcorrDone
 %%%for timeBloc=1:blocLength
-for currentCrossSec=1:ncs
+for currentCrossSec=1:ncs % ? parfor?
 saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 sprintf('%s','start azimuthal')

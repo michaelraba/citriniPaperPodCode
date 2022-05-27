@@ -18,7 +18,7 @@ sprintf('%s','take eigenvals');
 eigVal=eigVal_tmp(ind,ind);
 eigVec= eigVec_tmp(:,ind);
 tTrapz=zeros(ntimesteps,1);
-phiVec=zeros(ss,1);
+%phiVec=zeros(ss,1);
 for rr=1:ss
 for tt=1:ntimesteps
     % fftTransformedFluctuation(18).cs(3).rad  
@@ -29,11 +29,11 @@ for tt=1:ntimesteps
   tTrapz(tt) = ab;
   end % tt
 ad= trapz(tTrapz);
-phiVec(rr) = ad/(eigVal(tt,tt)*ntimesteps); % smits.eq.2.5
+phiVec(cc).m(mm).dat(rr) = ad/(eigVal(tt,tt)*ntimesteps); % smits.eq.2.5
 end %rr
 hold on;
-if 1 <= tt < 10
-plot(real(phiVec));
+if 2 <= mm < azimuthalSetSize
+%plot(real(phiVec));
 end % if 
 end % circle mm
 end % ncs
