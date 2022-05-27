@@ -13,7 +13,7 @@ if isGraph=="graph"
   hold on;
   cou = 1
   for c=1:cMaxx
-      subplot(cMaxx,1,cou);
+      subplot(cMaxx,2,cou);
 
       %for t=1:ntimesteps
       for m=1:azimuthalSetSize
@@ -25,7 +25,9 @@ if isGraph=="graph"
       %smits2016(3).cs(1).circle(2).dat  
       tiSt=['Streamwise mode: ' num2str(c)  ];
       title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
+      if c==1
       legend();
+      end
       %avgTimeEnd(1).circle(1).dat  
       %pp=plot(A,real(plotObject(c).circle(m).dat /ntimesteps),"DisplayName",labelStr)
 
@@ -64,6 +66,7 @@ elseif isGraph=="graphPause"
       pause(1)
 else
 end % if
-  sgtitle("Correlation in time $S_{ii}(k,m;t,t';r)$",'FontName','capitana','FontSize',12,'interpreter','latex')
+  titleStrr=['Snapshot POD modes $\Phi_{ii}(k,m;r)$ for (tTot,xTot)=(' num2str(ntimesteps) ',' num2str(ncs) ') Uniformly Sampled']
+  sgtitle(titleStrr,'FontName','capitana','FontSize',12,'interpreter','latex')
   xlabel('1-r','interpreter','latex')
 end % f
