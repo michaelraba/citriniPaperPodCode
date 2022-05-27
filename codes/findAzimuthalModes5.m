@@ -11,6 +11,7 @@ elseif aliasStr=="alias"
 % begin azimuthal ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 timeBloc=1; % set htat temporarily.
+for timeBlocIt=1:blocLength
     for t = 1:ntimesteps % time % parfor
         for  r = 1:540 %
             vec = zeros(1080,1);
@@ -37,9 +38,9 @@ timeBloc=1; % set htat temporarily.
         end % r % radial
     end % parfor t
         % this is a particular cross section.
-        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
         save(saveStr,'savePostAzimuthFft_noCsYet','-v7.3');
-
+end % blocLength
     
 clear qMinusQbar_noCsYet; % yes, clear this..
 %$%$    for timeBloc = 1:blocLength% time % disable; already declared above in fftAzimuth
