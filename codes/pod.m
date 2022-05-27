@@ -24,7 +24,6 @@ for tt=1:ntimesteps
     % fftTransformedFluctuation(18).cs(3).rad  
     % uXfft(18).cs(3).rad  
     aa=uXfft(mm).cs(cc).rad(rr).dat(tt); % t, r , m , c
-
   bb=ctranspose(eigVec(tt));
   ab = aa*bb;   
   tTrapz(tt) = ab;
