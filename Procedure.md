@@ -1,12 +1,12 @@
 
 # Table of Contents
 
-1.  [Part 1. Spectral Analysis](#orga8f06de)
-2.  [Part 2. Snapshot POD](#org43df81f)
+1.  [Part 1. Spectral Analysis](#orge09aee3)
+2.  [Part 2. Snapshot POD](#orgb77e51a)
 
 
 
-<a id="orga8f06de"></a>
+<a id="orge09aee3"></a>
 
 # Part 1. Spectral Analysis
 
@@ -15,10 +15,10 @@
 -   find correlation in $t,t'$ described in Smits2017.below.eq.2.4.
     
     $$\mathbf{R}\left(k ; m ; t, t^{\prime}\right)=\int_{r} \mathbf{u}(k ; m ; r, t) \mathbf{u}^{*}\left(k ; m ; r, t^{\prime}\right) r \mathrm{~d} r \hspace{1in} (1)$$
--   take fft in $x$ of the above correlation.
+-   take fft in $x$ of the above correlation to get $k$ modes.
 
 
-<a id="org43df81f"></a>
+<a id="orgb77e51a"></a>
 
 # Part 2. Snapshot POD
 
