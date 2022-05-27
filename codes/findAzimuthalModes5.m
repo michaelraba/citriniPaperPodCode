@@ -12,7 +12,7 @@ elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 timeBloc=1; % set htat temporarily.
 for timeBlocIt=1:blocLength
-    parfor t = 1:ntimesteps % time % parfor
+    for t = 1:ntimesteps % time % parfor
         for  r = 1:ss %
             vec = zeros(1080,1);
             vec2 = zeros(1080,1);
