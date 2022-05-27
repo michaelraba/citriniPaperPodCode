@@ -25,7 +25,7 @@
     parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
     myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
     myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
-    sprintf('%s','pause')
+    %sprintf('%s','pause')
     end % parfor
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % after each block is done, find the average
@@ -43,8 +43,8 @@
     parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
         %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
-        timeSet=1:40:999;
-        csSet=1:11:70;
+        timeSet=1:10:900;
+        csSet=1:5:70;
 
         myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
 
