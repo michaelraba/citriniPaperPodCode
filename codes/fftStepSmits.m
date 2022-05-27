@@ -13,6 +13,7 @@
     [xdirNew]=initData2("xdirNew");
     [smitsXdir]=initData2("smitsXdir");
     [corrMatFuckYeah]=initData2("corrMatFuckYeah");
+    [azimWithCs]=initData2("azimWithCs");
         %[corrMatSmits]=initData2("corrMatSmits");
         [corrMatSmits]=initData2("corrMatSmits_noCs");
         [uXfft]=initData2("uXfft");
@@ -169,7 +170,9 @@ end % t (little)
 for currentCrossSec=1:ncs
   % needs to open for each crossection and timeBloc. Reorganize. Take fft. Then save for each ((timebloc Only)).
 saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'];
-qq(currentCrossSec)=open(saveStr); % this should be different crosssection...
+azimWithCs(currentCrossSec)=open(saveStr); % this should be different crosssection...
+% azimWithCs(3).t(4).rad(540).dat  
+% qz.savePostAzimuthFft_noCsYet(4).circle(6).dat  
 end
 
 for timeBlocIt=1:blocLength
@@ -180,7 +183,7 @@ for r=1:540
       tempCsVec = zeros(ncs,1);
 for currentCrossSec=1:ncs
     % postAzimuthFft_noCsYet(4).circle(540).dat  
-  tempCsVec(currentCrossSec) = qq(currentCrossSec).savePpostAzimuthFft_noCsYet(t).circle(r).dat(m,1);
+  tempCsVec(currentCrossSec) = azimWithCs(currentCrossSec).savePostAzimuthFft_noCsYet(t).circle(r).dat(m);
   end % cc
   % take fft:
   fftVecc = fft(tempCsVec);
@@ -191,7 +194,7 @@ for currentCrossSec=1:ncs
   end % r
 % save each time or timebloc
   end % m
-end % t
+end % t % error here.
 % * toDo: save to file  uXfft for each timebloc.
 end % current crosssection
 

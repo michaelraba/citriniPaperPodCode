@@ -28,6 +28,9 @@ elseif initStr=="savePostAzimuthFft_noCsYet" %redo
   % m,t,r
 %qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps,1]))} , [azimuthalSetSize,1]));
 qq=struct('circle', repmat({struct('dat',repmat({zeros(azimuthalSetSize,1)}, [540,1]))} , [ntimesteps,1]));
+elseif initStr=="azimWithCs" %redo
+% m k r t % save to minimize t and r, which are the largest parameters. t should be last -> operates on t.
+qq=struct('savePostAzimuthFft_noCsYet', repmat({struct('circle', repmat({  struct('dat',repmat({zeros(azimuthalSetSize,1)}, [540,1]))}, [ntimesteps,1])) }, [ncs,1]));
 
 
 elseif initStr=="azimuthDoneXcorrDone" % for findAzimuthalModes with *if ordStr="xcorrNow"*
