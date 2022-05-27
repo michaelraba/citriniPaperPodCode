@@ -42,7 +42,12 @@
     for timeBloc=1:blocLength
     for t = 1:ntimesteps % time % parfor
 % load in time bloc again
-        myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
+        %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
+        timeSet=1:40:999;
+        csSet=1:19:100;
+
+        myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
+
         myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
         % for each loaded timebloc, find qMinusQbar..
         [ qMinusQbar_noCsYet(t) ]=FindqMinusQbar(t,c,myPreFft_noCsYet(t),avgPreFft_noCsYet,qMinusQbar_noCsYet(t),"efficient");
