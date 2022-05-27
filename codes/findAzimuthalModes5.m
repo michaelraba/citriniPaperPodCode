@@ -72,18 +72,22 @@ clear qMinusQbar_noCsYet; % yes, clear this..
 
         % vec should hold each r for each ti tj
         vec = zeros(1,ss); % collect radial points..
+        vecShowSymmetry= zeros(1,ss);
         dr = 1/ss + zeros(1,ss); % forms array of constants
         for r=1:ss% %
             aaa = postAzimuthFft_noCsYet(iii).circle(mmm).dat(r,1);
             bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(mmm).dat(r,1));
             vec(r) = r*aaa*bbb; % prepare to trapz that.
+            vecShowSymmetry(r) = aaa*bbb;
         end % r
         % save the integration to a struct of form:
         % corrmat24(m).x(cc).dat
         ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/ss. diff r_{i+1} - r_{i}
-       % we dont really need a matrix yet --- just the lag. but whatever.
+        ddE = trapz(vecShowSymmetry,dr)
+        % we dont really need a matrix yet --- just the lag. but whatever.
         %corrMatSmits(m).x(currentCrossSec).dat(iii,jjj) = ddd;
         corrMatSmits(m).dat(iii,jjj) = ddd;
+        corrMatSmitsSymmetry(m).dat(iii,jjj) = ddE;
             end % jjj
             end % iii 
                %   for t=1:ntimesteps% % % add this sfor t-corr
