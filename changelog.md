@@ -1,24 +1,36 @@
 
 # Table of Contents
 
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#org2b3ced6)
-2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org68563b5)
-3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orgda2ce1f)
-4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#org8496053)
-5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org6368d2b)
-6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org5f42d61)
-7.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#orgbf8de09)
+1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>](#orgb2c5f18)
+2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#org8812a93)
+3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#orgeddbb57)
+4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orgbf5ff9e)
+5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orge88dd31)
+6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org04cdb54)
+7.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org5a0e034)
+8.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org1c94a0a)
 
 
 
-<a id="org2b3ced6"></a>
+<a id="orgb2c5f18"></a>
+
+# Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>
+
+-   make correlation matrix option to:
+    1.  use either direct multiplication,
+    2.  xcorr (which is then formed into a symmetric matrix with 0 lag on the diagonal)
+    3.  use corrcoef(y,ctranspose()). This gives 1 along the diagonal.
+
+
+<a id="org8812a93"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>
 
-1.  finish u save/import
+1.  finish u save/import. ran pod.
+    -   r is incorrect.  change to real radius $[0,R]= 0.5$ and $dr$ presumably $0.5/540$.
 
 
-<a id="org68563b5"></a>
+<a id="orgeddbb57"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>
 
@@ -32,21 +44,21 @@
 Note that (2) has mistakes, so needs fixing. 
 
 
-<a id="orgda2ce1f"></a>
+<a id="orgbf5ff9e"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>
 
 1.  finish most of pod, but has mistakes with using xcorr. Some nonsense with snapshot that didn&rsquo;t occur with classical pod.
 
 
-<a id="org8496053"></a>
+<a id="orge88dd31"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>
 
 1.  refactored lot of stuff, lot of reading done today (helped with eg Tuesday-Thursday work).
 
 
-<a id="org6368d2b"></a>
+<a id="org04cdb54"></a>
 
 # DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
 
@@ -54,14 +66,14 @@ Note that (2) has mistakes, so needs fixing.
 -   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
 
 
-<a id="org5f42d61"></a>
+<a id="org5a0e034"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
 
-<a id="orgbf8de09"></a>
+<a id="org1c94a0a"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
