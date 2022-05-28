@@ -19,7 +19,8 @@
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
     radLength = 0.5;
-    rMat=0:.5/539:.5; % [0, ...,0.5] with 540 elements %  needs checked
+    dr = 9.276438000000004e-04;
+    rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     for c = 1:ncs  % crosssection
     
     %% Step A) load a chonk into memory and read circles in.
@@ -65,7 +66,7 @@
 
     % this does not store cc data.
     %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias")
+    findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr)
 
     sprintf('%s','start azimuthal')
     %qq = xcorrDone;

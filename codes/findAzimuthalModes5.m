@@ -1,6 +1,6 @@
 % for snapshot pod -> uses direct multiplicaiton in order to form correlation matrix.
 %
-function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,corrMatSmits,aliasStr)
+function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,corrMatSmits,aliasStr,radVec,dr)
 % [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags]=constants();
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
