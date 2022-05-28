@@ -66,7 +66,10 @@
 
     % this does not store cc data.
     %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr)
+    %findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr)
+    % use corrMethod="directMult" or "xcorr" or "corrCoef"
+    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,"directMult");
+
 
     sprintf('%s','start azimuthal')
     %qq = xcorrDone;
