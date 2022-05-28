@@ -1,28 +1,28 @@
 
 # Table of Contents
 
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>](#orgb2c5f18)
-2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#org8812a93)
-3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#orgeddbb57)
-4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orgbf5ff9e)
-5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orge88dd31)
-6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org04cdb54)
-7.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#org5a0e034)
-8.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org1c94a0a)
+1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>](#org68c5b9b)
+2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#orgef5b555)
+3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org5667e1a)
+4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#org0106751)
+5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#org8cdf6e9)
+6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org1bd2d06)
+7.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#orgb21d514)
+8.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org40fc7ac)
 
 
 
-<a id="orgb2c5f18"></a>
+<a id="org68c5b9b"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>
 
 -   make correlation matrix option to:
-    1.  use either direct multiplication,
-    2.  xcorr (which is then formed into a symmetric matrix with 0 lag on the diagonal)
-    3.  use corrcoef(y,ctranspose()). This gives 1 along the diagonal.
+    1.  Option A: use either direct multiplication,
+    2.  Option B: xcorr (which is then formed into a symmetric matrix with 0 lag on the diagonal)
+    3.  Option C: use corrcoef(y,ctranspose()). This gives 1 along the diagonal.
 
 
-<a id="org8812a93"></a>
+<a id="orgef5b555"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>
 
@@ -30,7 +30,7 @@
     -   r is incorrect.  change to real radius $[0,R]= 0.5$ and $dr$ presumably $0.5/540$.
 
 
-<a id="orgeddbb57"></a>
+<a id="org5667e1a"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>
 
@@ -44,21 +44,21 @@
 Note that (2) has mistakes, so needs fixing. 
 
 
-<a id="orgbf5ff9e"></a>
+<a id="org0106751"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>
 
 1.  finish most of pod, but has mistakes with using xcorr. Some nonsense with snapshot that didn&rsquo;t occur with classical pod.
 
 
-<a id="orge88dd31"></a>
+<a id="org8cdf6e9"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>
 
 1.  refactored lot of stuff, lot of reading done today (helped with eg Tuesday-Thursday work).
 
 
-<a id="org04cdb54"></a>
+<a id="org1bd2d06"></a>
 
 # DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
 
@@ -66,14 +66,14 @@ Note that (2) has mistakes, so needs fixing.
 -   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
 
 
-<a id="org5a0e034"></a>
+<a id="orgb21d514"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
 
-<a id="org1c94a0a"></a>
+<a id="org40fc7ac"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
