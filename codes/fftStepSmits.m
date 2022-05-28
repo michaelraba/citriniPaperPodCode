@@ -18,8 +18,10 @@
     [uXfft]=initData2("uXfft");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
+    radLength = 0.5;
+    rMat=0:.5/539:.5; % [0, ...,0.5] with 540 elements %  needs checked
     for c = 1:ncs  % crosssection
-
+    
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
     parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.

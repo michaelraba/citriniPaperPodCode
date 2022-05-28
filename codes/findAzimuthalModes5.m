@@ -74,6 +74,8 @@ clear qMinusQbar_noCsYet; % yes, clear this..
         vec = zeros(1,ss); % collect radial points..
         vecShowSymmetry= zeros(1,ss);
         dr = 1/ss + zeros(1,ss); % forms array of constants
+        % get exact r coordiates ! 
+        % radVec(i) = ...  etc.
         for r=1:ss% %
             aaa = postAzimuthFft_noCsYet(iii).circle(mmm).dat(r,1);
             bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(mmm).dat(r,1));
