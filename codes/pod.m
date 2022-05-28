@@ -3,7 +3,7 @@ function pod(uXfft)
 %function pod()
 figure(1);
 hold on;
-[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
+[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
         saveStr=[saveDir 'corrMatFuckYeah[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
         qq=open(saveStr);
         Rmat_avg=qq.corrMatFuckYeah; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)

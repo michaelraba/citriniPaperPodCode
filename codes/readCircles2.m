@@ -1,7 +1,7 @@
 %function [M_mat]=readCircles2(t,c) % redo for parfor loop.
 function [myPreFft_noCsYet]=readCircles2(t,c) % redo for parfor loop.
                                                      % % does not take such a big struct.
-[~, ~ ,rMax, ~ ,~ ,~ ,~, ~ ,~, ~]=constants();
+[~, ~ ,rMax, ~ ,~ ,~ ,~, ~ ,~, ~,csSet,timeSet]=constants();
   tic
   [myPreFft_noCsYet]=initData2("myPreFft_noCsYet");
 

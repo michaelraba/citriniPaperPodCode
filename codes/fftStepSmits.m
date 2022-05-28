@@ -1,5 +1,5 @@
  function [qq]=fftStepSmits(stepStr,preStr)
-[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
+[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
 %ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
 % dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
@@ -46,8 +46,8 @@
     parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
         %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
-        timeSet=1:10:50;
-        csSet=1:5:10;
+        %timeSet=1:10:50;
+        %csSet=1:5:10;
 
         myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
 
