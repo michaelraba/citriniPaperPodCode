@@ -159,6 +159,14 @@ elseif corrMethod=="corrCoef"
 
         integratedCorr(m).dat(tt) = intResult ;
         end % tt
+
+        for ii=1:ntimesteps
+        for jj=1:ntimesteps
+          if ii>= jj
+          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(ii+ jj - 1 );
+        end % jj
+        end % ii
+
         % integradedcorr should be returned. this function has done the two tasks: azimuthal + correlate, then avergae.
 %%        % this can be made a sum instead since dr is cte.
 

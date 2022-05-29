@@ -75,7 +75,7 @@ typeStr="corrCoef";
     end %c % yes, cross-section loop should indeed end here..
         %elseif stepStr=="azimuth"
         end % if
-if typeStr="directMult"
+if typeStr=="directMult"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x-dir fft
@@ -206,7 +206,7 @@ saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
 
 
 pod(uXfft);
-elseif typeStr="corrCoef"
+elseif typeStr=="corrCoef"
     % if its different ... would it be??? Yes, a little bit.
 end
  end % f
