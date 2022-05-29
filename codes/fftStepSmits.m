@@ -19,7 +19,7 @@
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
     radLength = 0.5;
-    dr = 9.276438000000004e-04;
+    dr = 9.276438000000004e-04 + zeros(ss,1);
     rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     for c = 1:ncs  % crosssection
     

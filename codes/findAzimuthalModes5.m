@@ -136,7 +136,7 @@ elseif corrMethod=="corrCoef"
 %            vec(r) = radVec(r)*aaa*bbb; % prepare to trapz that.
 %        end % r
 
-
+        %mmm=2
         for r=1:ss% %
         uu = zeros(ntimesteps,1);
         vv = zeros(ntimesteps,1);
@@ -152,14 +152,19 @@ elseif corrMethod=="corrCoef"
           rVV = zeros(ss,1);
         for r=1:ss% %
           % form integrand with  radvec adn the correlation in t and integrate that
-          rVV(r) = radVec(r) * corrCoefStore(r).dat(ceil(end/2) + tt  );
+          rVV(r) = radVec(r) * corrCoefStore(r).dat(floor(end/2) + tt  );
         end % r % avergae in r
-         intResult=trapz(rVV,dr);
-        integratedCorr(m).dat(t) = intResult ;
+         %intResult=trapz(rVV,dr);
+         intResult=sum(rVV);
+
+        integratedCorr(m).dat(tt) = intResult ;
         end % tt
         % integradedcorr should be returned. this function has done the two tasks: azimuthal + correlate, then avergae.
 %%        % this can be made a sum instead since dr is cte.
-        qq = integratedCorr;
+
+         end % m 
+          qq = integratedCorr;
+
 %%        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/ss. diff r_{i+1} - r_{i}
 %%        ddE = trapz(vecShowSymmetry,dr);
 %%        % we dont really need a matrix yet --- just the lag. but whatever.
