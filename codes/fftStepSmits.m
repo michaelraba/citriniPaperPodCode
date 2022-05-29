@@ -3,6 +3,7 @@
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
 %ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
 % dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+typeStr="corrCoef";
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -68,13 +69,13 @@
     %findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr)
     % use corrMethod="directMult" or "xcorr" or "corrCoef"
     %findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,"directMult");
-    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,"corrCoef");
+    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,typeStr);
     sprintf('%s','start azimuthal')
     %qq = xcorrDone;
     end %c % yes, cross-section loop should indeed end here..
         %elseif stepStr=="azimuth"
         end % if
-
+if typeStr="directMult"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x-dir fft
@@ -205,5 +206,7 @@ saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
 
 
 pod(uXfft);
-
+elseif typeStr="corrCoef"
+    % if its different ... would it be??? Yes, a little bit.
+end
  end % f

@@ -1,8 +1,9 @@
  function [qq]=fftStepSmits(stepStr,preStr)
-[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
+[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
 %ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
 % dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
+typeStr="corrCoef";
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -18,14 +19,17 @@
     [uXfft]=initData2("uXfft");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
+    radLength = 0.5;
+    dr = 9.276438000000004e-04 + zeros(ss,1);
+    rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     for c = 1:ncs  % crosssection
-
+    
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
     parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
     myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
     myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
-    sprintf('%s','pause')
+    %sprintf('%s','pause')
     end % parfor
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % after each block is done, find the average
@@ -40,9 +44,14 @@
     end % timeBloc
 
     for timeBloc=1:blocLength
-    for t = 1:ntimesteps % time % parfor
+    parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
-        myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
+        %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
+        %timeSet=1:10:50;
+        %csSet=1:5:10;
+
+        myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
+
         myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
         % for each loaded timebloc, find qMinusQbar..
         [ qMinusQbar_noCsYet(t) ]=FindqMinusQbar(t,c,myPreFft_noCsYet(t),avgPreFft_noCsYet,qMinusQbar_noCsYet(t),"efficient");
@@ -55,25 +64,25 @@
 
     qq = qMinusQbar_noCsYet(t);
     end % timeblock
-
     % this does not store cc data.
     %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias")
-
+    %findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr)
+    % use corrMethod="directMult" or "xcorr" or "corrCoef"
+    %findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,"directMult");
+    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,typeStr);
     sprintf('%s','start azimuthal')
     %qq = xcorrDone;
-
     end %c % yes, cross-section loop should indeed end here..
         %elseif stepStr=="azimuth"
         end % if
-
+if typeStr="directMult"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x-dir fft
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % read in one of the saved xcorrDone
 %%%for timeBloc=1:blocLength
-for currentCrossSec=1:ncs
+for currentCrossSec=1:ncs % ? parfor?
 saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
@@ -88,7 +97,7 @@ for t=1:ntimesteps*ntimesteps %parfor % then operate on myArray
    sprintf('%s','hi')
    % reshape nts x nts into arrayz:
    % reshape(myArray,[],1);
-%for r=1:540 %
+%for r=1:ss %
   %aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
     % nb no rad anymore.
   %aa=qq.corrMatSmits(m).dat(t1,t2); % that creates a hard copy, inefficient.
@@ -130,11 +139,11 @@ end % t (little)
 %%%%% % Time Averaging <- no!
 %%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%% aMat = zeros(540,1);
+%%%%% aMat = zeros(ss,1);
 %%%%% for t=1:ntimesteps
 %%%%% for c=1:ncs
 %%%%% for m=1:azimuthalSetSize
-%%%%% for r=1:540
+%%%%% for r=1:ss
 %%%%%    aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
 %%%%%    aMat(r) = r*aa;
 %%%%%    %aMat(r) = (1-r)*aa; % because its flipped (-> at: ).. (maybe dont flip if feel uncomfortable with that).
@@ -166,7 +175,7 @@ for currentCrossSec=1:ncs
   % needs to open for each crossection and timeBloc. Reorganize. Take fft. Then save for each ((timebloc Only)).
 saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'];
 azimWithCs(currentCrossSec)=open(saveStr); % this should be different crosssection...
-% azimWithCs(3).t(4).rad(540).dat  
+% azimWithCs(3).t(4).rad(ss).dat  
 % qz.savePostAzimuthFft_noCsYet(4).circle(6).dat  
 end
 
@@ -174,10 +183,10 @@ for timeBlocIt=1:blocLength
 for t=1:ntimesteps
 %postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
 for m=1:azimuthalSetSize
-for r=1:540
+for r=1:ss
       tempCsVec = zeros(ncs,1);
 for currentCrossSec=1:ncs
-    % postAzimuthFft_noCsYet(4).circle(540).dat  
+    % postAzimuthFft_noCsYet(4).circle(ss).dat  
   tempCsVec(currentCrossSec) = azimWithCs(currentCrossSec).savePostAzimuthFft_noCsYet(t).circle(r).dat(m);
   end % cc
   % take fft:
@@ -197,5 +206,6 @@ saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
 
 
 pod(uXfft);
-
+elseif typeStr="corrCo"
+end
  end % f

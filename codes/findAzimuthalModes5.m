@@ -162,8 +162,7 @@ elseif corrMethod=="corrCoef"
         % integradedcorr should be returned. this function has done the two tasks: azimuthal + correlate, then avergae.
 %%        % this can be made a sum instead since dr is cte.
 
-         end % m 
-          qq = integratedCorr;
+         %end % m 
 
 %%        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/ss. diff r_{i+1} - r_{i}
 %%        ddE = trapz(vecShowSymmetry,dr);
@@ -177,6 +176,8 @@ elseif corrMethod=="corrCoef"
                % %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
                % end % t
                 end % m
+                qq = integratedCorr;
+
 % saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 %   save(saveStr,'corrMatSmits','-v7.3');
 %%   qq = corrMatSmits; % asign qq and exit
