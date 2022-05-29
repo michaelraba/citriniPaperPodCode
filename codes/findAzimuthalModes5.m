@@ -145,11 +145,21 @@ elseif corrMethod=="corrCoef"
           vv(tt) = ctranspose(uu(tt));
         end % tt
        % call corrcoef on und and v:
-        corrCoefStore(r).dat = corrcoef(uu,vv);
+        corrCoefStore(r).dat = xcorr(uu,vv); % this is t,t' correlation
       end % r
 
-
+        for tt=1:ntimesteps
+          rVV = zeros(ss,1);
+        for r=1:ss% %
+          % form integrand with  radvec adn the correlation in t and integrate that
+          rVV(r) = radVec(r) * corrCoefStore(r).dat(ceil(end/2) + tt  );
+        end % r % avergae in r
+         intResult=trapz(rVV,dr);
+        integratedCorr(m).dat(t) = intResult ;
+        end % tt
+        % integradedcorr should be returned. this function has done the two tasks: azimuthal + correlate, then avergae.
 %%        % this can be made a sum instead since dr is cte.
+        qq = integratedCorr;
 %%        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/ss. diff r_{i+1} - r_{i}
 %%        ddE = trapz(vecShowSymmetry,dr);
 %%        % we dont really need a matrix yet --- just the lag. but whatever.
@@ -166,5 +176,5 @@ elseif corrMethod=="corrCoef"
 %   save(saveStr,'corrMatSmits','-v7.3');
 %%   qq = corrMatSmits; % asign qq and exit
    end % corrMethod="directMult"
-qq = zeros(1,1);
+%qq = zeros(1,1);
 end % fc
