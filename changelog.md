@@ -1,86 +1,63 @@
 
 # Table of Contents
 
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>](#org0a3c80a)
-    1.  [reasonable amplitudes with xcorr symmetric matrix case.](#orgfda00ac)
-2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>](#org79d08b4)
-    1.  [working on xcor symmetric matrix](#org55ec713)
-    2.  [Back up this Readme](#org8ab702a)
-    3.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#org00f728d)
-    4.  [Description](#org183cf85)
-    5.  [Part 1: Spectral Analysis Procedure](#org0869219)
-    6.  [Part 2: POD](#org0ba813b)
-        1.  [Method (A), Snapshot POD Procedure following Citrini](#orgeb8b321)
-    7.  [Method (B): Following Hellstrom Smits 2017](#org5c8d2a5)
-    8.  [Resolution: Prefer Method (B) over Method (A)](#org88808ea)
-    9.  [Preliminary Plot of Time Correlation (no POD yet):](#org3b388f8)
-    10. [Meeting Question,](#org5c6f19a)
-    11. [So whats the question?](#orgb246965)
-    12. [Sources:](#org6b96171)
-3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#orgc3df991)
-4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org1bd2e37)
-5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orga26e1c5)
-6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#org3f76af2)
-7.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#orgee1f78d)
-8.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#orgdc5e63d)
-9.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#orgde892ae)
+1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>](#orgf0bbbb6)
+2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>](#orgc794137)
+    1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#orge9b65d7)
+    2.  [Description](#org2c94b8f)
+        1.  [Part 1: Spectral Analysis Procedure](#org22eafe3)
+        2.  [Part 2: POD](#org94119e1)
+3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#org01bafc1)
+4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org4c800ec)
+5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#orgcbdf648)
+6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orgb3c8e4e)
+7.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org4888e4a)
+8.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#orgf258338)
+9.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#orgc099595)
 
 
 
-<a id="org0a3c80a"></a>
+<a id="orgf0bbbb6"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>
 
-
-<a id="orgfda00ac"></a>
-
-## reasonable amplitudes with xcorr symmetric matrix case.
+-   reasonable amplitudes with xcorr symmetric matrix case.
 
 
-<a id="org79d08b4"></a>
+<a id="orgc794137"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>
 
-
-<a id="org55ec713"></a>
-
-## working on xcor symmetric matrix
+-   working on xcor symmetric matrix
+-   Back up this Readme
 
 
-<a id="org8ab702a"></a>
-
-## Back up this Readme
-
-
-<a id="org00f728d"></a>
+<a id="orge9b65d7"></a>
 
 ## Proper Orthogonal Decompositon (Snapshot POD) Code
 
 
-<a id="org183cf85"></a>
+<a id="org2c94b8f"></a>
 
 ## Description
 
 Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C) ,  which is used by eg, [Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="org0869219"></a>
+<a id="org22eafe3"></a>
 
-## Part 1: Spectral Analysis Procedure
+### Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
 
-<a id="org0ba813b"></a>
+<a id="org94119e1"></a>
 
-## Part 2: POD
+### Part 2: POD
 
-
-<a id="orgeb8b321"></a>
-
-### Method (A), Snapshot POD Procedure following Citrini
-
-According to source (cite), the POD equation in pipe coordinates may be written as,
+-   Method (A), Snapshot POD Procedure following Citrini
+    
+    According to source (cite), the POD equation in pipe coordinates may be written as,
 
 $$\int_{r^{\prime}} \boldsymbol{S}\left(m ; r, r^{\prime}\right) \Phi_{n}\left(m ; r^{\prime}\right) \mathrm{d} r^{\prime}=\lambda_{n}(m) \Phi_{n}(m ; r)$$
 
@@ -103,10 +80,7 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} r^{1 / 2} \bolds
 
 by solving for $\Phi_n$.
 
-
-<a id="org5c8d2a5"></a>
-
-## Method (B): Following Hellstrom Smits 2017
+-   Method (B): Following Hellstrom Smits 2017
 
 Write the correlation tensor R as, following Smits 2017 comment under equation 2.4,
 
@@ -120,26 +94,17 @@ Finally solve for the eigenfunction $\Phi_n$ ,
 
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m).$$
 
-
-<a id="org88808ea"></a>
-
-## Resolution: Prefer Method (B) over Method (A)
+-   Resolution: Prefer Method (B) over Method (A)
 
 We can apply method (B) directly &#x2014; by Fredholm theory, in order for there exists a solution to the eigenvalue problem, the integral operator needs to be symmetric. But that is already symmetric in $t$.
 
-
-<a id="org3b388f8"></a>
-
-## Preliminary Plot of Time Correlation (no POD yet):
+-   Preliminary Plot of Time Correlation (no POD yet):
 
 -   Graph of the Correlation in time of the streamwise velocity fluctuation $R(t,t';m;k)$ ..
 
 ![img](images/readme/screenshot2022-05-21_21-04-44_.png "Graph of the Correlation in time of the streamwise velocity fluctuation $R(t,t';m;k)$.")
 
-
-<a id="org5c6f19a"></a>
-
-## Meeting Question,
+-   Meeting Question,
 
 -   the xcorr() returns a $\left(2*\text{totalTimesteps} -1\right)$ function. We need a
     **matrix** (not array) for the eigenvalue problem. So how to organize that vector in a matrix. First, that matrix is actually symmetric. Also,
@@ -153,27 +118,18 @@ $S(t,t') = \begin{bmatrix} S(0) & S(1) & S(2)\\\ S(1) & S(0) & S(1)\\\ S(2) & S(
 
 where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
 
-
-<a id="orgb246965"></a>
-
-## So whats the question?
-
+-   So whats the question?
 -   We must integrate the correlation with $t'$ according to the equation above.
     
     $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{R}\left(k ; m ; t, t^{\prime}\right) \alpha^{(n)}\left(k ; m ; t^{\prime}\right) \mathrm{d} t^{\prime}=\lambda^{(n)}(k ; m) \alpha^{(n)}(k ; m ; t)$$
     
     -   But if we integrate before finding eigenpairs, then its no longer a ntimestep x ntimestep matrix &#x2026;
     -   So when to integrate (use trapz() is confusing because I&rsquo;m not sure about what variable to operate on &#x2026;
-
-
-<a id="org6b96171"></a>
-
-## Sources:
-
-1.  Duggleby and Paul
-2.  Citrini and George
-3.  Smits 2014
-4.  [Time series Analysis by Schumway, Chapter 5](https://github.com/nickpoison/tsa4)
+-   Sources:
+-   Duggleby and Paul
+-   Citrini and George
+-   Smits 2014
+-   [Time series Analysis by Schumway, Chapter 5](https://github.com/nickpoison/tsa4)
     1.  Cite this for the correlation function conversion into symmetric matrix form.
 
 -   make correlation matrix option to:
@@ -182,7 +138,7 @@ where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
     3.  Option C: use corrcoef(y,ctranspose()). This gives 1 along the diagonal.
 
 
-<a id="orgc3df991"></a>
+<a id="org01bafc1"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>
 
@@ -190,7 +146,7 @@ where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
     -   r is incorrect.  change to real radius $[0,R]= 0.5$ and $dr$ presumably $0.5/540$. Exact value is dr = 9.276438000000004e-04
 
 
-<a id="org1bd2e37"></a>
+<a id="org4c800ec"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>
 
@@ -204,21 +160,21 @@ where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
 Note that (2) has mistakes, so needs fixing. 
 
 
-<a id="orga26e1c5"></a>
+<a id="orgcbdf648"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>
 
 1.  finish most of pod, but has mistakes with using xcorr. Some nonsense with snapshot that didn&rsquo;t occur with classical pod.
 
 
-<a id="org3f76af2"></a>
+<a id="orgb3c8e4e"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>
 
 1.  refactored lot of stuff, lot of reading done today (helped with eg Tuesday-Thursday work).
 
 
-<a id="orgee1f78d"></a>
+<a id="org4888e4a"></a>
 
 # DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
 
@@ -226,14 +182,14 @@ Note that (2) has mistakes, so needs fixing.
 -   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
 
 
-<a id="orgdc5e63d"></a>
+<a id="orgf258338"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
 
-<a id="orgde892ae"></a>
+<a id="orgc099595"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
