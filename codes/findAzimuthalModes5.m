@@ -159,36 +159,20 @@ elseif corrMethod=="corrCoef"
 
         integratedCorr(m).dat(tt) = intResult ;
         end % tt
-
+         %m=2;
         for ii=1:ntimesteps
         for jj=1:ntimesteps
-          if ii>= jj
-          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(ii+ jj - 1 );
+          if jj>= ii
+              diffNb = jj - ii;
+          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(  jj - ii + 1    );
+          else 
+              diffNb = ii - jj;
+          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(  ii - jj + 1  );
+          end % if 
         end % jj
-        end % ii
-
-        % integradedcorr should be returned. this function has done the two tasks: azimuthal + correlate, then avergae.
-%%        % this can be made a sum instead since dr is cte.
-
-         %end % m 
-
-%%        ddd=trapz(vec,dr); % integrate over r. dr needs to be correct. dr = 1/ss. diff r_{i+1} - r_{i}
-%%        ddE = trapz(vecShowSymmetry,dr);
-%%        % we dont really need a matrix yet --- just the lag. but whatever.
-%%        corrMatSmits(m).dat(iii,jjj) = ddd;
-%%        corrMatSmitsSymmetry(m).dat(iii,jjj) = ddE;
-%%            end % jjj
-%%            end % iii
-               %   for t=1:ntimesteps% % % add this sfor t-corr
-               % xcorrDone(t).circle(m).dat(r,1)=bb((ntimesteps)/2 + t); % only save half
-               % %xcorrDone(t).circle(m).dat(r,1)=bb(end/2 + t - 1); % only save half
-               % end % t
+        end % i
                 end % m
-                qq = integratedCorr;
-
-% saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-%   save(saveStr,'corrMatSmits','-v7.3');
-%%   qq = corrMatSmits; % asign qq and exit
+                qq = corrMatSmits;
+         end % ????? find dat end.
    end % corrMethod="directMult"
-%qq = zeros(1,1);
 end % fc
