@@ -46,12 +46,7 @@ typeStr="corrCoef";
     for timeBloc=1:blocLength
     parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
-        %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
-        %timeSet=1:10:50;
-        %csSet=1:5:10;
-
         myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
-
         myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
         % for each loaded timebloc, find qMinusQbar..
         [ qMinusQbar_noCsYet(t) ]=FindqMinusQbar(t,c,myPreFft_noCsYet(t),avgPreFft_noCsYet,qMinusQbar_noCsYet(t),"efficient");
@@ -64,24 +59,11 @@ typeStr="corrCoef";
 
     qq = qMinusQbar_noCsYet(t);
     end % timeblock
-    % this does not store cc data.
-    %[xcorrDone]=findAzimuthalModes4(t,c, qMinusQbar_noCsYet,xcorrDone,"alias")
-    %findAzimuthalModes5(t,c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr)
-    % use corrMethod="directMult" or "xcorr" or "corrCoef"
-    %findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,"directMult");
+
     findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,typeStr);
     sprintf('%s','start azimuthal')
-    %qq = xcorrDone;
     end %c % yes, cross-section loop should indeed end here..
-        %elseif stepStr=="azimuth"
         end % if
-if typeStr=="directMult"
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% x-dir fft
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% read in one of the saved xcorrDone
-%%%for timeBloc=1:blocLength
 for currentCrossSec=1:ncs % ? parfor?
 saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
@@ -95,17 +77,6 @@ for m=1:azimuthalSetSize
    myArray = reshape(qq.corrMatSmits(m).dat,[],1); % that creates a hard copy, inefficient.
 for t=1:ntimesteps*ntimesteps %parfor % then operate on myArray
    sprintf('%s','hi')
-   % reshape nts x nts into arrayz:
-   % reshape(myArray,[],1);
-%for r=1:ss %
-  %aa=qq.xcorrDone(t).circle(m).dat(r,1); % that creates a hard copy, inefficient.
-    % nb no rad anymore.
-  %aa=qq.corrMatSmits(m).dat(t1,t2); % that creates a hard copy, inefficient.
-  %aa=qq.corrMatSmits(m).dat; % that creates a hard copy, inefficient.
-
-  % old:
-  %xdirNew(t).RadialCircle(r).azimuth(m).dat(currentCrossSec,1) = aa;
-  % should use this form: t will now be size nts x nts, unless i half that by exploiting symmetry.
   smitsXdir(m).t(t).dat(currentCrossSec,1) = myArray(t);
 end % m
 %end % r
@@ -113,9 +84,6 @@ end % t (little)
 sprintf('%s%d%s%d%s','done filling in a crosssec for timeBloc=', timeBloc, ' and t=',t,'.')
 end % c
 
-
-% begin fft x-dir and save to the final correlation matrix.
-% unwrap the t array.
 for t1=1:ntimesteps % parfor
 for t2=1:ntimesteps % parfor
 for m=1:azimuthalSetSize
@@ -206,7 +174,7 @@ saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
 
 
 pod(uXfft);
-elseif typeStr=="corrCoef"
+%%elseif typeStr=="corrCoef"
     % if its different ... would it be??? Yes, a little bit.
-end
+%%end
  end % f

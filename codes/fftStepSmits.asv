@@ -46,12 +46,7 @@ typeStr="corrCoef";
     for timeBloc=1:blocLength
     parfor t = 1:ntimesteps % time % parfor
 % load in time bloc again
-        %myPreFft_noCsNoTimeYet=readCircles2(timeBloc*t,c);
-        %timeSet=1:10:50;
-        %csSet=1:5:10;
-
         myPreFft_noCsNoTimeYet=readCircles2(timeSet(t),csSet(c));
-
         myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
         % for each loaded timebloc, find qMinusQbar..
         [ qMinusQbar_noCsYet(t) ]=FindqMinusQbar(t,c,myPreFft_noCsYet(t),avgPreFft_noCsYet,qMinusQbar_noCsYet(t),"efficient");
@@ -75,7 +70,7 @@ typeStr="corrCoef";
     end %c % yes, cross-section loop should indeed end here..
         %elseif stepStr=="azimuth"
         end % if
-if typeStr="directMult"
+%%%if typeStr=="directMult" or "corrCoef"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x-dir fft
@@ -206,6 +201,7 @@ saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
 
 
 pod(uXfft);
-elseif typeStr="corrCo"
-end
+%%elseif typeStr=="corrCoef"
+    % if its different ... would it be??? Yes, a little bit.
+%%end
  end % f
