@@ -21,7 +21,7 @@ $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k
 
 or 3change
 
-$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t$$
+$$\lim_{\tau \rightarrow \infty} \frac{\frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t}{   \lambda^{(n)}(k ; m)  }$$
 
 with $\left[u_{x}, u_{r}, u_{\theta}, p\right]^{\mathrm{T}}$, and we need to plot $\Phi_x$, not $\Phi_r$.
 
