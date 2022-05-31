@@ -3,7 +3,7 @@
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-31 Tue&gt;</span></span>
 
 
-## Issue: Pulling Wrong $u$ component $\left[u_{x}, u_{r}, u_{\theta}, p\right]^{\mathrm{T}}$.
+## Issue: Pulling Wrong Velocity Component in final POD Step.
 
 -   Need to change
     $$\alpha_{n}(m ; t)=\int_{r} \boldsymbol{u}(m ; r, t) r^{1 / 2} \Phi_{n}^{*}(m ; r) \mathrm{d} r$$
