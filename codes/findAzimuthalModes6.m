@@ -1,6 +1,7 @@
 % for snapshot pod -> uses direct multiplicaiton in order to form correlation matrix.
-%
-function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,corrMatSmits,aliasStr,radVec,dr,corrMethod)
+% this version of the function does correlation at 1 timestep at a time:
+% xcorr(u(t_1,t))
+function findAzimuthalModes6(currentTime, currentCrossSec, qMinusQbar_noCsYet,corrMatSmits,aliasStr,radVec,dr,corrMethod)
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
   [savePostAzimuthFft_noCsYet]=initData2("savePostAzimuthFft_noCsYet");
@@ -172,7 +173,10 @@ elseif corrMethod=="corrCoef"
         end % jj
         end % i
                 end % m
+   saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+   save(saveStr,'corrMatSmits','-v7.3');
                 qq = corrMatSmits;
+
          end % ????? find dat end.
    end % corrMethod="directMult"
 end % fc

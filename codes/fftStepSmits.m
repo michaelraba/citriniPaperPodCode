@@ -3,7 +3,8 @@
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
 %ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
 % dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
-typeStr="corrCoef";
+%corrMethod="directMult";
+corrMethod="corrCoef"; % corrCoef or directMult
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -60,7 +61,7 @@ typeStr="corrCoef";
     qq = qMinusQbar_noCsYet(t);
     end % timeblock
 
-    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,typeStr);
+    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,corrMethod);
     sprintf('%s','start azimuthal')
     end %c % yes, cross-section loop should indeed end here..
         end % if
