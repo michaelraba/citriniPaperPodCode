@@ -19,6 +19,10 @@ or 2change
 
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t)$$
 
+or 3change
+
+$$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t$$
+
 with $\left[u_{x}, u_{r}, u_{\theta}, p\right]^{\mathrm{T}}$, and we need to plot $\Phi_x$, not $\Phi_r$.
 
 
