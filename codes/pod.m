@@ -4,9 +4,9 @@ function pod(uXfft)
 %figure(1);
 hold on;
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
-        saveStr=[saveDir 'corrMatFuckYeah[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
+        saveStr=[saveDir 'corrMatYa[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
         qq=open(saveStr);
-        Rmat_avg=qq.corrMatFuckYeah; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
+        Rmat_avg=qq.corrMatYa; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
         clear qq;
         sprintf('%s','dbg')
 for cc=1:ncs % streamwise mode % cannot exceed 1... 
@@ -24,7 +24,8 @@ for tt=1:ntimesteps
     % fftTransformedFluctuation(18).cs(3).rad  
     % uXfft(18).cs(3).rad  
     aa=uXfft(mm).cs(cc).rad(rr).dat(tt); % t, r , m , c
-  bb=ctranspose(eigVec(tt));
+    % must distinguish between alpha^{n} (t)
+  bb=ctranspose(eigVec(tt)); % 
   ab = aa*bb;   
   tTrapz(tt) = ab;
   end % tt
