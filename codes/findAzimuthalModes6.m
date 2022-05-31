@@ -102,7 +102,7 @@ elseif corrMethod=="corrCoef"
         qq= open(saveStr);
         postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
         for tt=1:ntimesteps
-          uu(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(1,r);
+          uu(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
           vv(tt * timeBlocIt) = uu(tt * timeBlocIt);
         end % tt
     end % timebloc 
