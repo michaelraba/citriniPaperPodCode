@@ -9,8 +9,13 @@ elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 % begin azimuthal ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-timeBloc=1; % set htat temporarily.
+
 for timeBlocIt=1:blocLength
+
+saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
+qq=open(saveStr);
+qMinusQbar_noCsYet = qq(1).qMinusQbar_noCsYet;
+
     for t = 1:ntimesteps % time % parfor
         for  r = 1:ss %
             vec = zeros(1080,1);
@@ -42,11 +47,14 @@ end % blocLength
     
 clear qMinusQbar_noCsYet; % yes, clear this..
 %$%$    for timeBloc = 1:blocLength% time % disable; already declared above in fftAzimuth
-        saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+        saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
         load(saveStr,'qMinusQbar_noCsYet');
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 %$5$5$5$5$
 if corrMethod=="directMult"
+
+
+
   % this method cooks up a ntimestep by ntimestep matrix containing the
   % correlation coefficients via: Direct Multiplication.
   % This is a symmetric matrix and is found by multiplying u * u^H, then averaging over r
@@ -81,6 +89,13 @@ if corrMethod=="directMult"
 
 elseif corrMethod=="corrCoef"
 
+saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
+        open(saveStr);
+
+
+
+
+        
          for m=1:azimuthalSetSize % restrict to this set now.
          mmm = azimuthalSet(m);
         for r=1:ss% %

@@ -61,7 +61,7 @@ corrMethod="corrCoef"; % corrCoef or directMult
     qq = qMinusQbar_noCsYet(t);
     end % timeblock
 
-    findAzimuthalModes5(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,corrMethod);
+    findAzimuthalModes6(t, c, qMinusQbar_noCsYet,corrMatSmits,"alias",rMat,dr,corrMethod);
     sprintf('%s','start azimuthal')
     end %c % yes, cross-section loop should indeed end here..
         end % if

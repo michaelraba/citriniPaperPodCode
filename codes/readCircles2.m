@@ -9,17 +9,12 @@ function [myPreFft_noCsYet]=readCircles2(t,c) % redo for parfor loop.
       M_mat = zeros(540,540); % streamwiseData
       cc = sprintf( '%03d', c  ) ;
       tt = sprintf( '%04d', t  ) ;
-      daPath = '/home/mi/podData/snaps3/';
+      daPath = '/mnt/interest/rawPipeRe5600/';
       fileName = [ daPath 'snap_cs_' num2str(cc) '_ts_' num2str(tt) '.dat']; % t starts at 0.
       formatSpec = '%f';
       a=fopen(fileName, 'r');
       importedData = fscanf(a,formatSpec);
-      %for r=1:rMax  % r is azimuthal mode
-      %for p=1:540 % p is point
-      %  pointOnLine_r = p + 540*r;
-      %  M_mat(r,p)=importedData(pointOnLine_r,1); % 5 for streamwise entry of the data matrix % 1 for 1 col
-      %end %p
-      %end %r
+   
 
       for r=0:rMax-1  % r is azimuthal mode
       for p=1:540 % p is point
