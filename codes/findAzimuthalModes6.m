@@ -104,6 +104,7 @@ elseif corrMethod=="corrCoef"
         for tt=1:ntimesteps
           uu(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
           vv(tt * timeBlocIt) = uu(tt * timeBlocIt);
+          sprintf('%s%f%s%f','m,r',m,',',r)
         end % tt
     end % timebloc 
          ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation     
