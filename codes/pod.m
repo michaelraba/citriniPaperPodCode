@@ -10,7 +10,7 @@ hold on;
         clear qq;
         sprintf('%s','dbg')
 for cc=1:ncs % streamwise mode % cannot exceed 1... 
-for mm=1:azimuthalSetSize % azimuthal mode
+for mm=1:azimuthalSetSize % azimuthal mod
  c = Rmat_avg(mm).x(1).dat;
 sprintf('%s','take eigenvals');
 [eigVec_tmp,eigVal_tmp]=eig(c);
