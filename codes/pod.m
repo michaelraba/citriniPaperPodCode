@@ -24,7 +24,7 @@ for podModeNumber=1:3
 for rr=1:ss
 for tt=1:ntimesteps % finding the n eigenfunctions Phi^{(n)}(r)...:
     % fftTransformedFluctuation(18).cs(3).rad  
-    % uXfft(18).cs(3).rad  
+    % uXfft(18).cs(3).rad
     aa=uXfft(mm).cs(cc).rad(rr).dat(tt); % this indeed varies with t.
     % must distinguish between alpha^{n} (t)
     bb=ctranspose(eigVec(podModeNumber)); % this t plays the role of eigvecs \in [0,N]. Should save each separate.

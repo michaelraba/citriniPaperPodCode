@@ -64,6 +64,8 @@ for podModeNumber=1:3
           subplot(3,1,podModeNumber);
           for m=5:azimuthalSetSize
           labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
+          xlabel('1-r','interpreter','latex')
+
           pp=plot(A,real(avgPlotting(m).dat/(ntimesteps*ncs)),"DisplayName",labelStr);
           tiSt=['$\Phi^{(' num2str(podModeNumber) ')}_{ii}(k,m;r)$'];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
@@ -78,6 +80,5 @@ for podModeNumber=1:3
 end % podModeNumber
   titleStrr=['Snapshot POD modes for (tTot,xTot)=(' num2str(ntimesteps) ',' num2str(ncs) ') Uniformly Sampled']
   sgtitle(titleStrr,'FontName','capitana','FontSize',12,'interpreter','latex')
-  xlabel('1-r','interpreter','latex')
 
 end % f

@@ -1,5 +1,17 @@
 
 
+# Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-31 Tue&gt;</span></span>
+
+-   Need to change
+    $$\alpha_{n}(m ; t)=\int_{r} \boldsymbol{u}(m ; r, t) r^{1 / 2} \Phi_{n}^{*}(m ; r) \mathrm{d} r$$
+
+so $u(x)$  instead of $u(r)$ ! That is because
+
+$$\lim _{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{\mathrm{T}}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{\mathrm{T}}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m)$$
+
+with $\left[u_{x}, u_{r}, u_{\theta}, p\right]^{\mathrm{T}}$, and we need to plot $\Phi_x$, not $\Phi_r$.
+
+
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>
 
 -   reasonable amplitudes with xcorr symmetric matrix case after $r\in [0,0.5]$.

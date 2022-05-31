@@ -162,6 +162,7 @@ for currentCrossSec=1:ncs
   fftVecc = fft(tempCsVec);
 % then save this to uXfft, the last field should be like t (definitely).
   for currentCrossSec=1:ncs
+      % nb this really ought to be in the x-direction. 
     uXfft(m).cs(currentCrossSec).rad(r).dat(t,1) = fftVecc(currentCrossSec);
   end % cc
   end % r
