@@ -1,5 +1,5 @@
 % for snapshot pod -> uses direct multiplicaiton in order to form correlation matrix.
-
+%
 function findAzimuthalModes5(currentTime, currentCrossSec, qMinusQbar_noCsYet,corrMatSmits,aliasStr,radVec,dr,corrMethod)
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
@@ -83,16 +83,40 @@ elseif corrMethod=="corrCoef"
 
          for m=1:azimuthalSetSize % restrict to this set now.
          mmm = azimuthalSet(m);
+               %%%    if abs(vec) ==0
+               %%%        [bb, lags] = xcorr(vec);
+               %%%    else
+               %%%   [bb, lags] = xcorr(vec,"normalized"); % bb is 1079 because of xcorr ! <- new annotat.
+               %%%    end % if 0 condition
+            % form the manual correlation here:
+%            for iii=1:ntimesteps
+%            for jjj=1:ntimesteps
+%        % vec should hold each r for each ti tj
+%        vec = zeros(1,ss); % collect radial points..
+%        vecShowSymmetry= zeros(1,ss);
+%        dr = 1/ss + zeros(1,ss); % forms array of constants
+%        for r=1:ss% %
+%          % this is our primary stuff. iii is hte timesteps. Then m and r.
+%            aaa = postAzimuthFft_noCsYet(iii).circle(mmm).dat(r,1);
+%            bbb = ctranspose(postAzimuthFft_noCsYet(jjj).circle(mmm).dat(r,1));
+%            vec(r) = radVec(r)*aaa*bbb; % prepare to trapz that.
+%        end % r
+
+        %mmm=2
         for r=1:ss% %
         uu = zeros(ntimesteps,1);
         vv = zeros(ntimesteps,1);
         for tt=1:ntimesteps
           uu(tt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
+          %vv(tt) = ctranspose(uu(tt));
           vv(tt) = uu(tt);
 
         end % tt
+       % call corrcoef on und and v:
          ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation
          corrCoefStore(r).dat = ay(ceil(end/2):end); % this is t,t' correlation
+
+        %corrCoefStore(r).dat = xcorr(uu,vv,"normalized"); % this is t,t' correlation
       end % r
       hold on;
 plot(real(corrCoefStore(r).dat))
@@ -100,7 +124,10 @@ pause(0.05)
         for tt=1:ntimesteps
           rVV = zeros(ss,1);
         for r=1:ss% %
+          % form integrand with  radvec adn the correlation in t and integrate that
+          %rVV(r) = radVec(r) * corrCoefStore(r).dat(floor(end/2) + tt  );
            rVV(r) = radVec(r) * corrCoefStore(r).dat(tt);
+
         end % r % avergae in r
          %intResult=trapz(rVV,dr);
          intResult=sum(rVV);
