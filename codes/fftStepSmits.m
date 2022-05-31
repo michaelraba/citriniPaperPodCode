@@ -172,7 +172,7 @@ end % t % error here.
 % * toDo: save to file  uXfft for each timebloc.
 end % current crosssection
 saveStr= [saveDir '/uForPod[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '.mat']
- save(saveStr,'uXfft','-v7.3');
+save(saveStr,'uXfft','-v7.3');
 
 
 pod(uXfft);
