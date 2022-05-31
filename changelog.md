@@ -8,6 +8,7 @@
 -   **To do**: Need to fix **correlate operation**: fix for each $t_i$, where $1\leq i \leq n$, and correlate each timestep one at a time.
     -   Do this on Tuesday.
     -   currently, alpha is not $n$-indexed.
+    -   spot exactly where aliasing occurs. I think this is happening at the fft-x step (?)
 
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>
