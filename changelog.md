@@ -7,9 +7,13 @@
 
 so $u(x)$  instead of $u(r)$ ! That is because
 
+eq 0(leave)
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{T}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m)$$
+or 1change
 
-or
+$$\alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t=\Phi_{T}^{(n)}(k ; m ; r) \lambda^{(n)}(k ; m)$$
+
+or 2change
 
 $$\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t)$$
 
