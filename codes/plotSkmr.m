@@ -95,7 +95,7 @@ end % m
 
       %for t=1:ntimesteps
       %for m=1:azimuthalSetSize
-      for m=1:azimuthalSetSize
+      for m=5:azimuthalSetSize 
 
       labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
       %pp=plot(A,real(plotObject(c).circle(m).dat((end-1)/2:end) )/ntimesteps,"DisplayName",labelStr);
