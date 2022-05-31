@@ -1,23 +1,4 @@
 
-# Table of Contents
-
-1.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>](#orgeb1efc6)
-2.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>](#orga8889ce)
-    1.  [Proper Orthogonal Decompositon (Snapshot POD) Code](#orgd5269b5)
-    2.  [Description](#org608fb4d)
-        1.  [Part 1: Spectral Analysis Procedure](#org7f02443)
-        2.  [Part 2: POD](#org19a1d6e)
-3.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>](#orgf6aefe9)
-4.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>](#org4621d41)
-5.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>](#org3b83e4f)
-6.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>](#orgc72f8c2)
-7.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>](#org17a601d)
-8.  [Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>](#orgef151d3)
-9.  [Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>](#org11c5433)
-
-
-
-<a id="orgeb1efc6"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>
 
@@ -29,34 +10,24 @@
     -   currently, alpha is not $n$-indexed.
 
 
-<a id="orga8889ce"></a>
-
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-28 Sat&gt;</span></span>
 
 -   working on xcor symmetric matrix
 -   Back up this Readme
 
 
-<a id="orgd5269b5"></a>
-
 ## Proper Orthogonal Decompositon (Snapshot POD) Code
 
-
-<a id="org608fb4d"></a>
 
 ## Description
 
 Follows the paper by [Citrini and George 2000](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/reconstruction-of-the-global-velocity-field-in-the-axisymmetric-mixing-layer-utilizing-the-proper-orthogonal-decomposition/68BAA266FC58F299B2D9DA612C8F4A6C) ,  which is used by eg, [Hellstrom and Smits 2017](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2016.0086) and [Ganapathisubramani, Hellstrom, and Smits 2015](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/evolution-of-largescale-motions-in-turbulent-pipe-flow/CB2FF14595A6E552DF8A554FE489CBE9).
 
 
-<a id="org7f02443"></a>
-
 ### Part 1: Spectral Analysis Procedure
 
 The process of taking azimuthal and streamwise FFT is described in this section. The motivation for taking in both directions is described in eg (source).
 
-
-<a id="org19a1d6e"></a>
 
 ### Part 2: POD
 
@@ -143,15 +114,11 @@ where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
     3.  Option C: use corrcoef(y,ctranspose()). This gives 1 along the diagonal.
 
 
-<a id="orgf6aefe9"></a>
-
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-27 Fri&gt;</span></span>
 
 1.  finish u save/import. ran pod.
     -   r is incorrect.  change to real radius $[0,R]= 0.5$ and $dr$ presumably $0.5/540$. Exact value is dr = 9.276438000000004e-04
 
-
-<a id="org4621d41"></a>
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-26 Thu&gt;</span></span>
 
@@ -165,21 +132,15 @@ where eg $S(0)$ is the 0-lag, $S(1)$ is the 1 lag, etc.
 Note that (2) has mistakes, so needs fixing. 
 
 
-<a id="org3b83e4f"></a>
-
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-25 Wed&gt;</span></span>
 
 1.  finish most of pod, but has mistakes with using xcorr. Some nonsense with snapshot that didn&rsquo;t occur with classical pod.
 
 
-<a id="orgc72f8c2"></a>
-
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-24 Tue&gt;</span></span>
 
 1.  refactored lot of stuff, lot of reading done today (helped with eg Tuesday-Thursday work).
 
-
-<a id="org17a601d"></a>
 
 # DONE Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-22 Sun&gt;</span></span>
 
@@ -187,14 +148,10 @@ Note that (2) has mistakes, so needs fixing.
 -   2. change temporal dim from ntimesteps to 2\*ntimesteps -1, after xcorr application in time direction
 
 
-<a id="orgef151d3"></a>
-
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-21 Sat&gt;</span></span>
 
 1.  spectral analysis following Smits2017. fft(x,theta) and correlate in time, then average radially (weighted).
 
-
-<a id="org11c5433"></a>
 
 # Changes  <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-20 Fri&gt;</span></span>
 
