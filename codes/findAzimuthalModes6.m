@@ -4,6 +4,7 @@ function findAzimuthalModes6(currentTime, currentCrossSec, qMinusQbar_noCsYet,co
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
   [savePostAzimuthFft_noCsYet]=initData2("savePostAzimuthFft_noCsYet");
+  [uu]=initData2("uu");
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
@@ -90,24 +91,27 @@ if corrMethod=="directMult"
 
 
 elseif corrMethod=="corrCoef"
-      
+     
+    
+ for timeBlocIt=1:blocLength
+        %uu(m).dat = zeros(ntimesteps*blocLength,1);
+        %vv(m).dat = zeros(ntimesteps*blocLength,1);
+        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
+        qq= open(saveStr);
+        postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
+
 
   for m=1:azimuthalSetSize % restrict to this set now.
          mmm = azimuthalSet(m);
         for r=1:ss% %
-    for timeBlocIt=1:blocLength
-        uu = zeros(ntimesteps*blocLength,1);
-        vv = zeros(ntimesteps*blocLength,1);
-        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
-        qq= open(saveStr);
-        postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
+   
         for tt=1:ntimesteps
-          uu(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
-          vv(tt * timeBlocIt) = uu(tt * timeBlocIt);
+          uu(m).dat(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
+        %  vv(tt * timeBlocIt) = uu(tt * timeBlocIt);
           sprintf('%s%f%s%f','m,r',m,',',r)
         end % tt
     end % timebloc 
-         ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation     
+         ay = xcorr(uu(m).dat,uu(m).dat,"normalized"); % this is t,t' correlation     
          corrCoefStore(r).dat = ay(ceil(end/2):end); % this is t,t' correlation
          end % r
 hold on;

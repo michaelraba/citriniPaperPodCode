@@ -1,5 +1,7 @@
 function [qq]=initData2(initStr) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
-  [ntimesteps ,~ ,~, ~ ,ncs ,~ ,~, azimuthalSetSize ,printStatus, ~]=constants();
+  %[ntimesteps ,~ ,~, ~ ,ncs ,~ ,~, azimuthalSetSize ,printStatus, ~]=constants();
+[ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
+
 Ncs= [ncs,1];
 Nts= [ntimesteps,1];
 Naz = [azimuthalSetSize,1]; % azimuthal
@@ -12,8 +14,6 @@ qq=struct('t', repmat({struct('circle', repmat({  struct('dat',repmat({zeros(3,1
 elseif initStr=="myPreFft" %redo
 qq=struct('t', repmat({struct('circle', repmat({  struct('dat',repmat({zeros(1,1080)}, Nps))}, Nts)) }, Ncs));
 elseif initStr=="myPreFft_noTimeYet" %redo
-%qq=struct('circle', repmat({  struct('dat',repmat({zeros(1,1080)}, Nps))}, Nts))
-%qq=struct('dat', repmat({  struct('dat',repmat({zeros(1,1080)}, Nps))}, Nts))
 qq=struct('dat', repmat({zeros(1,1080)}, [1,540]));
 elseif initStr=="myPreFft_noCsYet" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(1,1080)}, [1,540]))} , [1,ntimesteps]));
@@ -41,6 +41,8 @@ qq=struct('azimuth', repmat({struct('radial', repmat({  struct('dat',repmat({zer
 %azimuthDoneXcorrDoneAnticipate_cs
 
 
+elseif initStr=="uu" % used in m6
+qq=struct('dat', repmat({zeros(1,ntimesteps*blocLength)}, [1,azimuthalSetSize]));
 elseif initStr=="corrMatSmits"
 qq=struct('x', repmat({struct('dat',repmat({zeros(ntimesteps,ntimesteps)}, [ncs,1]))} , [azimuthalSetSize,1]));
 
