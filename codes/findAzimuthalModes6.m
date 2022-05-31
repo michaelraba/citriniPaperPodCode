@@ -42,7 +42,9 @@ qMinusQbar_noCsYet = qq(1).qMinusQbar_noCsYet;
     end % parfor t
         % this is a particular cross section.
         saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
-        save(saveStr,'savePostAzimuthFft_noCsYet','-v7.3');
+        %save(saveStr,'savePostAzimuthFft_noCsYet','-v7.3');
+        save(saveStr,'postAzimuthFft_noCsYet','-v7.3');
+
 end % blocLength
     
 clear qMinusQbar_noCsYet; % yes, clear this..
@@ -88,27 +90,26 @@ if corrMethod=="directMult"
 
 
 elseif corrMethod=="corrCoef"
-            uu = zeros(ntimesteps*blocLength,1);
-        vv = zeros(ntimesteps*blocLength,1);
-    for timeBlocIt=1:blocLength
-        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
-        qq= open(saveStr);
-        postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
-         for m=1:azimuthalSetSize % restrict to this set now.
+      
+
+  for m=1:azimuthalSetSize % restrict to this set now.
          mmm = azimuthalSet(m);
         for r=1:ss% %
-
+    for timeBlocIt=1:blocLength
+        uu = zeros(ntimesteps*blocLength,1);
+        vv = zeros(ntimesteps*blocLength,1);
+        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
+        qq= open(saveStr);
+        postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
         for tt=1:ntimesteps
           uu(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(1,r);
           vv(tt * timeBlocIt) = uu(tt * timeBlocIt);
         end % tt
-        end % timebloc
-
-
-         ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation
+    end % timebloc 
+         ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation     
          corrCoefStore(r).dat = ay(ceil(end/2):end); % this is t,t' correlation
-      end % r
-      hold on;
+         end % r
+hold on;
 plot(real(corrCoefStore(r).dat))
 pause(0.05)
         for tt=1:ntimesteps
