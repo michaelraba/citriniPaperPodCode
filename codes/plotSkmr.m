@@ -66,7 +66,7 @@ for podModeNumber=1:3
           labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
           xlabel('1-r','interpreter','latex')
 
-          pp=plot(A,real(avgPlotting(m).dat/(ntimesteps*ncs)),"DisplayName",labelStr);
+          pp=plot(A,flip(real(avgPlotting(m).dat/(ntimesteps*ncs))),"DisplayName",labelStr);
           tiSt=['$\Phi^{(' num2str(podModeNumber) ')}_{ii}(k,m;r)$'];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
           if podModeNumber==1

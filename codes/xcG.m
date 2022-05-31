@@ -7,7 +7,7 @@ qq=struct('t', repmat({zeros(1,7)}, [1,maxJ]));
 
 for i=1:7
   a= zeros(maxJ,1) ;
-for j=1:maxJ
+for j=1:maxJ 
   %sprintf('%s','hi');
   a(j) = j + maxJ*i;
 end

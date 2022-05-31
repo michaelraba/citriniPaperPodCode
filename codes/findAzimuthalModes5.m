@@ -142,17 +142,26 @@ elseif corrMethod=="corrCoef"
         vv = zeros(ntimesteps,1);
         for tt=1:ntimesteps
           uu(tt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
-          vv(tt) = ctranspose(uu(tt));
+          %vv(tt) = ctranspose(uu(tt));
+          vv(tt) = uu(tt);
+
         end % tt
        % call corrcoef on und and v:
-        corrCoefStore(r).dat = xcorr(uu,vv); % this is t,t' correlation
-      end % r
+         ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation
+         corrCoefStore(r).dat = ay(ceil(end/2):end); % this is t,t' correlation
 
+        %corrCoefStore(r).dat = xcorr(uu,vv,"normalized"); % this is t,t' correlation
+      end % r
+      hold on;
+plot(real(corrCoefStore(r).dat))
+pause(0.05)
         for tt=1:ntimesteps
           rVV = zeros(ss,1);
         for r=1:ss% %
           % form integrand with  radvec adn the correlation in t and integrate that
-          rVV(r) = radVec(r) * corrCoefStore(r).dat(floor(end/2) + tt  );
+          %rVV(r) = radVec(r) * corrCoefStore(r).dat(floor(end/2) + tt  );
+           rVV(r) = radVec(r) * corrCoefStore(r).dat(tt);
+
         end % r % avergae in r
          %intResult=trapz(rVV,dr);
          intResult=sum(rVV);
