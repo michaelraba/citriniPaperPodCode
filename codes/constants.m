@@ -6,7 +6,7 @@ plotOn=0;
 rMin = 0;
 rMax = 1080;
 %csSet=1:5:30;
-timeSet=1:1:100;
+timeSet=1:10:980;
 csSet=1:1:1;
 %timeSet=1:2:600;
 ntimesteps = size(timeSet) ;ntimesteps= ntimesteps(2);
