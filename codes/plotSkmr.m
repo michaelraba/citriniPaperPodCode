@@ -52,7 +52,7 @@ if isGraph=="avg" % plot the avg of the cross sections
   cou = 1
 
 
-for podModeNumber=1:1
+for podModeNumber=1:3
     for m=1:azimuthalSetSize
       % initialize with each azimuthal mode.
         avgPlotting(m).dat = zeros(1,540);
@@ -61,20 +61,22 @@ for podModeNumber=1:1
     end % c
     end % m
           %subplot(cMaxx,1,cou);
-          subplot(cMaxx,1,podModeNumber);
+          subplot(3,1,podModeNumber);
           for m=5:azimuthalSetSize
           labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
           pp=plot(A,real(avgPlotting(m).dat/(ntimesteps*ncs)),"DisplayName",labelStr);
-          tiSt=['Streamwise mode: ' num2str(c)  ];
+          tiSt=['$\Phi^{(' num2str(podModeNumber) ')}_{ii}(k,m;r)$'];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
+          if podModeNumber==1
           legend();
+          end
           hold on;
           end % m
           cou = cou + 1;
     %  end %c
 
 end % podModeNumber
-  titleStrr=['Snapshot POD mode $\Phi^{(' num2str(podModeNumber) '_{ii}(k,m;r)$ for (tTot,xTot)=(' num2str(ntimesteps) ',' num2str(ncs) ') Uniformly Sampled']
+  titleStrr=['Snapshot POD modes for (tTot,xTot)=(' num2str(ntimesteps) ',' num2str(ncs) ') Uniformly Sampled']
   sgtitle(titleStrr,'FontName','capitana','FontSize',12,'interpreter','latex')
   xlabel('1-r','interpreter','latex')
 
