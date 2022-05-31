@@ -4,6 +4,7 @@ function findAzimuthalModes6(currentTime, currentCrossSec, qMinusQbar_noCsYet,co
   [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
   [postAzimuthFft_noCsYet]=initData2("postAzimuthFft_noCsYet");
   [savePostAzimuthFft_noCsYet]=initData2("savePostAzimuthFft_noCsYet");
+  [uu]=initData2("uu");
 if aliasStr=="noAlias"
 elseif aliasStr=="alias"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
@@ -42,7 +43,9 @@ qMinusQbar_noCsYet = qq(1).qMinusQbar_noCsYet;
     end % parfor t
         % this is a particular cross section.
         saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
-        save(saveStr,'savePostAzimuthFft_noCsYet','-v7.3');
+        %save(saveStr,'savePostAzimuthFft_noCsYet','-v7.3');
+        save(saveStr,'postAzimuthFft_noCsYet','-v7.3');
+
 end % blocLength
     
 clear qMinusQbar_noCsYet; % yes, clear this..
@@ -88,25 +91,31 @@ if corrMethod=="directMult"
 
 
 elseif corrMethod=="corrCoef"
+     
+    
+ for timeBlocIt=1:blocLength
+        %uu(m).dat = zeros(ntimesteps*blocLength,1);
+        %vv(m).dat = zeros(ntimesteps*blocLength,1);
         saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
         qq= open(saveStr);
-        postAzimuthFft_noCsYet = qq.savePostAzimuthFft_noCsYet;
-         for m=1:azimuthalSetSize % restrict to this set now.
+        postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
+
+
+  for m=1:azimuthalSetSize % restrict to this set now.
          mmm = azimuthalSet(m);
         for r=1:ss% %
-        uu = zeros(ntimesteps,1);
-        vv = zeros(ntimesteps,1);
+   
         for tt=1:ntimesteps
-          uu(tt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
-          vv(tt) = uu(tt);
+          uu(m).dat(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
+          sprintf('%s%f%s%f','m,r',m,',',r)
         end % tt
-
-
-
-         ay = xcorr(uu,vv,"normalized"); % this is t,t' correlation
+    end % r
+         ay = xcorr(uu(m).dat,uu(m).dat,"normalized"); % this is t,t' correlation     
          corrCoefStore(r).dat = ay(ceil(end/2):end); % this is t,t' correlation
-      end % r
-      hold on;
+         end % m
+
+ end %%%%% adding timebloc end here! 
+hold on;
 plot(real(corrCoefStore(r).dat))
 pause(0.05)
         for tt=1:ntimesteps
@@ -138,4 +147,4 @@ pause(0.05)
 
          end % ????? find dat end.
    end % corrMethod="directMult"
-end % fc
+%end % fc

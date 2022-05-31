@@ -107,43 +107,47 @@ elseif corrMethod=="corrCoef"
    
         for tt=1:ntimesteps
           uu(m).dat(tt * timeBlocIt) = postAzimuthFft_noCsYet(tt).circle(mmm).dat(r,1);
-        %  vv(tt * timeBlocIt) = uu(tt * timeBlocIt);
-          sprintf('%s%f%s%f','m,r',m,',',r)
+          sprintf('%s%f','m,r',m)
         end % tt
-    end % timebloc 
+    end % r
          ay = xcorr(uu(m).dat,uu(m).dat,"normalized"); % this is t,t' correlation     
          corrCoefStore(r).dat = ay(ceil(end/2):end); % this is t,t' correlation
-         end % r
+         end % m
+
+ end %%%%% adding timebloc end here! 
 hold on;
 plot(real(corrCoefStore(r).dat))
 pause(0.05)
-        for tt=1:ntimesteps
-          rVV = zeros(ss,1);
-        for r=1:ss% %
-           rVV(r) = radVec(r) * corrCoefStore(r).dat(tt);
-        end % r % avergae in r
-         %intResult=trapz(rVV,dr);
-         intResult=sum(rVV);
 
-        integratedCorr(m).dat(tt) = intResult ;
-        end % tt
-         %m=2;
-        for ii=1:ntimesteps
-        for jj=1:ntimesteps
-          if jj>= ii
-              diffNb = jj - ii;
-          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(  jj - ii + 1    );
-          else 
-              diffNb = ii - jj;
-          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(  ii - jj + 1  );
-          end % if 
-        end % jj
-        end % i
-                end % m
-   saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-   save(saveStr,'corrMatSmits','-v7.3');
-                qq = corrMatSmits;
 
-         end % ????? find dat end.
-   end % corrMethod="directMult"
-end % fc
+end
+end
+%        for tt=1:ntimesteps
+%          rVV = zeros(ss,1);
+%        for r=1:ss% %
+%           rVV(r) = radVec(r) * corrCoefStore(r).dat(tt);
+%        end % r % avergae in r
+%         %intResult=trapz(rVV,dr);
+%         intResult=sum(rVV);
+%
+%        integratedCorr(m).dat(tt) = intResult ;
+%        end % tt
+%         %m=2;
+%        for ii=1:ntimesteps
+%        for jj=1:ntimesteps
+%          if jj>= ii
+%              diffNb = jj - ii;
+%          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(  jj - ii + 1    );
+%          else
+%              diffNb = ii - jj;
+%          corrMatSmits(m).dat(ii,jj) = integratedCorr(m).dat(  ii - jj + 1  );
+%          end % if
+%        end % jj
+%        end % i
+%                end % m
+%   saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+%   save(saveStr,'corrMatSmits','-v7.3');
+%                qq = corrMatSmits;
+%
+%         end % if
+   end % fc
