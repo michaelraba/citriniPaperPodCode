@@ -2,6 +2,9 @@
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-31 Tue&gt;</span></span>
 
+
+## Issue: Pulling Wrong $u$ component $\left[u_{x}, u_{r}, u_{\theta}, p\right]^{\mathrm{T}}$.
+
 -   Need to change
     $$\alpha_{n}(m ; t)=\int_{r} \boldsymbol{u}(m ; r, t) r^{1 / 2} \Phi_{n}^{*}(m ; r) \mathrm{d} r$$
 
@@ -10,6 +13,9 @@ so $u(x)$  instead of $u(r)$ ! That is because
 $$\Phi_{T}^{(n)}(k ; m ; r)=\frac{\lim_{\tau \rightarrow \infty} \frac{1}{\tau} \int_{0}^{\tau} \mathbf{u}_{T}(k ; m ; r, t) \alpha^{(n)^{*}}(k ; m ; t) \mathrm{d} t}{   \lambda^{(n)}(k ; m)  }$$
 
 with $\left[u_{x}, u_{r}, u_{\theta}, p\right]^{\mathrm{T}}$, and we need to plot $\Phi_x$, not $\Phi_r$.
+
+
+## Issue: Need to Settle Aliasing Problem. I think thats happening in fft-x step.
 
 
 # Changes <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-05-30 Mon&gt;</span></span>
