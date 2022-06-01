@@ -6,14 +6,14 @@ plotOn=0;
 rMin = 0;
 rMax = 1080;
 %csSet=1:5:30;
-timeSet=1:1:50;
+timeSet=1:1:90;
 csSet=1:1:1;
 %timeSet=1:2:600;
 ntimesteps = size(timeSet) ;ntimesteps= ntimesteps(2);
 csSize = size(csSet); 
 ncs = csSize(2);
 %ncs =6; 
-blocLength= 10;
+blocLength= 11;
 %ntimesteps =40; % also the number of workers assigned. % 
 %blocLength= 15;
 %ntimesteps = 40; % also the number of workers assigned. 
