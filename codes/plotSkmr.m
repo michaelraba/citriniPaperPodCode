@@ -1,3 +1,4 @@
+% for snapshot pod
 function plotSkmr(plotObject,isGraph)
 [ntimesteps rMin ,rMax, ss ,ncs ,plotOn ,azimuthalSet, azimuthalSetSize ,printStatus, lags,csSet,timeSet]=constants();
 if isGraph=="graph"
