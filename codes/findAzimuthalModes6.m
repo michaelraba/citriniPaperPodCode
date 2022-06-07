@@ -50,12 +50,13 @@ end % blocLength
     
 clear qMinusQbar_noCsYet; % yes, clear this..
 %$%$    for timeBloc = 1:blocLength% time % disable; already declared above in fftAzimuth
-        saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
-        load(saveStr,'qMinusQbar_noCsYet');
+        %saveStr=[saveDir 'qMinusQbar[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
+       % load(saveStr,'qMinusQbar_noCsYet');
         sprintf('%s%f','$$ For xcorr, c is',currentCrossSec)
 %$5$5$5$5$
 if corrMethod=="directMult"
 
+ for timeBloc=1:blocLength
 
 
   % this method cooks up a ntimestep by ntimestep matrix containing the
@@ -89,6 +90,7 @@ if corrMethod=="directMult"
    save(saveStr,'corrMatSmits','-v7.3');
    qq = corrMatSmits; % asign qq and exit
 
+ end % timebloc
 
 elseif corrMethod=="corrCoef"
      
@@ -96,7 +98,7 @@ elseif corrMethod=="corrCoef"
  for timeBlocIt=1:blocLength
         %uu(m).dat = zeros(ntimesteps*blocLength,1);
         %vv(m).dat = zeros(ntimesteps*blocLength,1);
-        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBlocIt) '.mat'       ];
+        saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
         qq= open(saveStr);
         postAzimuthFft_noCsYet = qq.postAzimuthFft_noCsYet;
 
@@ -120,7 +122,12 @@ plot(real(corrCoefStore(r).dat))
 pause(0.05)
 
 
-end
+
+elseif corrMethod=="none"
+qq=postAzimuthFft_noCsYet; % whatever just empty.
+end % if direct mult
+
+
 end
 %        for tt=1:ntimesteps
 %          rVV = zeros(ss,1);

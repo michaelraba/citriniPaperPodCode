@@ -3,8 +3,8 @@
   %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
 %ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
 % dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
-%corrMethod="directMult";
-corrMethod="corrCoef"; % corrCoef or directMult
+corrMethod="none";
+%corrMethod="corrCoef"; % corrCoef or directMult
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -66,7 +66,9 @@ corrMethod="corrCoef"; % corrCoef or directMult
     end %c % yes, cross-section loop should indeed end here..
         end % if
 for currentCrossSec=1:ncs % ? parfor?
-saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+%saveStr=[saveDir 'corrMatSmits[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+saveStr=[saveDir 'postAzimuth[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(currentCrossSec) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+
 qq=open(saveStr);
 sprintf('%s','start azimuthal')
 % now re-organize:
@@ -75,7 +77,9 @@ sprintf('%s','start azimuthal')
 % also save to array the vectorized form.
 
 for m=1:azimuthalSetSize
-   myArray = reshape(qq.corrMatSmits(m).dat,[],1); % that creates a hard copy, inefficient.
+   %myArray = reshape(qq.corrMatSmits(m).dat,[],1); % that creates a hard copy, inefficient.
+   myArray = reshape(qq.postAzimuthFft_noCsYet(m).dat,[],1); % that creates a hard copy, inefficient.
+
 for t=1:ntimesteps*ntimesteps %parfor % then operate on myArray
    sprintf('%s','hi')
   smitsXdir(m).t(t).dat(currentCrossSec,1) = myArray(t);
