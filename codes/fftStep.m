@@ -105,6 +105,8 @@ end % t (little)
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
 % radial averaging
 %%
+end % timebloc 
+
 aMat = zeros(540,1);
 
 % form corrmat before averginng in r 
@@ -175,4 +177,5 @@ qq = xdirPostFft;
 
 snapshotPod(); %  
 % qq(4).RadialCircle(540).azimuth  
- end % f
+ end % ncs
+ %end
