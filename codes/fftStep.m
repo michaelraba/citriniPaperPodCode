@@ -147,7 +147,7 @@ for r=1:540
 end % r
 Rint = trapz(aMat);
 %Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
-corrMatRavg(m).c(c).dat(t,tPr)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
+corrMatRavg(m).c(c).dat(t*tBloc,tPr*tBloc)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
 end % tPr (little)
 end % t (little)
 
