@@ -108,7 +108,7 @@ end % t (little)
 aMat = zeros(540,1);
 
 % form corrmat before averginng in r 
-corrMat = zeros(ntimesteps,ntimesteps);
+corrMat = zeros(ntimesteps*blocLength,ntimesteps*blocLength);
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
@@ -116,7 +116,8 @@ for t=1:ntimesteps
 for tPr=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
 bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
-cc= corrMatPreAvg(m).c(c).r(r).dat(t,tPr);
+cc=aa*ctranspose(bb);
+corrMatPreAvg(m).c(c).r(r).dat(t,tPr)=cc;
 end %tPr
 end %t
 end %r
@@ -130,11 +131,12 @@ for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
    %aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   corrMatPreAvg(m).c(c).r(r).dat(t,tPr);
+   aa=corrMatPreAvg(m).c(c).r(r).dat(t,tPr);
    aMat(r) = rMat(r)*aa; % aa should be tt correlation
 end % r
 Rint = trapz(aMat);
-Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
+%Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
+corrMatRavg(m).c(c).dat(t,tPr)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
 
 end % m
 end % c
@@ -146,8 +148,8 @@ end % t (little)
 
 % set back in radial direction and time avergae for all timesteps!
 
-        saveStr=[saveDir '/Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
-        save(saveStr,'Rmat_avg','-v7.3');
+        saveStr=[saveDir '/corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+        save(saveStr,'corrMatRavg','-v7.3');
 
 % average in r smits2016
 
@@ -157,6 +159,6 @@ end % t (little)
 qq = xdirPostFft;
 
 
-pod(qq);
-
+snapshotPod(); %  
+% qq(4).RadialCircle(540).azimuth  
  end % f

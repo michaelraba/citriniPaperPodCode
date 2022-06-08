@@ -108,7 +108,7 @@ end % t (little)
 aMat = zeros(540,1);
 
 % form corrmat before averginng in r 
-corrMat = zeros(ntimesteps,ntimesteps);
+corrMat = zeros(ntimesteps*blocLength,ntimesteps*blocLength);
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
@@ -159,6 +159,6 @@ end % t (little)
 qq = xdirPostFft;
 
 
-snapshotPod(qq); %  give u value.
+snapshotPod(); %  
 % qq(4).RadialCircle(540).azimuth  
  end % f

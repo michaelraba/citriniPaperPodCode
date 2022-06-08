@@ -16,7 +16,7 @@ csSize = size(csSet);
 ncs = csSize(2);
 %ncs =6; 
 %blocLength= 23;
-blocLength= 1;
+blocLength= 3;
 
 %ntimesteps =40; % also the number of workers assigned. % 
 %blocLength= 15;
