@@ -4,16 +4,16 @@ function snapshotPod(uXfft)
 %figure(1);
 hold on;
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
-        saveStr=[saveDir 'corrMatFuckYeah[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
+        saveStr=[saveDir 'corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
         qq=open(saveStr);
-        Rmat_avg=qq.corrMatFuckYeah; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
+        Rmat_avg=qq.corrMatRavg; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
         clear qq;
         %sprintf('%s','dbg')
 for cc=1:ncs % streamwise mode % cannot exceed 1... 
 for mm=1:azimuthalSetSize % azimuthal mod
- c = Rmat_avg(mm).x(1).dat; % this is the R(k;m;t,t').
+ currentCorrMat = Rmat_avg(mm).c(cc).dat; % this is the R(k;m;t,t'). needs to bbe fix for c
 sprintf('%s','take eigenvals');
-[eigVec_tmp,eigVal_tmp]=eig(c);
+[eigVec_tmp,eigVal_tmp]=eig(currentCorrMat);
 [d,ind] = sort(diag(eigVal_tmp),'descend');
 eigVal=eigVal_tmp(ind,ind);
 eigVec= eigVec_tmp(:,ind);
