@@ -126,20 +126,14 @@ for t=1:ntimesteps
 %for tPr=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
 %bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
-%cc=aa*ctranspose(bb); do do this yet.
-%corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,1)=aa;
-collectTimeForCorrMatPreAvg(m).c(c).r(r).dat(t*tBloc,1)=aa;
+collectTimeForCorrMatPreAvg(m).c(c).r(r).dat(ntimesteps*(tBloc - 1) + t,1)=aa;
 end %t
-
 if t==ntimesteps & tBloc==blocLength
-collectTimeForCorrMatPreAvg(m).c(c).r(r).dat=az;
+az=collectTimeForCorrMatPreAvg(m).c(c).r(r).dat;
 corrMatPreAvg(m).c(c).r(r).dat=az*ctranspose(az);
 end % if t 
 %end %tPr
-
-
 end %r
-
 end %m
 end %c
 end %tB
@@ -154,7 +148,7 @@ for tPr=1:ntimesteps
 
 for r=1:540
    %aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   aa=corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc);
+   aa=corrMatPreAvg(m).c(c).r(r).dat(ntimesteps*(timeBloc-1)+t,ntimesteps*(timeBloc-1)+tPr);
    aMat(r) = rMat(r)*aa; % aa should be tt correlation
 end % r
 Rint = trapz(aMat);
@@ -162,30 +156,14 @@ Rint = trapz(aMat);
 corrMatRavg(m).c(c).dat(t*tBloc,tPr*tBloc)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
 end % tPr (little)
 end % t (little)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%end % timeBloc
-
-% set back in radial direction and time avergae for all timesteps!
+%% end % timeBloc
 
         saveStr=[saveDir '/corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
         save(saveStr,'corrMatRavg','-v7.3');
 
-% average in r smits2016
-
-%   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
-% just call trapz. then operate on t -> eig wrt .
-
 qq = xdirPostFft;
-
-
 %snapshotPod(m,c); % m c mode.
-
-
 end %m
 end %c
-
-% qq(4).RadialCircle(540).azimuth  
-
  end % bloc
  end %fc
