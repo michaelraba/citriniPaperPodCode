@@ -122,21 +122,26 @@ for c=1:ncs
 for m=1:azimuthalSetSize
 
 for r=1:540
-
-
 for t=1:ntimesteps
-for tPr=1:ntimesteps
+%for tPr=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
-cc=aa*ctranspose(bb);
-corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc)=cc;
-end %tPr
+%bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
+%cc=aa*ctranspose(bb); do do this yet.
+%corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc)=aa;
+corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,1)=aa;
+%end %tPr
 end %t
 end %r
 
+end %m
+end %c
+end %tB
 
-% r-average.
-% needs blocSize
+%% r-average.
+for timeBloc=1:blocLength
+for c=1:ncs
+for m=1:azimuthalSetSize
+
 for t=1:ntimesteps
 for tPr=1:ntimesteps
 
@@ -174,5 +179,6 @@ end %m
 end %c
 
 % qq(4).RadialCircle(540).azimuth  
+
  end % bloc
  end %fc
