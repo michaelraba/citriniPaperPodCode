@@ -3,10 +3,6 @@
 
  dr = 9.276438000000004e-04 + zeros(ss,1);
 rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
-
-  %[xcorrDoneAnticipate_cs]=initData2("xcorrDoneAnticipate_cs");
-%ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
-% dont use.ntimestepsX = 2*ntimesteps - 1; % number of offsets with xcorr.
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -17,10 +13,7 @@ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     [xdirNew]=initData2("xdirNew");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
-    
     for c = 1:ncs  % crosssection
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
     parfor t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
@@ -28,7 +21,6 @@ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     myPreFft_noCsYet(t).circle=myPreFft_noCsNoTimeYet;
     sprintf('%s','pause')
     end % parfor
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % after each block is done, find the average
     for t = 1:ntimesteps % time % <-- nb, this is the parfor loop.
       if timeBloc==blocLength && t==ntimesteps
@@ -39,8 +31,7 @@ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     [avgPreFft_noCsYet]=findQbar(t,c,myPreFft_noCsYet,avgPreFft_noCsYet,lastStr); % find temporal average.
     end % end little t
     end % timeBloc
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     for timeBloc=1:blocLength
     for t = 1:ntimesteps % time % parfor
 % load in time bloc again
@@ -86,7 +77,6 @@ end % r
 end % t (little)
 sprintf('%s%d%s%d%s','done filling in a crosssec for timeBloc=', timeBloc, ' and t=',t,'.')
 end % c
-
 % begin fft x-dir
 for t=1:ntimesteps % parfor
 for r=1:540 % this should be 540..................
@@ -95,7 +85,6 @@ for m=1:azimuthalSetSize
   %ab = fft(aa(end/2:end));
   ab = fft(aa);
   xdirPostFft(t).RadialCircle(r).azimuth(m).dat = ab;
-
 end % m
 end % r
 end % t (little)
@@ -117,22 +106,17 @@ sprintf('%s%s%s%s','Form Corrmat: c',num2str(c),'m',num2str(m))
 saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 xdirPostFft=qq.xdirPostFft;
-
 for c=1:ncs
 for m=1:azimuthalSetSize
-
 for r=1:540
 for t=1:ntimesteps
-%for tPr=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-%bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
 collectTimeForCorrMatPreAvg(m).c(c).r(r).dat(ntimesteps*(tBloc - 1) + t,1)=aa;
 end %t
 if t==ntimesteps & tBloc==blocLength
 az=collectTimeForCorrMatPreAvg(m).c(c).r(r).dat;
 corrMatPreAvg(m).c(c).r(r).dat=az*ctranspose(az);
 end % if t 
-%end %tPr
 end %r
 end %m
 end %c
@@ -162,7 +146,7 @@ end % t (little)
         save(saveStr,'corrMatRavg','-v7.3');
 
 qq = xdirPostFft;
-%snapshotPod(m,c); % m c mode.
+snapshotPod(m,c); % m c mode.
 end %m
 end %c
  end % bloc

@@ -1,5 +1,5 @@
 % Snapshot POD driver function
-function snapshotPod()
+function snapshotPod(m,c)
 %function pod()
 %figure(1);
 hold on;

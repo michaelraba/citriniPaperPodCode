@@ -1,5 +1,5 @@
 % Snapshot POD driver function
-function snapshotPod(m,c)
+function snapshotPod(m,c,currentCorrMat,currentUvec)
 %function pod()
 %figure(1);
 hold on;
@@ -14,8 +14,8 @@ for cc=1:ncs % streamwise mode % cannot exceed 1...
          % xdirPostFft needs to be correct timebloc.
 
 
-for mm=1:azimuthalSetSize % azimuthal mod
- currentCorrMat = Rmat_avg(mm).c(cc).dat; % this is the R(k;m;t,t'). needs to bbe fix for c
+%for mm=1:azimuthalSetSize % azimuthal mod
+% currentCorrMat = Rmat_avg(mm).c(cc).dat; % this is the R(k;m;t,t'). needs to bbe fix for c
 sprintf('%s','take eigenvals');
 [eigVec_tmp,eigVal_tmp]=eig(currentCorrMat);
 [d,ind] = sort(diag(eigVal_tmp),'descend');

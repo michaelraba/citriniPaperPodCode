@@ -146,7 +146,7 @@ end % t (little)
         save(saveStr,'corrMatRavg','-v7.3');
 
 qq = xdirPostFft;
-%snapshotPod(m,c); % m c mode.
+snapshotPod(m,c,corrMatRavg(m).c(c).dat,currentUvec); % m c mode.
 end %m
 end %c
  end % bloc
