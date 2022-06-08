@@ -138,8 +138,9 @@ end %m
 end %c
 
 % r-average.
-for t=1:ntimesteps
-for tPr=1:ntimesteps
+% needs blocSize
+for t=1:ntimesteps*blocLength
+for tPr=1:ntimesteps*blocLength
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
