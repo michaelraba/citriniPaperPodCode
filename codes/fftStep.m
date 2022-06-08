@@ -116,7 +116,8 @@ for t=1:ntimesteps
 for tPr=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
 bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
-cc= corrMatPreAvg(m).c(c).r(r).dat(t,tPr);
+cc=aa*ctranspose(bb);
+corrMatPreAvg(m).c(c).r(r).dat(t,tPr)=cc;
 end %tPr
 end %t
 end %r
@@ -134,7 +135,8 @@ for r=1:540
    aMat(r) = rMat(r)*aa; % aa should be tt correlation
 end % r
 Rint = trapz(aMat);
-Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
+%Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
+corrMatRavg(m).c(c).dat(t,tPr)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
 
 end % m
 end % c
