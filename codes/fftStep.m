@@ -109,13 +109,17 @@ aMat = zeros(540,1);
 
 % form corrmat before averginng in r 
 corrMat = zeros(ntimesteps*blocLength,ntimesteps*blocLength);
+for tBloc=1:blocLength
+% open blocfile
+sprintf('%s%s%s%s','Form Corrmat: c',num2str(c),'m',num2str(m))
+saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
+qq=open(saveStr);
+
+
 for c=1:ncs
 for m=1:azimuthalSetSize
 for r=1:540
-for tBlock=1:blocLength
-% open blocfile
-saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-qq=open(saveStr);
+
 xdirPostFft=qq.xdirPostFft;
 
 for t=1:ntimesteps
@@ -123,7 +127,7 @@ for tPr=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
 bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
 cc=aa*ctranspose(bb);
-corrMatPreAvg(m).c(c).r(r).dat(t*blocLength,tPr*blocLength)=cc;
+corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc)=cc;
 end %tPr
 end %t
 end %bloclength
