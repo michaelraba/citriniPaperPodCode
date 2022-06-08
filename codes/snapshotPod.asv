@@ -24,6 +24,11 @@ eigVec= eigVec_tmp(:,ind);
 tTrapz=zeros(ntimesteps,1);
 %phiVec=zeros(ss,1);
 
+
+        saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '[TimeBloc]' num2str(timeBloc) '.mat'];
+        uu=open(saveStr);
+        xDirPostFft=qq.xDirPostFft;
+
 for podModeNumber=1:3
 for rr=1:ss
 for tt=1:ntimesteps % finding the n eigenfunctions Phi^{(n)}(r)...:

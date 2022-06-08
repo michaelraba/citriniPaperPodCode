@@ -101,7 +101,7 @@ end % r
 end % t (little)
         sprintf('%s','saving xdirPostFft...')
         saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-        save(saveStr,'xdirPostFft','-v7.3');
+        save(saveStr,'xdirPostFft','-v7.3'); % save this ito something else such as cs or az.
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
 % radial averaging
 %%
