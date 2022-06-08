@@ -156,9 +156,9 @@ end % t (little)
 %   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
 % just call trapz. then operate on t -> eig wrt .
 
-qq = corrMatRavg;
+qq = xdirPostFft;
 
 
-snapshotPod(qq);
-
+snapshotPod(qq); %  give u value.
+% qq(4).RadialCircle(540).azimuth  
  end % f
