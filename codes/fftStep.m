@@ -127,10 +127,17 @@ for t=1:ntimesteps
 aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
 %bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
 %cc=aa*ctranspose(bb); do do this yet.
-%corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc)=aa;
-corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,1)=aa;
-%end %tPr
+%corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,1)=aa;
+collectTimeForCorrMatPreAvg(m).c(c).r(r).dat(ntimesteps*tBloc + t,1)=aa;
 end %t
+
+if t==ntimesteps & tBloc==blocLength
+az=collectTimeForCorrMatPreAvg(m).c(c).r(r).dat;
+corrMatPreAvg(m).c(c).r(r).dat=az*ctranspose(az);
+end % if t 
+%end %tPr
+
+
 end %r
 
 end %m
