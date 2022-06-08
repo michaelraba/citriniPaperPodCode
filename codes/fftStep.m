@@ -148,17 +148,17 @@ end % t (little)
 
 % set back in radial direction and time avergae for all timesteps!
 
-        saveStr=[saveDir '/Ravg_r[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
-        save(saveStr,'Rmat_avg','-v7.3');
+        saveStr=[saveDir '/corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
+        save(saveStr,'corrMatRavg','-v7.3');
 
 % average in r smits2016
 
 %   smits2016(t).cs(c).circle(m).dat(r,1) = aa; % R(t,t';k;m,r)
 % just call trapz. then operate on t -> eig wrt .
 
-qq = xdirPostFft;
+qq = corrMatRavg;
 
 
-pod(qq);
+snapshotPod(qq);
 
  end % f
