@@ -1,12 +1,12 @@
 % Snapshot POD driver function
-function snapshotPod(m,c)
+function snapshotPod(m,c,Rmat_avg,currentUvec)
 %function pod()
 %figure(1);
 hold on;
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
      % this needs checked   
-saveStr=[saveDir 'corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
-        qq=open(saveStr);
+%saveStr=[saveDir 'corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '.mat'];
+ %       qq=open(saveStr);
         Rmat_avg=qq.corrMatRavg; % Rmat(time).cs(cs).circle(=azimuthalSetSize1:18)
         clear qq;
         %sprintf('%s','dbg')
@@ -14,8 +14,8 @@ for cc=1:ncs % streamwise mode % cannot exceed 1...
          % xdirPostFft needs to be correct timebloc.
 
 
-for mm=1:azimuthalSetSize % azimuthal mod
- currentCorrMat = Rmat_avg(mm).c(cc).dat; % this is the R(k;m;t,t'). needs to bbe fix for c
+%for mm=1:azimuthalSetSize % azimuthal mod
+% currentCorrMat = Rmat_avg(mm).c(cc).dat; % this is the R(k;m;t,t'). needs to bbe fix for c
 sprintf('%s','take eigenvals');
 [eigVec_tmp,eigVal_tmp]=eig(currentCorrMat);
 [d,ind] = sort(diag(eigVal_tmp),'descend');
@@ -53,4 +53,4 @@ end % if
 end % circle mm
 end % ncs
 
-end % fc
+%end % fc
