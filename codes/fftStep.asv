@@ -101,10 +101,12 @@ end % r
 end % t (little)
         sprintf('%s','saving xdirPostFft...')
         saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
-        save(saveStr,'xdirPostFft','-v7.3');
+        save(saveStr,'xdirPostFft','-v7.3'); % save this ito something else such as cs or az.
         sprintf('%s%s','Saved xdirpostfft into file ',saveStr);
 % radial averaging
 %%
+end % timebloc 
+
 aMat = zeros(540,1);
 
 % form corrmat before averginng in r 
@@ -115,9 +117,12 @@ sprintf('%s%s%s%s','Form Corrmat: c',num2str(c),'m',num2str(m))
 saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
 
-
 for c=1:ncs
 for m=1:azimuthalSetSize
+
+
+
+    
 for r=1:540
 
 xdirPostFft=qq.xdirPostFft;
@@ -176,4 +181,4 @@ qq = xdirPostFft;
 snapshotPod(); %  
 % qq(4).RadialCircle(540).azimuth  
  end % ncs
- end
+ %end

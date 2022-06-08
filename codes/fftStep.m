@@ -116,13 +116,13 @@ for tBloc=1:blocLength
 sprintf('%s%s%s%s','Form Corrmat: c',num2str(c),'m',num2str(m))
 saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '[TimeBloc]' num2str(timeBloc) '.mat'       ];
 qq=open(saveStr);
-
+xdirPostFft=qq.xdirPostFft;
 
 for c=1:ncs
 for m=1:azimuthalSetSize
+
 for r=1:540
 
-xdirPostFft=qq.xdirPostFft;
 
 for t=1:ntimesteps
 for tPr=1:ntimesteps
@@ -132,30 +132,22 @@ cc=aa*ctranspose(bb);
 corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc)=cc;
 end %tPr
 end %t
-end %bloclength
-
-
 end %r
-end %m
-end %c
+
 
 % r-average.
 % needs blocSize
-for t=1:ntimesteps*blocLength
-for tPr=1:ntimesteps*blocLength
-for c=1:ncs
-for m=1:azimuthalSetSize
+for t=1:ntimesteps
+for tPr=1:ntimesteps
+
 for r=1:540
    %aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   aa=corrMatPreAvg(m).c(c).r(r).dat(t,tPr);
+   aa=corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc);
    aMat(r) = rMat(r)*aa; % aa should be tt correlation
 end % r
 Rint = trapz(aMat);
 %Rmat_avg(t).cs(c).circle(m)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
 corrMatRavg(m).c(c).dat(t,tPr)= Rint; % smits17.eq.below.eq.2.4 % needs checking.
-
-end % m
-end % c
 end % tPr (little)
 end % t (little)
 
@@ -175,7 +167,12 @@ end % t (little)
 qq = xdirPostFft;
 
 
-snapshotPod(); %  
+%snapshotPod(m,c); % m c mode.
+
+
+end %m
+end %c
+
 % qq(4).RadialCircle(540).azimuth  
- end % ncs
- %end
+ end % bloc
+ end %fc
