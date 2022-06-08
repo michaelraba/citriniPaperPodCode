@@ -120,10 +120,10 @@ xdirPostFft=qq.xdirPostFft;
 
 for t=1:ntimesteps
 for tPr=1:ntimesteps
-aa = xdirPostFft(t*blocLength).RadialCircle(r).azimuth(m).dat(c,1);
-bb = xdirPostFft(tPr*blocLength).RadialCircle(r).azimuth(m).dat(c,1);
+aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
+bb = xdirPostFft(tPr).RadialCircle(r).azimuth(m).dat(c,1);
 cc=aa*ctranspose(bb);
-corrMatPreAvg(m).c(c).r(r).dat(t,tPr)=cc;
+corrMatPreAvg(m).c(c).r(r).dat(t*blocLength,tPr*blocLength)=cc;
 end %tPr
 end %t
 end %bloclength
