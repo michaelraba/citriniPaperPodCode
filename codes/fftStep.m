@@ -154,7 +154,7 @@ for tPr=1:ntimesteps
 
 for r=1:540
    %aa = xdirPostFft(t).RadialCircle(r).azimuth(m).dat(c,1);
-   aa=corrMatPreAvg(m).c(c).r(r).dat(t*tBloc,tPr*tBloc);
+   aa=corrMatPreAvg(m).c(c).r(r).dat(ntimesteps*(timeBloc-1)+t,ntimesteps*(timeBloc-1)+tPr);
    aMat(r) = rMat(r)*aa; % aa should be tt correlation
 end % r
 Rint = trapz(aMat);
