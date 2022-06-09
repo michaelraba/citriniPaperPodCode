@@ -7,9 +7,9 @@ rMin = 0;
 rMax = 1080;
 %csSet=1:5:30;
 %timeSet=1:1:43;
-timeSet=1:1:4;
+timeSet=1:1:50;
 
-csSet=1:1:1;
+csSet=1:1:3;
 %timeSet=1:2:600;
 ntimesteps = size(timeSet) ;ntimesteps= ntimesteps(2);
 csSize = size(csSet); 
