@@ -13,6 +13,10 @@ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     [xdirNew]=initData2("xdirNew");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
+    [phiVec]=initData2("snapshotPhiVec");
+
+
+
     for c = 1:ncs  % crosssection
     %% Step A) load a chonk into memory and read circles in.
     for timeBloc=1:blocLength
@@ -146,7 +150,7 @@ end % t (little)
         save(saveStr,'corrMatRavg','-v7.3');
 
 qq = xdirPostFft;
-snapshotPod(m,c,corrMatRavg(m).c(c).dat,collectTimeForCorrMatPreAvg(m).c(c)); % m c mode.
+[phiVec]=snapshotPod(m,c,corrMatRavg(m).c(c).dat,collectTimeForCorrMatPreAvg(m).c(c),phiVec); % m c mode.
 end %m
 end %c
  end % bloc

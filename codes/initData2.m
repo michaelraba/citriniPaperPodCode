@@ -118,6 +118,9 @@ qq=struct('t', repmat({struct('azimuthal', repmat({  struct('dat',repmat({zeros(
 elseif initStr=="SrrPrForFourierPost"
 qq=struct('t', repmat({struct('azimuthal', repmat({  struct('dat',repmat({zeros(1,540)}, Naz))}, Nts)) }, Ncs));
 
+elseif initStr=="snapshotPhiVec"
+qq=struct('c', repmat({struct('m', repmat({  struct('dat',repmat({zeros(1,540)}, [azimuthalSetSize,1]))}, [ncs,1])) }, [3,1])); % stores 3 pod modes
+
 end %if
 
 end %fc

@@ -1,5 +1,5 @@
 % Snapshot POD driver function
-function snapshotPod(currentAzimuthalMode,currentCrossSection,currentCorrMat,currentUvec)
+function [phiVec]=snapshotPod(currentAzimuthalMode,currentCrossSection,currentCorrMat,currentUvec,phiVec)
 %function pod()
 %figure(1);
 hold on;
@@ -44,7 +44,7 @@ end %rr
 
 end % podMode
 hold on;
-if 2 <= mm < azimuthalSetSize
-%plot(real(phiVec));
-end % if 
+%if 2 <= mm < azimuthalSetSize
+%plot(real(phiVec(podModeNumber).c(currentCrossSection).m(currentAzimuthalMode).dat));
+%end % if 
 end % fc
