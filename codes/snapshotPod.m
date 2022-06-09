@@ -40,6 +40,8 @@ for tt=1:ntimesteps % finding the n eigenfunctions Phi^{(n)}(r)...:
   end % tt
 ad= trapz(tTrapz);
 phiVec(podModeNumber).c(currentCrossSection).m(currentAzimuthalMode).dat(rr) = ad/(eigVal(tt,tt)*ntimesteps); % smits.eq.2.5
+%phiVec(podModeNumber).c(currentCrossSection).m(currentAzimuthalMode).dat(rr) = ad/(eigVal(podModeNumber,podModeNumber)*ntimesteps); % smits.eq.2.5
+
 end %rr
 
 end % podMode

@@ -2,7 +2,9 @@
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
 
  dr = 9.276438000000004e-04 + zeros(ss,1);
-rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
+     [phiVec]=initData2("snapshotPhiVec");
+
+ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
   if stepStr=="readDataAndFindVeloFluctuation"
     [qMinusQbar_noCsYet]=initData2("qMinusQbar_noCsYet"); % initialize avg struct
     [qMinusQbar]=initData2("qMinusQbar"); % initialize avg struct
@@ -13,7 +15,6 @@ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
     [xdirNew]=initData2("xdirNew");
     [xdirPostFft]=initData2("xdirPostFft");
     [avgTimeEnd]=initData2("avgTimeEnd");
-    [phiVec]=initData2("snapshotPhiVec");
 
 
 
