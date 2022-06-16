@@ -7,7 +7,7 @@ rMin = 0;
 rMax = 1080;
 %csSet=1:5:30;
 %timeSet=1:1:43;
-timeSet=1:1:50;
+timeSet=1:1:3;
 
 csSet=1:1:3;
 %timeSet=1:2:600;
@@ -16,7 +16,7 @@ csSize = size(csSet);
 ncs = csSize(2);
 %ncs =6; 
 %blocLength= 23;
-blocLength= 3;
+blocLength= 1;
 
 %ntimesteps =40; % also the number of workers assigned. % 
 %blocLength= 15;
