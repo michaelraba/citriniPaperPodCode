@@ -63,7 +63,7 @@ for podModeNumber=1:3
     end % m
           %subplot(cMaxx,1,cou);
           subplot(3,1,podModeNumber);
-          for m=5:azimuthalSetSize
+          for m=1:azimuthalSetSize
           labelStr = ['(m,k)=(', num2str(azimuthalSet(m)),',',num2str(c),')'];
           xlabel('1-r','interpreter','latex')
 

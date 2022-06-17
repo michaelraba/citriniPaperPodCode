@@ -3,6 +3,8 @@
 
  dr = 9.276438000000004e-04 + zeros(ss,1);
      [phiVec]=initData2("snapshotPhiVec");
+     [phiVecNormalized]=initData2("snapshotPhiVec");
+
 
  rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
   if stepStr=="readDataAndFindVeloFluctuation"
@@ -146,12 +148,10 @@ corrMatRavg(m).c(c).dat(t*tBloc,tPr*tBloc)= Rint; % smits17.eq.below.eq.2.4 % ne
 end % tPr (little)
 end % t (little)
 %% end % timeBloc
-
         saveStr=[saveDir '/corrMatRavg[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(c) '.mat'];
         save(saveStr,'corrMatRavg','-v7.3');
-
 qq = xdirPostFft;
-[phiVec]=snapshotPod(m,c,corrMatRavg(m).c(c).dat,collectTimeForCorrMatPreAvg(m).c(c),phiVec); % m c mode.
+[phiVec,phiVecNormalized]=snapshotPod(m,c,corrMatRavg(m).c(c).dat,collectTimeForCorrMatPreAvg(m).c(c),phiVec,phiVecNormalized); % m c mode.
 end %m
 end %c
  end % bloc

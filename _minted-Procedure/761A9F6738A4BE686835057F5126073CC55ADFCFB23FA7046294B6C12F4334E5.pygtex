@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{mz}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{40}\PYG{p}{:}\PYG{l+m+mi}{1080}
+\PYG{+w}{    }\PYG{n}{uu}\PYG{p}{=}\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{ss}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{nts}\PYG{p}{=}\PYG{n}{ntimesteps}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{}for tt=1:ntimesteps}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{tt}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{nts}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{sz}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{ss}
+\PYG{+w}{       }\PYG{n}{uu}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{qMinusQbar\PYGZus{}noCsYet}\PYG{p}{(}\PYG{n}{tt}\PYG{p}{).}\PYG{n}{circle}\PYG{p}{(}\PYG{n}{mz}\PYG{p}{).}\PYG{n}{dat}\PYG{p}{(}\PYG{n}{sz}\PYG{p}{)}\PYG{+w}{  }\PYG{p}{;}
+\PYG{+w}{       }\PYG{n}{uuuz}\PYG{p}{(}\PYG{n}{tt}\PYG{p}{).}\PYG{n}{dat}\PYG{p}{(}\PYG{n}{sz}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{uu}\PYG{o}{*}\PYG{n}{uu}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}\PYG{+w}{  }\PYG{c}{\PYGZpc{} sz}
+\PYG{+w}{    }\PYG{k}{end}\PYG{+w}{ }\PYG{c}{\PYGZpc{} tt}
+\PYG{+w}{    }\PYG{n}{rmsVec}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{ss}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{sp}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{ss}
+\PYG{+w}{    }\PYG{n}{tVecc}\PYG{p}{=}\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{n}{nts}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{ts}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{nts}
+\PYG{+w}{        }\PYG{n}{thVec}\PYG{p}{(}\PYG{n}{ts}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{uuuz}\PYG{p}{(}\PYG{n}{ts}\PYG{p}{).}\PYG{n}{dat}\PYG{p}{(}\PYG{n}{sp}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{n}{daRoot}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{rms}\PYG{p}{(}\PYG{n}{thVec}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{rmsVec}\PYG{p}{(}\PYG{n}{sp}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{daRoot}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{n}{labelStr}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s}{\PYGZsq{}Azimuthal Angle \PYGZsq{}}\PYG{+w}{ }\PYG{n+nb}{num2str}\PYG{p}{(}\PYG{n}{mz}\PYG{p}{)}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}*2 Pi/180\PYGZsq{}}\PYG{p}{]}
+\PYG{+w}{    }\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{on}
+\PYG{+w}{    }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n+nb}{flip}\PYG{p}{(}\PYG{n}{rmsVec}\PYG{p}{),}\PYG{l+s}{\PYGZdq{}DisplayName\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{labelStr}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nb}{legend}\PYG{p}{();}
+\PYG{+w}{    }\PYG{k}{end}\PYG{+w}{ }\PYG{c}{\PYGZpc{} mz}
+\PYG{k}{end}\PYG{+w}{ }\PYG{c}{\PYGZpc{} if}
+\end{Verbatim}
