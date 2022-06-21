@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
-\PYG{+w}{   }\PYG{n}{uu}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{qMinusQbar\PYGZus{}noCsYet}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{).}\PYG{n}{circle}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{).}\PYG{n}{dat}\PYG{p}{(}\PYG{n}{r}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{540}\PYG{p}{)}\PYG{+w}{  }\PYG{p}{;}
-\PYG{+w}{   }\PYG{n}{uz}\PYG{p}{(}\PYG{n}{sz}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{uu}\PYG{o}{*}\PYG{n}{uu}\PYG{p}{;}
-\PYG{+w}{   }\PYG{k}{end}
-\PYG{+w}{   }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{uz}\PYG{p}{)}
-\end{Verbatim}

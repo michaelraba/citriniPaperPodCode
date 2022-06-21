@@ -1,17 +1,23 @@
 %cte->fft constants...siehe auch, kte fuer den pod
-function [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
+function [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir,csSet,timeSet]=constants();
 % [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength]=constants();
 
 plotOn=0;
 rMin = 0;
 rMax = 1080;
-csSet=1:19:100;
-timeSet=1:40:999;
-ntimesteps = size(timeSet) ; ntimesteps(2)
+%csSet=1:5:30;
+%timeSet=1:1:43;
+timeSet=1:1:3;
+
+csSet=1:1:99;
+%timeSet=1:2:600;
+ntimesteps = size(timeSet) ;ntimesteps= ntimesteps(2);
 csSize = size(csSet); 
 ncs = csSize(2);
 %ncs =6; 
-blocLength= 1;
+blocLength= 23;
+%blocLength= 1;
+
 %ntimesteps =40; % also the number of workers assigned. % 
 %blocLength= 15;
 %ntimesteps = 40; % also the number of workers assigned. 
@@ -25,7 +31,7 @@ azimuthalSetSize=azimuthalSetSizeb(2);
 printStatus="on";
 %ntimesteps = 988; % fft mode
 ss=540;
-saveDir='/mnt/interest/podData/may24/';
+saveDir='/mnt/macOs/fullRunJun20/';
 %cMin = 1;
 %format long
 end
