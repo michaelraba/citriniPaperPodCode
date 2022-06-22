@@ -10,7 +10,9 @@ for tBloc=1:1
 % open blocfile
 
 for c=1:ncs
- subplot(9,11,c);
+ %subplot(9,11,c);
+ subplot(1,2,c);
+
 
 saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '[TimeBloc]' num2str(tBloc) '.mat'       ];
 qq=open(saveStr);
@@ -40,7 +42,7 @@ qq=open(saveStr);
     end
     daRoot = rms(thVec);
     rmsVec(sp) = daRoot;
-    end
+    end %sp
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
     plot(flip(rmsVec),"DisplayName", labelStr)
