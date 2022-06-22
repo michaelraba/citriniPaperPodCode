@@ -57,6 +57,8 @@ qq=open(saveStr);
 end %mz
 
 for mz=1:azimuthalSetSize
+    subplot(9,11,c);
+
     rmsVecCM(c).m(mz).dat  =rmsVecM(mz).dat;
 
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
