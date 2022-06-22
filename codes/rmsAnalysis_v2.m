@@ -60,7 +60,7 @@ qq=open(saveStr);
     if c==1
     legend();
     end % if
-    end % c 
+    end % mz now.
      titleStrr=["Reynolds Shear Stress at $u'u'$ in Streamwise Direction for at particular azimuthal angle for different streamwise modes $k\in[1,99]$."]
   sgtitle(titleStrr,'FontName','capitana','FontSize',12,'interpreter','latex')
 
