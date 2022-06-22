@@ -2,11 +2,14 @@
 function rmsAnalysis_v3(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
 f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
+  [uuMTS]=initData2("rmsU");
+  [thVecM]=initData2("thVecM");
+  [rmsVecM]=initData2("rmsVecM");
 
 %for tBloc=1:blocLength
 blocLength=1;
 for c=1:ncs
-for mz=1:1:18
+parfor mz=1:1:18
 %% load data.
 %subplot(9,11,c);
 for tBloc=1:blocLength
@@ -23,7 +26,8 @@ qq=open(saveStr);
        %uu = qMinusQbar_noCsYet(tt).circle(mz).dat(sz)  ;
       %qq.xdirPostFft(8).RadialCircle(12).azimuth(17).dat
        uu = qq.xdirPostFft(tt).RadialCircle(sz).azimuth(mz).dat(c);
-       uuuz(tt + (tBloc-1)*ntimesteps).dat(sz) = uu*uu;
+       %uuuz(tt + (tBloc-1)*ntimesteps).dat(sz) = uu*uu;
+       uuMTS(mz).t(tt + (tBloc-1)*ntimesteps).dat(sz) = uu*uu;
     end  % sz
     end % tt
   end % tBloc
@@ -34,16 +38,21 @@ qq=open(saveStr);
     thVec=zeros(nts*blocLength,1);
     for tBloc=1:blocLength   
     for ts=1:nts*blocLength
-        thVec(ts) = uuuz(ts).dat(sp);
+        %thVec(ts) = uuuz(ts).dat(sp);
+        %thVec(ts) = uuMTS(mz).t(ts).dat(sp);
+        thVecM(mz).dat(ts) = uuMTS(mz).t(ts).dat(sp);
+
     end %ts
     end % bloc
     
-    daRoot = rms(thVec);
-    rmsVec(sp) = daRoot;
+    %daRoot = rms(thVec);
+    daRoot = rms(thVecM(mz).dat);
+    %rmsVec(sp) = daRoot;
+    rmsVecM(mz).dat(sp) = daRoot;
     end %sp
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
-    plot(flip(rmsVec),"DisplayName", labelStr)
+    plot(flip(rmsVec(mz).dat),"DisplayName", labelStr)
      tiSt=['c=' num2str(c) ];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
     if c==1

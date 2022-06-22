@@ -79,7 +79,6 @@ elseif initStr=="avgPreFft" %redo
 qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [1080,1]))} , [1,ncs]));
 
 elseif initStr=="avgPreFft_noCsYet" %redo
-  %qq=struct('dat',repmat({zeros(540,1)}, [1,540]));
   qq=struct('dat',repmat({zeros(540,1)}, [1080,1]));
 elseif initStr=="qMinusQbar"
 qq=struct('t', repmat({struct('circle', repmat({  struct('dat',repmat({zeros(1,1080)}, Nps))}, Nts)) }, Ncs));
@@ -88,7 +87,11 @@ elseif initStr=="qMinusQbar_noCsYet"
 qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [1080,1]))} , [1,ntimesteps]));
   %qq=struct('dat',repmat({zeros(1,1080)}, [1,540]));
 elseif initStr=="rmsU"
-qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps*blocLength,1]))} , [1,azimuthalSetSize]));
+qq=struct('t', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps*blocLength,1]))} , [azimuthalSetSize,1]));
+elseif initStr=="thVecM" %redo
+  qq=struct('dat',repmat({zeros(ntimesteps*blocLength,1)}, [azimuthalSetSize,1]));
+elseif initStr=="rmsVecM" %redo
+  qq=struct('dat',repmat({zeros(540,1)}, [azimuthalSetSize,1]));
 
 elseif initStr=="qMinusQbar_noCsNoTimeYet" % for truncating out the time when we feed eahc itme step to the azimuth fucnciton.
   qq=struct('dat',repmat({zeros(540,1)}, [1080,1]));
