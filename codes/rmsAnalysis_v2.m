@@ -8,24 +8,14 @@ f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
 
 
 %for tBloc=1:blocLength
-blocLength=1;
+%blocLength=1;
 for c=1:ncs
 for mz=1:1:18
-
 %subplot(9,11,c);
-
 for tBloc=1:blocLength
-% open blocfile
-
-
-
 saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '[TimeBloc]' num2str(tBloc) '.mat'       ];
 qq=open(saveStr);
 %xdirPostFft=qq.xdirPostFft;
-
-    sprintf('%s','hi')
-
-
     uu=zeros(ss,1);
     nts=ntimesteps
     %for tt=1:ntimesteps
@@ -63,19 +53,7 @@ qq=open(saveStr);
     end % mz now.
      titleStrr=["Reynolds Shear Stress at $u'u'$ in Streamwise Direction for at particular azimuthal angle for different streamwise modes $k\in[1,99]$."]
   sgtitle(titleStrr,'FontName','capitana','FontSize',12,'interpreter','latex')
-
-
-
-
-%%for m=1:azimuthalSetSize
-%%for r=1:540
-%%for t=1:ntimesteps
-%%
-%%
-%%end % t
-%%end % r
-%%end % m
-sprintf('%s%f%s%f' , 'c,m', num2str(c),', ', num2str(tBloc))
+  sprintf('%s%f%s%f' , 'c,m', num2str(c),', ', num2str(tBloc))
 
 end % mz
 end % fc
