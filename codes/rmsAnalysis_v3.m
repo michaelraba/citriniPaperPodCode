@@ -1,5 +1,5 @@
-% v2 *has* timeblocing. however needs debugging bec the graph is not correct.
-function rmsAnalysis_v2(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
+% v2 *has* timeblocing *and parallel*. however needs debugging bec the graph is not correct.
+function rmsAnalysis_v3(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
 f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
 

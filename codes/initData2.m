@@ -85,9 +85,10 @@ elseif initStr=="qMinusQbar"
 qq=struct('t', repmat({struct('circle', repmat({  struct('dat',repmat({zeros(1,1080)}, Nps))}, Nts)) }, Ncs));
 
 elseif initStr=="qMinusQbar_noCsYet"
-  % too many nesting here.
 qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [1080,1]))} , [1,ntimesteps]));
   %qq=struct('dat',repmat({zeros(1,1080)}, [1,540]));
+elseif initStr=="rmsU"
+qq=struct('circle', repmat({struct('dat',repmat({zeros(540,1)}, [ntimesteps*blocLength,1]))} , [1,azimuthalSetSize]));
 
 elseif initStr=="qMinusQbar_noCsNoTimeYet" % for truncating out the time when we feed eahc itme step to the azimuth fucnciton.
   qq=struct('dat',repmat({zeros(540,1)}, [1080,1]));
