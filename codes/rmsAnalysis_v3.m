@@ -9,7 +9,7 @@ f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
 %for tBloc=1:blocLength
 blocLength=1;
 for c=1:ncs
-for mz=1:1:18
+parfor mz=1:1:18 % <-parfor
 %% load data.
 %subplot(9,11,c);
 for tBloc=1:blocLength
@@ -50,6 +50,8 @@ qq=open(saveStr);
     %rmsVec(sp) = daRoot;
     rmsVecM(mz).dat(sp) = daRoot;
     end %sp
+end %mz
+for mz=1:azimuthalSetSize
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
     plot(flip(rmsVecM(mz).dat),"DisplayName", labelStr)
@@ -61,7 +63,7 @@ qq=open(saveStr);
     end % mz now.
      titleStrr=["Reynolds Shear Stress at $u'u'$ in Streamwise Direction for at particular azimuthal angle for different streamwise modes $k\in[1,99]$."]
   sgtitle(titleStrr,'FontName','capitana','FontSize',12,'interpreter','latex')
-  sprintf('%s%f%s%f' , 'c,m', num2str(c),', ', num2str(tBloc))
+  %sprintf('%s%f%s%f' , 'c,m', num2str(c),', ', num2str(tBloc))
 
 end % c
 end % fc
