@@ -1,18 +1,17 @@
 % v2 *has* timeblocing. however needs debugging bec the graph is not correct.
 function rmsAnalysis_v2(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
-
-
-
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
 f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
-
 
 %for tBloc=1:blocLength
 %blocLength=1;
 for c=1:ncs
 for mz=1:1:18
+%% load data.
 %subplot(9,11,c);
 for tBloc=1:blocLength
+sprintf('%s%d%s%d%s%d' , 'Reading Data: c=',c,', tBloc=', tBloc, ', mz=',mz)
+
 saveStr=[saveDir 'xdirPostFft[Case]C' num2str(ncs) 'T' num2str(ntimesteps) '[crossSec]' num2str(ncs) '[TimeBloc]' num2str(tBloc) '.mat'       ];
 qq=open(saveStr);
 %xdirPostFft=qq.xdirPostFft;
@@ -29,7 +28,7 @@ qq=open(saveStr);
     end % tt
   end % tBloc
  
-
+%% process data.
     rmsVec = zeros(ss,1);
     for sp=1:ss
     thVec=zeros(nts*blocLength,1);
