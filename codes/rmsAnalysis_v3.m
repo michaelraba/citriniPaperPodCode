@@ -57,7 +57,7 @@ qq=open(saveStr);
 end %mz
 
 for mz=1:azimuthalSetSize
-    rmsVecCM(c).m(mz).dat  =rmsVecM(mz).dat(sp)
+    rmsVecCM(c).m(mz).dat  =rmsVecM(mz).dat;
 
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
