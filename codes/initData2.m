@@ -92,6 +92,9 @@ elseif initStr=="thVecM" %redo
   qq=struct('dat',repmat({zeros(ntimesteps*blocLength,1)}, [azimuthalSetSize,1]));
 elseif initStr=="rmsVecM" %redo
   qq=struct('dat',repmat({zeros(540,1)}, [azimuthalSetSize,1]));
+elseif initStr=="rmsVecCM" %redo
+  %qq=struct('dat',repmat({zeros(540,1)}, [azimuthalSetSize,1]));
+  qq=struct('m', repmat({struct('dat',repmat({zeros(540,1)}, [azimuthalSetSize,1]))} , [ncs,1]));
 
 elseif initStr=="qMinusQbar_noCsNoTimeYet" % for truncating out the time when we feed eahc itme step to the azimuth fucnciton.
   qq=struct('dat',repmat({zeros(540,1)}, [1080,1]));

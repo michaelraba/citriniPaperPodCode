@@ -5,9 +5,10 @@ f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
   [uuMTS]=initData2("rmsU");
   [thVecM]=initData2("thVecM");
   [rmsVecM]=initData2("rmsVecM");
+  [rmsVecCM]=initData2("rmsVecCM");
 
 %for tBloc=1:blocLength
-blocLength=1;
+blocLength=blocLength;
 for c=1:ncs
 parfor mz=1:1:18 % <-parfor
 %% load data.
@@ -49,12 +50,18 @@ qq=open(saveStr);
     daRoot = rms(thVecM(mz).dat);
     %rmsVec(sp) = daRoot;
     rmsVecM(mz).dat(sp) = daRoot;
+    %rmsVecCM(c).m(mz).dat(sp) = daRoot; % dont use this, breaks parallel.
+    %store later.
+
     end %sp
 end %mz
+
 for mz=1:azimuthalSetSize
+    rmsVecCM(c).m(mz).dat  =rmsVecM(mz).dat(sp)
+
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
-    plot(flip(rmsVecM(mz).dat),"DisplayName", labelStr)
+    plot(flip(rmsVecCM(c).m(mz).dat),"DisplayName", labelStr)
      tiSt=['c=' num2str(c) ];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
     if c==1
