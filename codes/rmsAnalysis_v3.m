@@ -9,7 +9,7 @@ f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
 %for tBloc=1:blocLength
 blocLength=1;
 for c=1:ncs
-parfor mz=1:1:18
+for mz=1:1:18
 %% load data.
 %subplot(9,11,c);
 for tBloc=1:blocLength
@@ -52,7 +52,7 @@ qq=open(saveStr);
     end %sp
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
-    plot(flip(rmsVec(mz).dat),"DisplayName", labelStr)
+    plot(flip(rmsVecM(mz).dat),"DisplayName", labelStr)
      tiSt=['c=' num2str(c) ];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
     if c==1
