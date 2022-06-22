@@ -1,20 +1,20 @@
-% v2 has timeblocing. however needs debugging bec the graph is not correct.
+% v2 *has* timeblocing. however needs debugging bec the graph is not correct.
 function rmsAnalysis_v2(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
 
 
 
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
-f=figure('Renderer', 'painters', 'Position', [10 10 1900 900])
+f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
 
 
 %for tBloc=1:blocLength
-%blocLength=1;
+blocLength=1;
 
 for mz=1:1:18
 for c=1:ncs
 %subplot(9,11,c);
 
-for tBloc=1:3
+for tBloc=1:blocLength
 % open blocfile
 
 
@@ -42,18 +42,21 @@ qq=open(saveStr);
  
 
     
-    rmsVec = zeros(ss,1);
     for sp=1:ss
-    tVecc=zeros(nts*blocLength,1);
-    for ts=1:nts
+    thVec=zeros(nts*blocLength,1);
+    for tBloc=1:blocLength   
+    for ts=1:nts*blocLength
         thVec(ts) = uuuz(ts).dat(sp);
-    end
+    end %ts
+    end % bloc
+    
     daRoot = rms(thVec);
+    rmsVec = zeros(ss,1);
     rmsVec(sp) = daRoot;
-    end
+    end %sp
     labelStr = ['Azimuthal Angle ' num2str(mz) '*2 Pi/180']
     hold on
-    plot(flip(rmsVec),"DisplayName", labelStr)
+    plot(1e-3*flip(rmsVec),"DisplayName", labelStr)
      tiSt=['c=' num2str(c) ];
           title(tiSt, 'FontName','capitana','FontSize',12,'interpreter','latex')
     if c==1

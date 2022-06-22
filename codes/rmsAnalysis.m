@@ -1,6 +1,5 @@
+% no timeblocing. see v2 of this script for blocs.
 function rmsAnalysis(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
-
-
 
 [ntimesteps, rMin, rMax, ss, ncs, plotOn, azimuthalSet ,azimuthalSetSize ,printStatus ,lags, blocLength, saveDir]=constants();
 f=figure('Renderer', 'painters', 'Position', [10 10 1900 900])
