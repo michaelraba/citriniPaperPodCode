@@ -11,9 +11,6 @@ sprintf('%s','working..')
  dr = 9.276438000000004e-04 + zeros(ss,1);
  rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
 
-
-
-
 %qq.rmsVecCM(99).m(18).dat
 for m=2:18
 sprintf('%s%d%s' , 'Reading Data: m=',m,'.')
@@ -23,18 +20,24 @@ sprintf('%s%d%s' , 'Reading Data: m=',m,'.')
   end %c
   avgVec = flip(1.1e-7*avgVec);
   %avgVec = 1.1e-7*avgVec;
+  %avgVec = flip(avgVec);
 
   wtVec = zeros(540,1);
   for rr=1:ss
       val = avgVec(rr);
       res=rMat(rr)*val*val;
+      %res=rr*val*val;
+
       wtVec(rr)=res;
   end 
+  %wtNum = trapz(wtVec);
   wtNum = trapz(wtVec,dr);
+
   %rmsVecAvg(m).dat = avgVec;
   %rmsVecAvg(m).dat = wtVec;
+  %if wtNum>1e-5
   avgVec = avgVec/wtNum;
-
+  %end 
 
     labelStr = ['m=' num2str(azimuthalSet(m)) '.']
     hold on
