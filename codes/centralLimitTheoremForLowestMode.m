@@ -5,8 +5,8 @@
 function centralLimitTheoremForLowestMode(currentTime, currentCrossSec, qMinusQbar_noCsYet,xcorrDone,aliasStr,currentBloc)
 
 figure(4);
-nz=1e2 % change this for finer x axis.
-nTyp=1e5
+nz=1e5 % change this for finer x axis.
+nTyp=1e2
   nStr=struct('dat',repmat({zeros(1,nz)}, [nTyp,1]));
 
 for nt=1:nTyp
@@ -19,11 +19,13 @@ avVe = zeros(1,nz);
 figure(4);
 for nt=1:nTyp
   avVe = avVe + nStr(nt).dat ;
-   if mod(nt,100)==0
+  % if mod(nt,100)==0
   histogram(avVe/nt)
-  pause(0.006)
+  %pause(0.006)
+  pause(0.6)
+
   title('hi')
-   end
+   %end
 end
 avVe = avVe/nTyp;
 

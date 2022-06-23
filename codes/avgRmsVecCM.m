@@ -8,6 +8,12 @@ f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
 qq=open('/home/mi/citriniPodCode/GraphsAndData-spectralAnalysis/rmsVecCM.mat')
 sprintf('%s','working..')
 
+ dr = 9.276438000000004e-04 + zeros(ss,1);
+ rMat=0:dr:.50001; % [0, ...,0.5] with 540 elements %  needs checked
+
+
+
+
 %qq.rmsVecCM(99).m(18).dat
 for m=2:18
 sprintf('%s%d%s' , 'Reading Data: m=',m,'.')
@@ -15,13 +21,27 @@ sprintf('%s%d%s' , 'Reading Data: m=',m,'.')
   for c=1:18
     avgVec = avgVec + qq.rmsVecCM(c).m(m).dat ;
   end %c
-  rmsVecAvg(m).dat = avgVec;
+  avgVec = flip(1.1e-7*avgVec);
+  %avgVec = 1.1e-7*avgVec;
+
+  wtVec = zeros(540,1);
+  for rr=1:ss
+      val = avgVec(rr);
+      res=rMat(rr)*val*val;
+      wtVec(rr)=res;
+  end 
+  wtNum = trapz(wtVec,dr);
+  %rmsVecAvg(m).dat = avgVec;
+  %rmsVecAvg(m).dat = wtVec;
+  avgVec = avgVec/wtNum;
+
+
     labelStr = ['m=' num2str(azimuthalSet(m)) '.']
     hold on
     if m==2
-    plot(1.1e-7*flip(avgVec) ,'b--' , 'LineWidth' , 2  ,"DisplayName", labelStr)
+    plot(flip(avgVec) ,'b--' , 'LineWidth' , 2  ,"DisplayName", labelStr)
     else
-            plot(1.1e-7*flip(avgVec)  ,"DisplayName", labelStr)
+            plot(flip(avgVec)  ,"DisplayName", labelStr)
     end
     legend();
     titleStrr=['Streamwise Reynolds Shear Stress $rms(uu)$ for Azimuthal modes $m\in[' num2str(azimuthalSet(2)) ',' num2str(azimuthalSet(azimuthalSetSize)) ']$ for Ensemle-averaged Streamwise Modes $k$, $N_t \in [0,999], N_c \in[0,99]$. N.b.(1): Real part only']

@@ -7,6 +7,8 @@ f=figure('Renderer', 'painters', 'Position', [10 10 1900 900],'Visible','on')
   [rmsVecM]=initData2("rmsVecM");
   [rmsVecCM]=initData2("rmsVecCM");
 
+
+
 %for tBloc=1:blocLength
 blocLength=blocLength;
 for c=1:ncs
